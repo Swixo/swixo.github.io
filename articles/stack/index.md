@@ -10,6 +10,7 @@ Cette structure de données est basé sur le principe **LIFO**, (Last In, First 
 ![alt text](https://upload.wikimedia.org/wikipedia/it/thumb/b/b5/FIFO-LIFO.svg/1200px-FIFO-LIFO.svg.png)
 
 
-**Plus on empile des valeurs dans la stack, plus les adresses diminuent**, comme nous pouvons voir sur le schéma de la stack. 
+**Plus on empile des valeurs dans la stack, plus les adresses diminuent**, comme nous pouvons voir sur le schéma. 
 
 ![alt text](https://i.imgur.com/vjCMPG1.png)
+
