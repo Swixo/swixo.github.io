@@ -2,4 +2,4 @@ Bonjour à tous, aujourd'hui nous utilisons des programmes sans comprendre la ge
 
 ## La stack, une structure LIFO
 
-Rentre en premier
+![alt text](https://upload.wikimedia.org/wikipedia/it/thumb/b/b5/FIFO-LIFO.svg/1200px-FIFO-LIFO.svg.png)
