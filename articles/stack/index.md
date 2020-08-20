@@ -1,4 +1,4 @@
-Bonjour à tous, aujourd'hui nous utilisons des programmes sans comprendre la gestion de mémoire qui se passe derrière tout cela, c'est pourquoi je vous propose aujourd’hui de découvrir le fonctionnement de la pile en informatique. 😀
+Bonjour à tous, aujourd'hui nous utilisons des programmes sans comprendre la gestion de mémoire qui se passe derrière tout cela, c'est pourquoi je vous propose aujourd’hui de découvrir le fonctionnement de la pile en informatique et comment l'a manipuler. 😀
 
 ## La stack, une structure LIFO
 
@@ -12,5 +12,7 @@ Cette structure de données est basé sur le principe **LIFO**, (Last In, First 
 
 **Plus on empile des valeurs dans la stack, plus les adresses diminuent**, comme nous pouvons voir sur le schéma de GDB-PEDA. 
 
+
 ![alt text](https://i.imgur.com/vjCMPG1.png)
+
 
