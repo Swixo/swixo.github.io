@@ -10,3 +10,8 @@ Sur ce site, je vous partagerai des articles, des write-ups ainsi que mes connai
 
 ## ARTICLES
 
+<div>
+    <time datetime="2020-03-08T00:00:00+00:00">March 08, 2020</time>
+    <h2><a href="/retourne-libc/">Technique de la retour à la libc</a></h2><h5 class="notice">Dans cet article je vous présente comment exploiter une vulnérabilité pour bypass le système NX avec la technique de la retourne à la libc.</h5><br>
+    <a href="/retourne-libc/"><img src="sam.png" class="arrondie"></a>
+  </div>
