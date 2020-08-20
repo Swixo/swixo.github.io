@@ -1,1 +1,2 @@
-## Fonctionnement de la stack
+## La stack, une structure LIFO
+
