@@ -24,7 +24,7 @@ L'instruction **PUSH register** met la valeur du registre dans RSP, le registre 
 L'instruction **POP register** enlève la valeur de RSP pour la mettre dans le registre destination.
 
 **Exemple :**
-```asm
+```
 
 BITS 64
 
