@@ -16,3 +16,6 @@ Cette structure de données est basé sur le principe **LIFO**, (Last In, First 
 ![alt text](https://i.imgur.com/vjCMPG1.png)
 
 
+## Comment manipuler la stack ?
+
+Tout d'abord,
