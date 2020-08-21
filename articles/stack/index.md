@@ -19,7 +19,8 @@ Cette structure de données est basé sur le principe **LIFO**, (Last In, First 
 ## Comment manipuler la stack ?
 
 Tout d'abord, nous allons introduire les instructions ```PUSH``` et ```POP``` avec un exemple simple.
-L'instruction **PUSH register** mets la valeur du registre dans RSP. (haut de la pile) 	</br>
+
+L'instruction **PUSH register** mets la valeur du registre dans RSP. (haut de la pile)
 L'instruction **POP register** enlève la valeur de RSP pour la mettre dans le registre destination.
 
 **Exemple :**
@@ -37,4 +38,11 @@ _start:
 	pop rdi  ; on mets RSP dans RDI
 	
   ```
-  
+  **Schéma de l'instruction PUSH via l'exemple :**
+
+![alt text](https://i.imgur.com/SjprmnM.png)
+
+**Schéma de l'instruction POP via l'exemple :**
+
+![alt text](https://i.imgur.com/1DmYUFl.png)
+
