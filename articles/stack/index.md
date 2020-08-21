@@ -18,4 +18,4 @@ Cette structure de données est basé sur le principe **LIFO**, (Last In, First 
 
 ## Comment manipuler la stack ?
 
-Tout d'abord,
+Tout d'abord, nous allons introduire avec un exemple simple les instructions ```PUSH``` et ```POP```
