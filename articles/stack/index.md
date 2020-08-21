@@ -23,7 +23,8 @@ L'instruction **PUSH register** mets la valeur du registre dans RSP. (haut de la
 L'instruction **POP register** enlève la valeur de RSP pour la mettre dans le registre destination.</br>
 
 **Exemple :**
-```BITS 64
+```
+BITS 64
 
 global _start
 
