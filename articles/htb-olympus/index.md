@@ -91,3 +91,11 @@ La présence d'un .dockerenv certifie bien le fait que nous sommes dans un conta
 Avec une énumération un peu plus appronfondie, nous avons un fichier .cap de capture réseau associé à un .txt de la part de Zeus. Nous allons donc le transférer sur notre machine local afin de l'étudier avec Wireshark.
 
 ![presence&transfert_cap](https://i.imgur.com/XLbOkkM.png)
+
+###### Analyse .cap
+
+Plusieurs solutions sont possibles:
+1. Regarder les strings qui correspondent à l'hexdump du fichier .cap avec xxd et strings.
+2. Ouvrir le fichier via Wireshark
+
+![analyse_cap](https://i.imgur.com/CDPomUA.png)
