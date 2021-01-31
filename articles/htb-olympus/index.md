@@ -5,7 +5,7 @@ Bonjour à tous, je vous présente mon **write-up** qui porte sur la machine **O
 ## Nmap
   
 ```
-  # Nmap 7.91 scan initiated Fri Jan 29 17:30:12 2021 as: nmap -sC -sV -oA nmap -Pn olympus.htb
+# Nmap 7.91 scan initiated Fri Jan 29 17:30:12 2021 as: nmap -sC -sV -oA nmap -Pn olympus.htb
 Nmap scan report for olympus.htb (10.10.10.83)
 Host is up (0.13s latency).
 Not shown: 996 closed ports
