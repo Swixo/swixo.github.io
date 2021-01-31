@@ -2,9 +2,9 @@ Bonjour à tous, je vous présente mon write-up qui porte sur la machine **Olymp
 
 # Recon
 
-  ## Nmap
+ ## Nmap
   
-  ```
+```
   # Nmap 7.91 scan initiated Fri Jan 29 17:30:12 2021 as: nmap -sC -sV -oA nmap -Pn olympus.htb
 Nmap scan report for olympus.htb (10.10.10.83)
 Host is up (0.13s latency).
@@ -40,4 +40,4 @@ SF:\x0c\0\x02\0\x03\0\0\0\0\0\x02\xc0\x0c");
 SF-Port2222-TCP:V=7.91%I=7%D=1/29%Time=6014381E%P=x86_64-unknown-linux-gnu
 SF:%r(NULL,29,"SSH-2\.0-City\x20of\x20olympia\x20\x20\x20\x20\x20\x20\x20\
 SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\r\n");
-  ```
+```
