@@ -50,4 +50,14 @@ Nous pouvons voir que le serveur contient 3 ports ouverts:
 
 ### Enumération Serveur DNS
 
-Commencons par intérroger le serveur DNS afin d'afficher l'opcode mnémotechnique **AXFR** avec **dig**
+Commencons par intérroger le serveur DNS afin d'afficher l'opcode mnémotechnique **AXFR** avec **dig**. La requete AXFR ne renvoie rien d'intéréssant, cependant un autre nom de domaine peut etre intéréssant...
+
+![dig](https://i.imgur.com/IvHQg4g.png)
+
+### Enumération Serveur Web
+
+###### Web Dir
+
+
+
+
