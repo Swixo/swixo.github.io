@@ -1,8 +1,8 @@
-Bonjour à tous, je vous présente mon write-up qui porte sur la machine **Olympus** de HackTheBox qui était assez cool et qui m'a apprit des choses que je n'avais jamais vu auparavant surtout dans un CTF. Elle n'est pas difficile mais très intéréssante et amusante à root... 😀
+Bonjour à tous, je vous présente mon **write-up** qui porte sur la machine **Olympus** de **HackTheBox** qui était assez cool et qui m'a apprit des choses que je n'avais jamais vu auparavant surtout dans un CTF. Elle n'est pas difficile mais très intéréssante et amusante à root... 😀
 
 # Recon
 
- ## Nmap
+## Nmap
   
 ```
   # Nmap 7.91 scan initiated Fri Jan 29 17:30:12 2021 as: nmap -sC -sV -oA nmap -Pn olympus.htb
