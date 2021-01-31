@@ -70,6 +70,12 @@ En regardant les headers des requetes et réponses HTTP on sait maintenant que *
 
 Après quelques recherches, on s'apercoit que cette librairie est touché par une [RCE](https://paper.seebug.org/397/), ce qui va nous permettre d'avoir un premier foothold sur la machine. 😇
 
+# Exploitation
+
 Nous allons utiliser un [script python](https://github.com/vulhub/vulhub/blob/master/php/xdebug-rce/exp.py) déjà présent sur GitHub pour plus de rapidité et facilité.
 
 ![rce_script](https://i.imgur.com/qTLDi5R.png)
+
+Nous pouvons maintenant executer des commandes en www-data sur la cible, il ne reste plus qu'a executer un reverse shell. 😎
+
+![rce_shell](https://i.imgur.com/XDHlNPz.png)
