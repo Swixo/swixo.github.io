@@ -99,3 +99,8 @@ Plusieurs solutions sont possibles:
 2. Ouvrir le fichier via Wireshark
 
 ![analyse_cap](https://i.imgur.com/CDPomUA.png)
+
+###### Cracking WPA key
+
+À partir du SSID de iracus nous pouvons tenter de casser la clé WPA de ce AP sans fil.
+
