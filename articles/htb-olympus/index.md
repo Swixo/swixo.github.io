@@ -82,6 +82,6 @@ Nous pouvons maintenant executer des commandes en www-data sur la cible, il ne r
 
 Enfin, nous avons un shell sur la machine cible ! 
 
-# Pivot to docker container
+# Pivot to Olympia container
 
 ![dockerenv](https://i.imgur.com/KpJtQ8w.png)
