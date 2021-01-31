@@ -48,6 +48,6 @@ Nous pouvons voir que le serveur contient 3 ports ouverts:
 2. Port 80 (Serveur Web Apache)
 3. Port 2222 (Serveur SSH)
 
-#### Enumération Serveur DNS
+### Enumération Serveur DNS
 
 Commencons par intérroger le serveur DNS afin d'afficher l'opcode mnémotechnique **AXFR** avec **dig**
