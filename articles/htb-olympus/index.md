@@ -42,7 +42,12 @@ SF:%r(NULL,29,"SSH-2\.0-City\x20of\x20olympia\x20\x20\x20\x20\x20\x20\x20\
 SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\r\n");
 ```
 
-Nous pouvons voir que le serveu contient 3 ports ouverts:
-1. Port 80 (Serveur web Apache)
-2. Port 2222 (Serveur SSH)
-3. Port 53 (Serveur DNS)
+
+Nous pouvons voir que le serveur contient 3 ports ouverts:
+1. Port 53 (Serveur DNS)
+2. Port 80 (Serveur Web Apache)
+3. Port 2222 (Serveur SSH)
+
+###### Enumération Serveur DNS
+
+Commencons par intérroger le serveur DNS afin d'afficher l'opcode mnémotechnique **AXFR** avec **dig**
