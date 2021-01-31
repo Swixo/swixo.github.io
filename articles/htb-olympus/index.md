@@ -144,5 +144,5 @@ for nuts in 3456 8234 62431; do nmap -p $nuts 10.10.10.83; done; ssh prometheus@
 
 Ensuite nous pouvons nous connecter avec le mot de passe obtenu auparavant. 🤠
 
-![port_knocking](https://i.imgur.com/hkhxqWP.png)
+![port_knocking](https://i.imgur.com/tJ5fJMj.png)
 
