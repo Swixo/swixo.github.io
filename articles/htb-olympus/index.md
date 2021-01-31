@@ -4,7 +4,7 @@ Bonjour à tous, je vous présente mon **write-up** qui porte sur la machine **O
 
 ## Nmap
   
-```
+```bash
 # Nmap 7.91 scan initiated Fri Jan 29 17:30:12 2021 as: nmap -sC -sV -oA nmap -Pn olympus.htb
 Nmap scan report for olympus.htb (10.10.10.83)
 Host is up (0.13s latency).
@@ -121,7 +121,7 @@ Un document .txt fans le répertoire courant révèle un nouveau nom de domaine 
 
 Je vais l'ajouter à ma liste des VHOSTS:
 
-```
+```bash
 127.0.0.1  localhost
 127.0.1.1  host
 10.10.10.83	olympus.htb	ctfolympus.htb
@@ -140,7 +140,7 @@ On obtient maintenant les credentials d'un utilisateur nommé prometheus, ainsi 
 
 Pour cela c'est très simple nous allons executer une boucle for en bash pour automatiser la chose dans le temps imparti:
 
-```
+```bash
 for nuts in 3456 8234 62431; do nmap -p $nuts 10.10.10.83; done; ssh prometheus@10.10.10.83
 ```
 
