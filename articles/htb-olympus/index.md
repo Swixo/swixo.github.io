@@ -95,6 +95,7 @@ Avec une énumération un peu plus appronfondie, nous avons un fichier .cap de c
 ###### Analyse .cap
 
 Plusieurs solutions sont possibles:
+
 1. Regarder les strings qui correspondent à l'hexdump du fichier .cap avec xxd et strings.
 2. Ouvrir le fichier via Wireshark
 
@@ -102,5 +103,10 @@ Plusieurs solutions sont possibles:
 
 ###### Cracking WPA key
 
-À partir du SSID de icarus nous pouvons tenter de casser la clé **WPA** de ce AP sans fil avec **aircrack-ng**
+À partir d'un SSID nous pouvons tenter de casser la clé **WPA** de ce AP sans fil avec **aircrack-ng**
 
+![crack_key](https://i.imgur.com/orzve4A.png)
+
+La clé est dans la wordlist rockyou donc ca n'a pas été très difficile pour l'a casser.
+
+J'ai eu des difficultés pour comprendre que après cette étape, nous devons deviner que icarus était en effet un utilisateur du serveur SSH.
