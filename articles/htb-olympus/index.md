@@ -60,4 +60,8 @@ Commencons par intérroger le serveur DNS afin d'afficher l'opcode mnémotechniq
 
 ![webdir](https://i.imgur.com/njBhSKT.png)
 
+Rien n'a été trouvé.
 
+###### HTTP Headers
+
+![headers](https://i.imgur.com/UPfH78c.png)
