@@ -84,4 +84,10 @@ Enfin, nous avons un shell sur la machine cible !
 
 # Pivot to Olympia container
 
+La présence d'un .dockerenv certifie bien le fait que nous sommes dans un container Docker.
+
 ![dockerenv](https://i.imgur.com/KpJtQ8w.png)
+
+Avec une énumération un peu plus appronfondie, nous avons un fichier .cap de capture réseau associé à un .txt de la part de Zeus. Nous allons donc le transférer sur notre machine local afin de l'étudier avec Wireshark.
+
+![presence&transfert_cap](https://i.imgur.com/XLbOkkM.png)
