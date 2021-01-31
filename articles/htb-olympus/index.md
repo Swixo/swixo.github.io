@@ -117,9 +117,9 @@ On se retrouve une nouvelle fois à l'intérieur d'un container Docker.
 
 # Pivot to Hades / Olympus
 
-Un document .txt fans le répertoire courant révèle un nouveau nom de domaine pour la machine.
+Un document .txt dans le répertoire courant révèle un nouveau nom de domaine pour la machine.
 
-Je vais l'ajouter à ma liste des VHOSTS:
+Je vais l'ajouter à ma liste de VHOST:
 
 ```bash
 127.0.0.1  localhost
@@ -150,7 +150,7 @@ Ensuite nous pouvons nous connecter avec le mot de passe obtenu auparavant. 🤠
 
 # Privilege Escalation
 
-Pour conclure cette machine assez cool, l'éscalation de privilèges est très simple.
+Pour conclure cette machine plaisante, l'éscalation de privilèges est très simple.
 Prometheus est dans le **groupe "docker"**. De plus, Docker exige des droits root donc je vais exécuter un shell à partir d'une image du Docker Hub:
 
 ```bash
