@@ -68,4 +68,5 @@ En regardant les headers des requetes et réponses HTTP on sait maintenant que *
 
 ![headers](https://i.imgur.com/UPfH78c.png)
 
+Après quelques recherches, on s'apercoit que cette librairie est touché par une [RCE](https://paper.seebug.org/397/), ce qui va nous permettre d'avoir un premier foothold sur la machine. 😇
 
