@@ -127,3 +127,8 @@ Je vais l'ajouter à ma liste des VHOSTS:
 10.10.10.83	olympus.htb	ctfolympus.htb
 ```
 
+Lors de la phase initiale d'énumération, j'avais essayé de faire un transfert de zone mais on avait rien trouvé, avec le nouveau nom de domaine nous aurons peut etre un retour.
+
+![zonetransfer_ctf](https://i.imgur.com/CJuhzRQ.png)
+
+Nous avons des informations en or dans les **records TXT**. On obtient maintenant les credentials d'un utilisateur nommé prometheus, ainsi que des numéros pour aller au portail d'Hadès qui sont concrètement des numéros de port 
