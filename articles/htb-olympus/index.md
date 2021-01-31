@@ -110,3 +110,20 @@ Plusieurs solutions sont possibles:
 La clé est dans la wordlist rockyou donc ca n'a pas été très difficile pour l'a casser.
 
 J'ai eu des difficultés pour comprendre que après cette étape, nous devons deviner que icarus était en effet un utilisateur du serveur SSH.
+
+![ssh_connexion](https://i.imgur.com/RcgLtEb.png)
+
+On se retrouve une nouvelle fois à l'intérieur d'un container Docker.
+
+# Pivot to Hades / Olympus
+
+Un document .txt fans le répertoire courant révèle un nouveau nom de domaine pour la machine.
+
+Je vais l'ajouter à ma liste des VHOSTS:
+
+```
+127.0.0.1  localhost
+127.0.1.1  host
+10.10.10.83	olympus.htb	ctfolympus.htb
+```
+
