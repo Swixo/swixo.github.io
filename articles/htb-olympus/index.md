@@ -102,5 +102,5 @@ Plusieurs solutions sont possibles:
 
 ###### Cracking WPA key
 
-À partir du SSID de icarus nous pouvons tenter de casser la clé WPA de ce AP sans fil.
+À partir du SSID de icarus nous pouvons tenter de casser la clé **WPA** de ce AP sans fil avec **aircrack-ng**
 
