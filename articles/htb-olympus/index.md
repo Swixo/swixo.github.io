@@ -64,4 +64,8 @@ Rien n'a été trouvé.
 
 ###### HTTP Headers
 
+En regardant les headers des requetes et réponses HTTP on sait maintenant que **Xdebug 2.5.5** est en marche sur la machine, ce qui peut permettre aux développeurs de déboguer à distance.
+
 ![headers](https://i.imgur.com/UPfH78c.png)
+
+
