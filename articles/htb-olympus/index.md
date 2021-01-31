@@ -79,3 +79,9 @@ Nous allons utiliser un [script python](https://github.com/vulhub/vulhub/blob/ma
 Nous pouvons maintenant executer des commandes en www-data sur la cible, il ne reste plus qu'a executer un reverse shell. 😎
 
 ![rce_shell](https://i.imgur.com/XDHlNPz.png)
+
+Enfin, nous avons un shell sur la machine cible ! 
+
+# Pivot to docker container
+
+![dockerenv](https://i.imgur.com/KpJtQ8w.png)
