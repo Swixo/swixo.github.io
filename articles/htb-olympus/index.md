@@ -41,3 +41,8 @@ SF-Port2222-TCP:V=7.91%I=7%D=1/29%Time=6014381E%P=x86_64-unknown-linux-gnu
 SF:%r(NULL,29,"SSH-2\.0-City\x20of\x20olympia\x20\x20\x20\x20\x20\x20\x20\
 SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\r\n");
 ```
+
+Nous pouvons voir que le serveu contient 3 ports ouverts:
+1. Port 80 (Serveur web Apache)
+2. Port 2222 (Serveur SSH)
+3. Port 53 (Serveur DNS)
