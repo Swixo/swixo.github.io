@@ -131,4 +131,15 @@ Lors de la phase initiale d'énumération, j'avais essayé de faire un transfert
 
 ![zonetransfer_ctf](https://i.imgur.com/CJuhzRQ.png)
 
-Nous avons des informations en or dans les **records TXT**. On obtient maintenant les credentials d'un utilisateur nommé prometheus, ainsi que des numéros pour aller au portail d'Hadès qui sont concrètement des numéros de port 
+Nous avons des informations en or dans les **records TXT**. 
+
+Durant notre scan nmap, nous avons vu que le port 22 était filtré. 
+On obtient maintenant les credentials d'un utilisateur nommé prometheus, ainsi que des numéros pour aller au portail d'Hadès qui sont concrètement les numéros de port sur lesquels nous devons nous connecter pour réaliser un **Port Knocking** afin de se connecter à l'utilisateur prometheus.
+
+Pour cela c'est très simple nous allons executer une boucle for en bash pour automatiser la chose dans le temps imparti:
+
+```
+for nuts in 3456 8234 62431; do nmap -p $nuts 10.10.10.83; done; ssh prometheus@10.10.10.83
+```
+
+Ensuite nous pouvons nous connecter avec le mot de passe obtenu auparavant. 🤠
