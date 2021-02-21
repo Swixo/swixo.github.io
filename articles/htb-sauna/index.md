@@ -116,4 +116,4 @@ Maintenant que nous avons les creds au service account (svc) nous nous connecton
 Nous allons utiliser **Bloodhound** pour énumérer et visualiser l' Active Directory, et identifier les procédures d'attaques possibles qui nous permettront d'élever nos privilèges.
 Pour cela nous allons lancer **SharpHound** sur la machine distante afin de récupèrer les fichiers json qu'on va pouvoir analyser sur BloodHound:
 
-![sharphound](hhttps://i.imgur.com/zqRv7Ux.png)
+![sharphound](https://i.imgur.com/zqRv7Ux.png)
