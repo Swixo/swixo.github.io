@@ -46,5 +46,8 @@ Nous pouvons énumérer le Domain Controller de l'AD avec [enum4linux](https://g
 
 Nous pouvons enregistrer ce nom de domaine, avec comme TLD .local, dans notre ficher [/etc/hosts](https://www.configserverfirewall.com/ubuntu-linux/hosts-file/).
 
-### Enumération Serveur Web
+### Enumération Serveur SMB
 
+L'accès anonymous est autorisé mais aucun share est retourné.
+
+![enum_SMB](https://i.imgur.com/xID4GwS.png)
