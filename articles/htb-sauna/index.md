@@ -54,3 +54,8 @@ L'accès anonymous est autorisé mais aucun share est retourné.
 
 ### Enumération Serveur Web
 
+Nous commencons avec un webdir qui ne donne rien d'intéréssant :
+
+![webdir](https://i.imgur.com/jZAIuBd.png)
+
+Allons donc voir ce que le site web contient à la main, 
