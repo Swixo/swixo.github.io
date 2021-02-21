@@ -42,4 +42,4 @@ Host script results:
 
 Nous pouvons énumérer le DC de l'AD avec enum4linux ou ldapsearch comme ceci
 
-https://prnt.sc/102do3z
+![enum_DC](https://prnt.sc/102do3z)
