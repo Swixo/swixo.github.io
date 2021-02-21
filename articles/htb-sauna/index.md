@@ -124,9 +124,9 @@ L'utilisateur svc_loanmgr@EGOTISTICAL-BANK.LOCAL a le privilège **DS-Replicatio
 
 Avec les **privilèges GetChanges** et **GetChangesAll**, on peut effectuer une [attaque DCSync](http://www.harmj0y.net/blog/redteaming/mimikatz-and-dcsync-and-extrasids-oh-my/) pour obtenir le **hash NTLM** de l'Administrator. 
 
-Pour cela nous allons utiliser [mimikatz_github](https://github.com/gentilkiwi/mimikatz) :
+Pour cela nous allons utiliser [mimikatz](https://github.com/gentilkiwi/mimikatz) :
 
-![mimikatz](https://i.imgur.com/RlXAVLu.png)
+![mimikatz_privesc](https://i.imgur.com/RlXAVLu.png)
 
 Il suffit juste de se connecter en Administrator via le hash NTLM :
 
