@@ -62,4 +62,10 @@ Allons donc voir ce que le site web contient à la main, nous remarquons un abou
 
 ![employe](https://i.imgur.com/nCFx9WH.png)
 
+### Enumeration Kerberos
+
+À l'aide du nom des employés nous pouvons générer une wordlist personnalisée afin de trouver des potentiels users.
+
+Pour cela, j'ai utilisé les [rules hashcat](https://hashcat.net/wiki/doku.php?id=rule_based_attack) et [kerbrute](https://github.com/ropnop/kerbrute) :
+
 ![namelist_wordlist_kerbrute](https://i.imgur.com/zvKBlps.png)
