@@ -95,9 +95,20 @@ Maintenant nous avons les creds de fsmith ! 😁
 
 Lors de notre scan nmap, nous avons vu que le port **WinRM** est ouvert, (HTTP : 5985 // HTTPS : 5986) nous pouvons donc nous connecter à distance avec [Evil-WinRM](https://github.com/Hackplayers/evil-winrm) :
 
-![evilwinrm_foothold](https://i.imgur.com/rs5dr0F.png)
+![evilwinrm_foothold](https://i.imgur.com/Az1GbP3.png)
 
 Nous avons un foothold sur la machine, c'est parti pour la privilege escalation ! 😀
 
 # Pivot to svc_loanmgr
 
+### WinLogon credentials
+
+Après une énumeration avec BloodHound sans succès, j'ai décidé de continuer à énumérer la machine et ses fichiers manuellement.
+
+Des informations intéressantes peuvent être récupérées au niveau de la clé de registre [WinLogon](https://www.rapid7.com/db/vulnerabilities/WINDOWS-AUTOLOGIN-ENABLED/) :
+
+![winlogon](https://i.imgur.com/opCS4zS.png)
+
+Maintenant que nous avons les creds au service account (svc) nous nous connectons dessus.
+
+# 
