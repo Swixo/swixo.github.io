@@ -29,6 +29,10 @@ PORT     STATE SERVICE       VERSION
 3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: EGOTISTICAL-BANK.LOCAL0., Site: Default-First-Site-Name)
 3269/tcp open  tcpwrapped
 Service Info: Host: SAUNA; OS: Windows; CPE: cpe:/o:microsoft:windows
+5985/tcp open  http    Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 Host script results:
 |_clock-skew: 7h00m01s
@@ -81,3 +85,14 @@ Un outil de **[impacket](https://github.com/SecureAuthCorp/impacket)** nommé **
 
 ![GetNPUsers_exploit](https://i.imgur.com/XbWQxgW.png)
 
+Nous avons enfin le hash **Kerberos 5 AS-REP etype 23** de Fergus Smith, le security manager de la banque ! 🙂
+
+Utilisons hashcat :
+
+![crackhashfsmith](https://i.imgur.com/Hcd07tr.png)
+
+Maintenant nous avons les creds de fsmith ! 😁
+
+Lors de notre scan nmap, nous avons vu que le port WinRM est ouvert, (HTTP : 5985 // HTTPS : 5986) nous pouyvons donc nous connecter avec [Evil-WinRM](https://github.com/Hackplayers/evil-winrm) :
+
+![evilwinrm_foothold]()
