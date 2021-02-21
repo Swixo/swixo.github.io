@@ -117,3 +117,12 @@ Nous allons utiliser **Bloodhound** pour énumérer et visualiser l' Active Dire
 Pour cela nous allons lancer **SharpHound** sur la machine distante afin de récupèrer les fichiers json qu'on va pouvoir analyser sur BloodHound:
 
 ![sharphound](https://i.imgur.com/zqRv7Ux.png)
+
+L'utilisateur svc_loanmgr@EGOTISTICAL-BANK.LOCAL a le privilège DS-Replication-Get-Changes-All sur le domaine EGOTISTICAL-BANK.LOCAL :
+
+![bloodhound](https://i.imgur.com/50XCDxM.png)
+
+Avec les privilèges GetChanges et GetChangesAll, on peut effectuer une [attaque DCSync](http://www.harmj0y.net/blog/redteaming/mimikatz-and-dcsync-and-extrasids-oh-my/) pour obtenir le hash NTLM de l'Administrator. 
+
+Pour cela nous allons utiliser mimikatz :
+
