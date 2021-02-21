@@ -96,3 +96,8 @@ Maintenant nous avons les creds de fsmith ! 😁
 Lors de notre scan nmap, nous avons vu que le port **WinRM** est ouvert, (HTTP : 5985 // HTTPS : 5986) nous pouvons donc nous connecter à distance avec [Evil-WinRM](https://github.com/Hackplayers/evil-winrm) :
 
 ![evilwinrm_foothold](https://i.imgur.com/rs5dr0F.png)
+
+Nous avons un foothold sur la machine, c'est parti pour la privilege escalation ! 😀
+
+# Pivot to svc_loanmgr
+
