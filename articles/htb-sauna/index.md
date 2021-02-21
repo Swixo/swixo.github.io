@@ -39,3 +39,7 @@ Host script results:
 |   date: 2021-02-21T07:45:46
 |_  start_date: N/A
 ```
+
+Nous pouvons énumérer le DC de l'AD avec enum4linux ou ldapsearch comme ceci
+
+https://prnt.sc/102do3z
