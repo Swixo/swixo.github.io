@@ -128,3 +128,8 @@ Pour cela nous allons utiliser mimikatz :
 
 ![mimikatz](https://i.imgur.com/RlXAVLu.png)
 
+Il suffit plus qu'a se connecter en Administrator via le hash NTLM :
+
+![rooted](https://i.imgur.com/Hy6koKi.png)
+
+Voila nous sommes enfin root ! 🙂
