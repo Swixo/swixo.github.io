@@ -126,3 +126,5 @@ Avec les privilèges GetChanges et GetChangesAll, on peut effectuer une [attaque
 
 Pour cela nous allons utiliser mimikatz :
 
+![mimikatz](https://i.imgur.com/RlXAVLu.png)
+
