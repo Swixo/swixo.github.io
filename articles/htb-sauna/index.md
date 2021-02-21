@@ -43,3 +43,6 @@ Host script results:
 Nous pouvons énumérer le Domain Controller de l'AD avec [enum4linux](https://github.com/CiscoCXSecurity/enum4linux) ou manuellement avec ldapsearch comme ceci :
 
 ![enum_DC](https://i.imgur.com/RQKXEQs.png)
+
+Nous pouvons enregistrer ce nom de domaine dans notre ficher [/etc/hosts](https://www.configserverfirewall.com/ubuntu-linux/hosts-file/).
+
