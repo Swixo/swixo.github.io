@@ -97,11 +97,11 @@ Lors de notre scan nmap, nous avons vu que le port **WinRM** est ouvert, (HTTP :
 
 ![evilwinrm_foothold](https://i.imgur.com/Az1GbP3.png)
 
-Nous avons un foothold sur la machine, c'est parti pour la privilege escalation ! 😀
+Nous avons un foothold sur la machine, c'est parti pour l'escalation de privilèges ! 😀
 
-# Pivot to svc_loanmgr
+# Privilege Escalation
 
-### WinLogon credentials
+### Pivot to svc_loanmgr (WinLogon credentials)
 
 Après une énumeration avec BloodHound sans succès, j'ai décidé de continuer à énumérer la machine et ses fichiers manuellement.
 
@@ -109,6 +109,11 @@ Des informations intéressantes peuvent être récupérées au niveau de la clé
 
 ![winlogon](https://i.imgur.com/opCS4zS.png)
 
-Maintenant que nous avons les creds au service account (svc) nous nous connectons dessus.
+Maintenant que nous avons les creds au service account (svc) nous nous connectons dessus. 😉
 
-# 
+### Administrator Access (DCSync Attack)
+
+Nous allons utiliser **Bloodhound** pour énumérer et visualiser l' Active Directory, et identifier les procédures d'attaques possibles qui nous permettront d'élever nos privilèges.
+Pour cela nous allons lancer **SharpHound** sur la machine distante afin de récupèrer les fichiers json qu'on va pouvoir analyser sur BloodHound:
+
+![sharphound](hhttps://i.imgur.com/zqRv7Ux.png)
