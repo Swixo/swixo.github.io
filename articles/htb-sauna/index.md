@@ -42,4 +42,4 @@ Host script results:
 
 Nous pouvons énumérer le DC de l'AD avec enum4linux ou ldapsearch comme ceci
 
-![enum_DC](https://imgur.com/RQKXEQs)
+![enum_DC](https://i.imgur.com/RQKXEQs.png)
