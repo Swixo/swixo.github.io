@@ -40,6 +40,6 @@ Host script results:
 |_  start_date: N/A
 ```
 
-Nous pouvons énumérer le DC de l'AD avec enum4linux ou ldapsearch comme ceci
+Nous pouvons énumérer le DC de l'AD avec [enum4linux](https://github.com/CiscoCXSecurity/enum4linux) ou ldapsearch comme ceci
 
 ![enum_DC](https://i.imgur.com/RQKXEQs.png)
