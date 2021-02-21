@@ -1,4 +1,4 @@
-Bonjour à tous, aujourd'hui je tenais à vous faire un walkthrough sur la machine **Sauna** de **HackTheBox** qui est un environnement **Active Directory** et une box très sympatique à root... ;)
+Bonjour à tous, aujourd'hui je tenais à vous faire un walkthrough sur la machine **Sauna** de **HackTheBox** qui est un environnement **Active Directory** et une box très sympatique à root qui m'a permit d'avoir un recapitulatif de l'exploitation d'un environnement AD. 😃
 
 # Recon
 
@@ -44,7 +44,7 @@ Host script results:
 |_  start_date: N/A
 ```
 
-Nous pouvons énumérer le Domain Controller de l'AD avec [enum4linux](https://github.com/CiscoCXSecurity/enum4linux) ou manuellement avec ldapsearch comme ceci :
+Nous pouvons énumérer le **Domain Controller** de l'AD avec [enum4linux](https://github.com/CiscoCXSecurity/enum4linux) ou manuellement avec **ldapsearch** comme ceci :
 
 ![enum_DC](https://i.imgur.com/RQKXEQs.png)
 
@@ -78,10 +78,10 @@ Nous obtenons un user nommé fsmith. 😄
 
 # Getting credentials for fsmith
 
-Nous pouvons tenter d'abuser d'une fonctionnalité de Kerberos avec une méthode d'attaque appelée **ASREPRoasting**. L'ASReproasting se produit lorsqu'un compte utilisateur a le privilège
-"Ne nécessite pas de pré-authentification". Cela signifie que le compte n'a pas besoin de fournir une identification valide avant de demander un ticket Kerberos sur le compte utilisateur spécifié.
+Nous pouvons tenter d'abuser d'une fonctionnalité de Kerberos avec une méthode d'attaque appelée **ASREPRoasting**. L'ASReproasting se produit lorsqu'un compte utilisateur a le privilège "Ne nécessite pas de pré-authentification".
+Cela signifie que le compte n'a pas besoin de fournir une identification valide avant de demander un **ticket Kerbero**s sur le compte utilisateur spécifié.
 
-Un outil de **[impacket](https://github.com/SecureAuthCorp/impacket)** nommé **[GetNPUsers](https://github.com/SecureAuthCorp/impacket/blob/master/examples/GetNPUsers.py)** permet d'interroger les comptes ASReproastable depuis le **Key Distribution Center** (KDC).
+Un outil de [impacket](https://github.com/SecureAuthCorp/impacket) nommé [GetNPUsers](https://github.com/SecureAuthCorp/impacket/blob/master/examples/GetNPUsers.py) permet d'interroger les comptes ASReproastable depuis le **Key Distribution Center** (KDC).
 
 ![GetNPUsers_exploit](https://i.imgur.com/XbWQxgW.png)
 
@@ -109,26 +109,26 @@ Des informations intéressantes peuvent être récupérées au niveau de la clé
 
 ![winlogon](https://i.imgur.com/opCS4zS.png)
 
-Maintenant que nous avons les creds au service account (svc) nous nous connectons dessus. 😉
+Maintenant que nous avons les creds du service account (svc) on peut se connecter dessus. 😉
 
 ### Administrator Access (DCSync Attack)
 
-Nous allons utiliser **Bloodhound** pour énumérer et visualiser l' Active Directory, et identifier les procédures d'attaques possibles qui nous permettront d'élever nos privilèges.
-Pour cela nous allons lancer **SharpHound** sur la machine distante afin de récupèrer les fichiers json qu'on va pouvoir analyser sur BloodHound:
+Nous allons utiliser [BloodHound](https://github.com/BloodHoundAD/BloodHound) pour énumérer et visualiser l' Active Directory, et identifier les procédures d'attaques possibles qui nous permettront d'élever nos privilèges.
+Pour cela nous allons lancer [SharpHound](https://github.com/BloodHoundAD/BloodHound/tree/master/Collectors) sur la machine distante afin de récupèrer les fichiers json qu'on va analyser sur BloodHound:
 
 ![sharphound](https://i.imgur.com/zqRv7Ux.png)
 
-L'utilisateur svc_loanmgr@EGOTISTICAL-BANK.LOCAL a le privilège DS-Replication-Get-Changes-All sur le domaine EGOTISTICAL-BANK.LOCAL :
+L'utilisateur svc_loanmgr@EGOTISTICAL-BANK.LOCAL a le privilège **DS-Replication-Get-Changes-All** sur le domaine EGOTISTICAL-BANK.LOCAL :
 
 ![bloodhound](https://i.imgur.com/50XCDxM.png)
 
-Avec les privilèges GetChanges et GetChangesAll, on peut effectuer une [attaque DCSync](http://www.harmj0y.net/blog/redteaming/mimikatz-and-dcsync-and-extrasids-oh-my/) pour obtenir le hash NTLM de l'Administrator. 
+Avec les **privilèges GetChanges** et **GetChangesAll**, on peut effectuer une [attaque DCSync](http://www.harmj0y.net/blog/redteaming/mimikatz-and-dcsync-and-extrasids-oh-my/) pour obtenir le **hash NTLM** de l'Administrator. 
 
-Pour cela nous allons utiliser mimikatz :
+Pour cela nous allons utiliser [mimikatz_github](https://github.com/gentilkiwi/mimikatz) :
 
 ![mimikatz](https://i.imgur.com/RlXAVLu.png)
 
-Il suffit plus qu'a se connecter en Administrator via le hash NTLM :
+Il suffit juste de se connecter en Administrator via le hash NTLM :
 
 ![rooted](https://i.imgur.com/Hy6koKi.png)
 
