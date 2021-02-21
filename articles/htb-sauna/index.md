@@ -74,3 +74,8 @@ Nous obtenons un user nommé fsmith. 😄
 
 # Getting credentials for fsmith
 
+Nous pouvons tenter d'abuser d'une fonctionnalité de Kerberos avec une méthode d'attaque appelée ASREPRoasting. L'ASReproasting se produit lorsqu'un compte utilisateur a le privilège
+"Ne nécessite pas de pré-authentification". Cela signifie que le compte n'a pas besoin de fournir une identification valide avant de demander un ticket Kerberos sur le compte utilisateur spécifié.
+
+Un outil de [impacket](https://github.com/SecureAuthCorp/impacket) nommé [GetNPUsers](https://github.com/SecureAuthCorp/impacket/blob/master/examples/GetNPUsers.py) permet d'interroger les comptes ASReproastable depuis le Key Distribution Center (KDC).
+
