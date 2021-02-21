@@ -69,3 +69,8 @@ Allons donc voir ce que le site web contient à la main, nous remarquons un abou
 Pour cela, j'ai utilisé les [rules hashcat](https://hashcat.net/wiki/doku.php?id=rule_based_attack) et [kerbrute](https://github.com/ropnop/kerbrute) :
 
 ![namelist_wordlist_kerbrute](https://i.imgur.com/zvKBlps.png)
+
+Nous obtenons un user nommé fsmith. 😄
+
+# Getting credentials for fsmith
+
