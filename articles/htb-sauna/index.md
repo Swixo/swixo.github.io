@@ -79,3 +79,5 @@ Nous pouvons tenter d'abuser d'une fonctionnalité de Kerberos avec une méthode
 
 Un outil de **[impacket](https://github.com/SecureAuthCorp/impacket)** nommé **[GetNPUsers](https://github.com/SecureAuthCorp/impacket/blob/master/examples/GetNPUsers.py)** permet d'interroger les comptes ASReproastable depuis le **Key Distribution Center** (KDC).
 
+![GetNPUsers_exploit](https://i.imgur.com/XbWQxgW.png)
+
