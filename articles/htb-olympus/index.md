@@ -151,7 +151,7 @@ Ensuite nous pouvons nous connecter avec le mot de passe obtenu auparavant. 🤠
 # Privilege Escalation
 
 Pour conclure cette machine plaisante, l'éscalation de privilèges est très simple.
-Prometheus est dans le **groupe "docker"**. De plus, Docker exige des droits root donc je vais exécuter un shell à partir d'une image du Docker Hub:
+Prometheus est dans le **groupe "docker"**. De plus, le client Docker exige des droits root donc je vais exécuter un shell à partir d'une image du Docker Hub:
 
 ```bash
 prometheus@olympus:~$ docker run -it olympia bash
