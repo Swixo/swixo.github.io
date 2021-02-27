@@ -1,0 +1,45 @@
+title: 'PS C:\Users\0xEX75\> _'
+author: "0xEX75"
+url: "https://0xEX75.me"
+description: "CTF penetration, programmation, analyse de malware, développement des outils et bien d'autre chose."
+lang: "fr"
+
+# Page settings
+permalink: /:title/          # see https://jekyllrb.com/docs/permalinks/
+date_format: "%B %d, %Y"     # see http://shopify.github.io/liquid/filters/date/
+hide_title: false            # remove site heading in the header
+post_footer: true            # show previous and next links at the end of each post
+
+# Theme settings
+dark_theme: false            # use the dark mode as default
+dark_header: true            # keep the header dark
+# style: minimal             # use a simpler style inspired by the minima theme
+
+navigation:                  # (optional) site navigation in the header
+  - index.html
+  - README.md
+#  - title: "https://"       # linking external sites is also supported
+
+icons:                       # (optional) icons in the header, see http://fontawesome.com/icons
+  envelope: "noemailsorry@gmail.com"
+  github: "https://github.com/0xEX75"
+  rss: "/contrast/feed.xml"
+
+# Pagination
+show_excerpts: false         # preview articles on the home page
+paginate: 8                  # number of articles per page
+excerpt_separator: "\n\n\n"  # indicate the end of the excerpt by two blank lines
+
+comments:                    # embed disqus or isso comments
+#  disqus: ""
+#  isso: ""
+
+plugins: 
+ - jekyll-feed
+ - jekyll-paginate
+ - jekyll-default-layout
+
+remote_theme: niklasbuschmann/contrast
+
+plugins:
+  - jekyll-remote-theme
