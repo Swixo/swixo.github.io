@@ -1,10 +1,10 @@
 ---
 title: "HackTheBox - Olympus"
-description: test.png
+description: olympus.png
 tags: ["Dans cet article je vous présente ma writeup pour Olympus."]
 ---
 
-![Flower](../test.png)
+![Flower](../olympus.png)
 
 Informations
 ----
