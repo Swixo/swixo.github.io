@@ -3,8 +3,6 @@ title: "À PROPOS"
 permalink: "/propos/"
 ---
 
-## À PROPOS
-
 Jeune débutant passionné d’informatique, polyvalent, et qui aime apprendre et partager ses connaissances 🙂
 
 Sur ce site, je vous partagerai des articles, des write-ups ainsi que mes connaissances
