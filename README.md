@@ -14,12 +14,12 @@ Sur ce site, je vous partagerai des articles, des write-ups ainsi que mes connai
 ## ARTICLES
 
 <time datetime="2020-03-08T00:00:00+00:00">August 20, 2020</time>
-<a href="articles/stack">Fonctionnement de la stack</a>
+<a href="../articles/stack">Fonctionnement de la stack</a>
 
 ## WRITE-UPS
 
 <time datetime="2021-01-02T00:00:00+00:00">February 01, 2021</time>
-<a href="articles/htb-olympus">HackTheBox - Olympus</a>
+<a href="../articles/htb-olympus">HackTheBox - Olympus</a>
 
 <time datetime="2021-21-02T00:00:00+00:00">February 21, 2021</time>
-<a href="articles/htb-sauna">HackTheBox - Sauna</a>
+<a href="../articles/htb-sauna">HackTheBox - Sauna</a>
