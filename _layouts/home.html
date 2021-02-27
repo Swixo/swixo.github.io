@@ -43,7 +43,7 @@ layout: default
 {% else %}
 <article class="archive">
   {{ content }}
-  <header><h1 class="test">Derniers Articles</h1></header>
+  <header><h1 class="test">Articles</h1></header>
   {% for post in site.posts %}
   {%- assign date_format = site.date_format | default: "%B %d, %Y" -%}
   <div>
