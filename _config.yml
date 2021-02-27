@@ -1,7 +1,7 @@
-title: 'PS C:\Users\0xEX75\> _'
-author: "0xEX75"
-url: "https://0xEX75.me"
-description: "CTF penetration, programmation, analyse de malware, développement des outils et bien d'autre chose."
+title: 'nuts@blog:~#'
+author: "nuts"
+url: "https://nuts7.github.io/"
+description: "Blog sécurité informatique et bien plus"
 lang: "fr"
 
 # Page settings
@@ -21,8 +21,8 @@ navigation:                  # (optional) site navigation in the header
 #  - title: "https://"       # linking external sites is also supported
 
 icons:                       # (optional) icons in the header, see http://fontawesome.com/icons
-  envelope: "noemailsorry@gmail.com"
-  github: "https://github.com/0xEX75"
+  envelope: "idk@gmail.com"
+  github: "https://github.com/nuts7"
   rss: "/contrast/feed.xml"
 
 # Pagination
