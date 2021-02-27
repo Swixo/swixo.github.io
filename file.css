@@ -1,0 +1,14 @@
+.arrondie {
+-moz-border-radius:7px;
+-webkit-border-radius:7px;
+border-radius:7px;
+}
+
+.test
+{
+    display: block;
+    content: " ";
+    margin-top: 10px;
+    width: 40px;
+    border-bottom: 3px solid rgba(235,35,68,1);
+}
