@@ -1,5 +1,5 @@
 ---
-title: "À PROPOS"
+title: "WHOAMI"
 permalink: "/propos/"
 ---
 
