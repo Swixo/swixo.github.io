@@ -1,3 +1,5 @@
+![sauna](https://i.imgur.com/00SlEzr.png)
+
 Bonjour à tous, aujourd'hui je tenais à vous faire un walkthrough sur la machine **Sauna** de **HackTheBox** qui est un environnement **Active Directory** et une box très sympatique à root qui m'a permit d'avoir un recapitulatif de l'exploitation d'un environnement AD. 😃
 
 # Recon
