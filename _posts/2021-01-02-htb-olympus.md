@@ -4,7 +4,7 @@ description: olympus.png
 tags: ["Dans cet article je vous présente ma writeup pour Olympus."]
 ---
 
-Bonjour à tous, je vous présente mon **write-up** qui porte sur la machine **Olympus** de **HackTheBox** qui était assez cool et qui m'a apprit des choses que je n'avais jamais vu auparavant surtout dans un CTF. Elle n'est pas difficile mais très intéréssante et amusante à root...test 😀
+Bonjour à tous, je vous présente mon **write-up** qui porte sur la machine **Olympus** de **HackTheBox** qui était assez cool et qui m'a apprit des choses que je n'avais jamais vu auparavant surtout dans un CTF. Elle n'est pas difficile mais très intéréssante et amusante à root... 😀
 
 # Recon
 
