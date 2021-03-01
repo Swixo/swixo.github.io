@@ -103,7 +103,7 @@ Avec la [CVE-2014-2383](https://www.exploit-db.com/exploits/33004), nous pouvons
 
 En utilisant les **PHP Wrappers**, il est possible de contourner la protection "chroot" (DOMPDF_CHROOT) qui empêche dompdf d'accéder aux fichiers système ou d'autres fichiers sur le serveur web. (le flag DOMPDF_ENABLE_REMOTE doit être activé)
 
-J'ai tout d'abord essayé de récuperer le fichier /etc/passwd :
+J'ai tout d'abord essayé de récupérer le fichier /etc/passwd :
 
 `https://inception.htb/dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=/etc/passwd`
 
