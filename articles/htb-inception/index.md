@@ -81,7 +81,6 @@ dompdf 0.6.0 - 'dompdf.php?read' Arbitrary File Read                            
   Exploit: dompdf 0.6.0 - 'dompdf.php?read' Arbitrary File Read
       URL: https://www.exploit-db.com/exploits/33004
      Path: /usr/share/exploitdb/exploits/php/webapps/33004.txt
-
 ❯ cat 33004.txt
 Vulnerability title: Arbitrary file read in dompdf
 CVE: CVE-2014-2383
