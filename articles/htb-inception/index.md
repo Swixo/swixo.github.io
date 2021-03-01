@@ -202,4 +202,6 @@ Maintenant nous pouvous nous connecter avec un WebDAV client comme [cadaver](htt
 
 ![log_cadaver_upload_webshell](https://i.imgur.com/MxdX3F6.png)
 
+![foothold](https://i.imgur.com/bdlmXle.png)
+
 Nous avons enfin un foothold sur la machine ! 😎
