@@ -235,3 +235,7 @@ Nous avons enfin un accès en tant que utilisateur cobb ! 😄
 
 # Privilege Escalation
 
+Nous pouvons énumérer les commandes autorisés pour l'utilisateur courant en utilisant `sudo -l` :
+
+![sudo_l](https://i.imgur.com/LXH9GO4.png)
+
