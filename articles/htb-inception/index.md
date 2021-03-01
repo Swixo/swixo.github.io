@@ -34,7 +34,7 @@ Proxychains va prendre les proxies de haut en bas, deplus il y a plusieurs optio
 
 Pour nous connecter au proxy je vais ajouter ceci à ma configuration proxychains : 
 
-- http	10.10.10.67	3128
+`http	10.10.10.67	3128`
 
 Ensuite nous pouvons tenter un scan nmap sur le localhost du serveur distant :
 
