@@ -207,3 +207,6 @@ Ensuite il suffit d'accéder à notre webshell :
 ![foothold](https://i.imgur.com/bdlmXle.png)
 
 Nous avons enfin un foothold sur la machine ! 😎
+
+# Lateral Movement
+
