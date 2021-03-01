@@ -190,3 +190,7 @@ Possible Hashs:
 [+]  MD5(APR)
 ```
 
+Un petit schéma pour rappeler le format d'un hash :
+
+![format_hash](https://i.imgur.com/Q5AutjB.png)
+
