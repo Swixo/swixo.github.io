@@ -227,7 +227,7 @@ define('DB_PASSWORD', 'VwPddNh7xMZyDQoByQL4');
 define('DB_HOST', 'localhost'); 
 ```
 
-Essayons de nous connecter sur le serveur SSH en tant que cobb via proxychains car il est accéssible uniquement en local :
+Essayons de nous connecter sur le serveur SSH via proxychains car il est accéssible uniquement en local :
 
 ![ssh_user](https://i.imgur.com/OsOq8iR.png)
 
