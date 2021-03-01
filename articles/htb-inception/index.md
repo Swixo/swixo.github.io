@@ -115,7 +115,7 @@ Nous avons déjà un utilisateur du nom de :
 
 - cobb
 
-J'ai donc fait un petit script en python qui permet d'automatiser la procédure de cette vulnérabilité :
+J'ai donc fait un petit script en python qui permet d'automatiser la procédure de cette vulnérabilité car je n'ai pas trouvé de PoC :
 
 ```py
 print("test")
