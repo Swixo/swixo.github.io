@@ -242,5 +242,9 @@ Nous pouvons énumérer les commandes autorisés pour l'utilisateur courant en u
 Grosse surprise ! Nous pouvons executer n'importe quelle commande en tant que root, donc nous avons les permissions d'éxécuter un shell en tant que root. 🙂
 Mais le flag root.txt n'est pas ici. C'est parti pour une nouvelle étape d'énumération.
 
+À l'aide de la commande `arp -a`, nous pouvons afficher les tables de cache ARP de toutes les interfaces :
+
 ![new_machine](https://i.imgur.com/etJwkx7.png)
+
+Une nouvelle IP locale a été trouvé `192.168.0.1`, commencons par scanner les ports de cette machine avec netcat ou avec un [binaire nmap](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/nmap) :
 
