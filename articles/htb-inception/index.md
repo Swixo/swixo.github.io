@@ -246,7 +246,7 @@ Mais le flag root.txt n'est pas ici. C'est parti pour une nouvelle étape d'énu
 
 ![new_machine](https://i.imgur.com/etJwkx7.png)
 
-Une nouvelle IP locale a été trouvé `192.168.0.1`, commencons par scanner les ports de cette machine avec netcat ou avec un [binaire nmap](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/nmap) que nous pouvons upload via cadaver.
+Une nouvelle IP locale a été trouvé `192.168.0.1`, commencons par scanner les ports de cette machine avec netcat (présent sur la machine) ou avec un [binaire nmap](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/nmap) que nous pouvons upload via cadaver.
 
 Pour ma part je vais utiliser nc :
 
