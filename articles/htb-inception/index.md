@@ -233,3 +233,5 @@ Essayons de nous connecter sur le serveur SSH via proxychains car il est accéss
 
 Nous avons enfin un accès en tant que utilisateur cobb ! 😄
 
+# Privilege Escalation
+
