@@ -55,3 +55,7 @@ PORT     STATE SERVICE
 80/tcp   open  http
 3128/tcp open  squid-http
 ```
+
+Nous découvrons un serveur SSH accéssible seulement en local cependant nous pouvons nous y connecter en passant par le proxy.
+
+## Enumeration Web
