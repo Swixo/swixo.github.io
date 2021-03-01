@@ -36,7 +36,7 @@ Pour nous connecter au proxy je vais ajouter ceci à ma configuration proxychain
 
 `http	10.10.10.67	3128`
 
-Ensuite nous pouvons tenter un scan nmap sur le localhost du serveur distant :
+Ensuite nous pouvons tenter un scan nmap sur le localhost du serveur distant (le flag -f nous permet de spécifier le path de notre fichier de configuration) :
 
 ```sh
 ❯ proxychains -f proxychains.conf nmap -sT 127.0.0.1 -Pn
