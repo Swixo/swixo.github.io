@@ -163,3 +163,30 @@ Après avoir essayé du **Log Poisoning** ayant **échoué** car nous n'avons pa
 J'ai effectué de nombreuses recherches et j'ai trouvé des informations dans le fichier de configuration du site par défaut d'Apache à partir de `/etc/apache2/sites-enabled/000-default.conf` :
 
 ![find_webdav_creds](https://i.imgur.com/bWvOdUu.png)
+
+La configuration par défaut du site révèle le chemin d'accès à l'installation de WebDAV, ainsi que le chemin local vers les informations d'authentification.
+
+Nous avons maintenant des credentials pour se connecter cependant le mot de passe est hashé en [MD5 APR1](https://svn.apache.org/viewvc/apr/apr/trunk/crypto/apr_md5.c?view=markup) comme on peut le voir avec les informations de l'algorithme ($apr1$) ou en utilisant [hash-identifier](https://tools.kali.org/password-attacks/hash-identifier) :
+
+```sh
+❯ hash-identifier
+   #########################################################################
+   #     __  __                     __           ______    _____           #
+   #    /\ \/\ \                   /\ \         /\__  _\  /\  _ `\         #
+   #    \ \ \_\ \     __      ____ \ \ \___     \/_/\ \/  \ \ \/\ \        #
+   #     \ \  _  \  /'__`\   / ,__\ \ \  _ `\      \ \ \   \ \ \ \ \       #
+   #      \ \ \ \ \/\ \_\ \_/\__, `\ \ \ \ \ \      \_\ \__ \ \ \_\ \      #
+   #       \ \_\ \_\ \___ \_\/\____/  \ \_\ \_\     /\_____\ \ \____/      #
+   #        \/_/\/_/\/__/\/_/\/___/    \/_/\/_/     \/_____/  \/___/  v1.1 #
+   #                                                             By Zion3R #
+   #                                                    www.Blackploit.com #
+   #                                                   Root@Blackploit.com #
+   #########################################################################
+
+   -------------------------------------------------------------------------
+ HASH: $apr1$8rO7Smi4$yqn7H.GvJFtsTou1a7VME0
+
+Possible Hashs:
+[+]  MD5(APR)
+```
+
