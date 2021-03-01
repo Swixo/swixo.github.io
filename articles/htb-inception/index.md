@@ -210,3 +210,26 @@ Nous avons enfin un foothold sur la machine ! 😎
 
 # Lateral Movement
 
+Après une rapide énumération, j'ai trouvé des credentials pour une base de données dans le fichier de configuration du WordPress (`/var/www/html/wordpress_4.8.3/wp-config.php`) :
+
+```sh
+www-data@Inception
+:/var/www/html/webdav_test_inception# cat /var/www/html/wordpress_4.8.3/wp-config.php
+
+<?php
+
+define('DB_NAME', 'wordpress');
+
+define('DB_USER', 'root');
+
+define('DB_PASSWORD', 'VwPddNh7xMZyDQoByQL4');
+
+define('DB_HOST', 'localhost'); 
+```
+
+Essayons de nous connecter sur le serveur SSH en tant que cobb via proxychains car il est accéssible uniquement en local :
+
+![ssh_user](https://i.imgur.com/OsOq8iR.png)
+
+Nous avons enfin un accès en tant que utilisateur cobb ! 😄
+
