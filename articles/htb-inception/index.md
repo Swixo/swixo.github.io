@@ -56,7 +56,7 @@ PORT     STATE SERVICE
 3128/tcp open  squid-http
 ```
 
-Nous découvrons un serveur SSH accéssible seulement en local cependant nous pouvons nous y connecter en passant par le proxy.
+Nous découvrons un serveur SSH accessible seulement en local cependant nous pouvons nous y connecter en passant par le proxy.
 
 ## Enumeration Web
 
@@ -235,11 +235,11 @@ Nous avons enfin un accès en tant que utilisateur cobb ! 😄
 
 # Privilege Escalation
 
-Nous pouvons énumérer les commandes autorisés pour l'utilisateur courant en utilisant `sudo -l` :
+Nous pouvons énumérer les commandes autorisées pour l'utilisateur courant en utilisant `sudo -l` :
 
 ![sudo_l](https://i.imgur.com/LXH9GO4.png)
 
-Grosse surprise ! Nous pouvons executer n'importe quelle commande en tant que root, donc nous avons les permissions d'éxécuter un shell en tant que root. 🙂
+Grosse surprise ! Nous pouvons exécuter n'importe quelle commande en tant que root, donc nous avons les permissions d'exécuter un shell en tant que root. 🙂
 Mais le flag root.txt n'est pas ici. C'est parti pour une nouvelle étape d'énumération.
 
 À l'aide de la commande `arp -a`, nous pouvons afficher les tables de cache ARP de toutes les interfaces :
