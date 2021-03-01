@@ -264,3 +264,15 @@ Connection to 192.168.0.1 21 port [tcp/ftp] succeeded!
 Connection to 192.168.0.1 22 port [tcp/ssh] succeeded!
 Connection to 192.168.0.1 53 port [tcp/domain] succeeded!
 ```
+
+Tentons de nous connecter en anonymous sur le serveur FTP :
+
+```sh
+root@Inception:~# ftp 192.168.0.1
+Connected to 192.168.0.1.
+220 (vsFTPd 3.0.3)
+Name (192.168.0.1:cobb): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+```
