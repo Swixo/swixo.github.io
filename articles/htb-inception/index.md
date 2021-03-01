@@ -248,7 +248,7 @@ Mais le flag root.txt n'est pas ici. C'est parti pour une nouvelle étape d'énu
 
 Une nouvelle IP locale a été trouvé `192.168.0.1`, commencons par scanner les ports de cette machine avec netcat ou avec un [binaire nmap](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/nmap) que nous pouvons upload via cadaver.
 
-Pour ma part je vais utiliser netcat :
+Pour ma part je vais utiliser nc :
 
 ```sh
 root@Inception:~# nc -zuv 192.168.0.1 1-65535 2>&1 | grep -v 'refused'	# SCAN UDP
