@@ -277,34 +277,11 @@ Password:
 230 Login successful.
 Remote system type is UNIX.
 Using binary mode to transfer files.
-ftp> ls
-200 PORT command successful. Consider using PASV.
-150 Here comes the directory listing.
-drwxr-xr-x    2 0        0            4096 Nov 30  2017 bin
-drwxr-xr-x    3 0        0            4096 Nov 30  2017 boot
-drwxr-xr-x   19 0        0            3920 Mar 01 12:56 dev
-drwxr-xr-x   93 0        0            4096 Nov 30  2017 etc
-drwxr-xr-x    2 0        0            4096 Nov 06  2017 home
-lrwxrwxrwx    1 0        0              33 Nov 30  2017 initrd.img -> boot/initrd.img-4.4.0-101-generic
-lrwxrwxrwx    1 0        0              32 Nov 06  2017 initrd.img.old -> boot/initrd.img-4.4.0-98-generic
-drwxr-xr-x   22 0        0            4096 Nov 30  2017 lib
-drwxr-xr-x    2 0        0            4096 Oct 30  2017 lib64
-drwx------    2 0        0           16384 Oct 30  2017 lost+found
-drwxr-xr-x    3 0        0            4096 Oct 30  2017 media
-drwxr-xr-x    2 0        0            4096 Aug 01  2017 mnt
-drwxr-xr-x    2 0        0            4096 Aug 01  2017 opt
-dr-xr-xr-x  205 0        0               0 Mar 01 12:56 proc
-drwx------    6 0        0            4096 Nov 08  2017 root
-drwxr-xr-x   26 0        0             920 Mar 01 12:56 run
-drwxr-xr-x    2 0        0           12288 Nov 30  2017 sbin
-drwxr-xr-x    2 0        0            4096 Apr 29  2017 snap
-drwxr-xr-x    3 0        0            4096 Nov 06  2017 srv
-dr-xr-xr-x   13 0        0               0 Mar 01 12:56 sys
-drwxrwxrwt   10 0        0            4096 Mar 01 23:10 tmp
-drwxr-xr-x   10 0        0            4096 Oct 30  2017 usr
-drwxr-xr-x   13 0        0            4096 Oct 30  2017 var
-lrwxrwxrwx    1 0        0              30 Nov 30  2017 vmlinuz -> boot/vmlinuz-4.4.0-101-generic
-lrwxrwxrwx    1 0        0              29 Nov 06  2017 vmlinuz.old -> boot/vmlinuz-4.4.0-98-generic
-226 Directory send OK.
 ```
+
+Les identifiants anonymous sont activés ! 😏
+
+Une fois connecté nous trouvons un fichier crontab ayant comme path `/etc/crontab` :
+
+![ftp_crontab](https://i.imgur.com/dfIT3Q9.png)
 
