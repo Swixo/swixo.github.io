@@ -24,7 +24,7 @@ La machine contient :
 
 En utilisant [proxychains](https://github.com/haad/proxychains), nous pouvons tenter de passer par ce proxy sans authentification.
 
-Proxychains fonctionne pour les paquets TCP mais pas UDP, donc pour nmap par exemple si tu veux scanner à travers un proxy il va falloir rajouter le paramètre -sT pour dire à nmap de faire un scan TCP (et non SYN par défaut)
+Proxychains fonctionne pour les paquets TCP mais pas UDP, donc pour nmap par exemple si nous voulons scanner à travers un proxy il va falloir rajouter le paramètre -sT pour dire à nmap de faire un scan TCP (et non SYN par défaut)
 
 Proxychains va prendre les proxies de haut en bas, deplus il y a plusieurs options :
 
