@@ -110,3 +110,13 @@ J'ai tout d'abord essayé de récupérer le fichier /etc/passwd :
 Un fichier PDF est généré et celui ci contient le contenu du fichier demandé en base64. Il suffit de déchiffrer cette chaine :
 
 ![etc_passwd_base64](https://i.imgur.com/gokJrZf.png)
+
+Nous avons déjà un utilisateur du nom de :
+
+- cobb
+
+J'ai donc fait un petit script en python qui permet d'automatiser la procédure de cette vulnérabilité :
+
+```py
+print("test")
+```
