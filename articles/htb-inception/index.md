@@ -98,3 +98,9 @@ http://example/dompdf.php?input_file=php://filter/read=convert.base64-encode/res
 Further details at:
 https://www.portcullis-security.com/security-research-and-downloads/security-advisories/cve-2014-2383/
 ```
+
+Avec la [CVE-2014-2383](https://www.exploit-db.com/exploits/33004), nous pouvons lire des fichiers locaux du serveur. Cette vulnérabilité nécessite que le flag de configuration DOMPDF_ENABLE_PHP soit activé (désactivé par défaut).
+
+En utilisant les **PHP Wrappers**, il est possible de contourner la protection "chroot" (DOMPDF_CHROOT) qui empêche dompdf d'accéder aux fichiers système ou d'autres fichiers sur le serveur web. (le flag DOMPDF_ENABLE_REMOTE doit être activé)
+
+
