@@ -239,3 +239,8 @@ Nous pouvons énumérer les commandes autorisés pour l'utilisateur courant en u
 
 ![sudo_l](https://i.imgur.com/LXH9GO4.png)
 
+Grosse surprise ! Nous pouvons executer n'importe quelle commande en tant que root, donc nous avons les permissions d'éxécuter un shell en tant que root. 🙂
+Mais le flag root.txt n'est pas ici. C'est parti pour une nouvelle étape d'énumération.
+
+![new_machine](https://i.imgur.com/etJwkx7.png)
+
