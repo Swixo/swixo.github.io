@@ -159,3 +159,7 @@ except urllib.error.HTTPError:
 	print("Permission Denied for www-data.")
 ```
 
+Après avoir essayé du **Log Poisoning** ayant **échoué** car nous n'avons pas les droits de lecture sur les logs.
+J'ai effectué de nombreuses recherches et j'ai trouvé des informations dans le fichier de configuration du site par défaut d'Apache à partir de `/etc/apache2/sites-enabled/000-default.conf` :
+
+![find_webdav_creds](https://i.imgur.com/bWvOdUu.png)
