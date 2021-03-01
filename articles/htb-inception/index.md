@@ -281,7 +281,7 @@ Using binary mode to transfer files.
 
 Les identifiants anonymous sont activés ! 😏
 
-Une fois connecté nous trouvons un fichier crontab ayant comme path `/etc/crontab` :
+Une fois connecté nous trouvons un fichier crontab ayant comme path `/etc/crontab` avec 2 cron qui ne sont pas habituels :
 
 ![ftp_crontab](https://i.imgur.com/dfIT3Q9.png)
 
