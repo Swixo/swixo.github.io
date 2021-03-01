@@ -255,7 +255,6 @@ root@Inception:~# nc -zuv 192.168.0.1 1-65535 2>&1 | grep -v 'refused'	# SCAN UD
 Connection to 192.168.0.1 53 port [udp/domain] succeeded!
 Connection to 192.168.0.1 67 port [udp/bootps] succeeded!
 Connection to 192.168.0.1 69 port [udp/tftp] succeeded!
-^C
 root@Inception:~# nc -zv 192.168.0.1 1-65535 2>&1 | grep -v 'refused'	# SCAN TCP
 Connection to 192.168.0.1 21 port [tcp/ftp] succeeded!
 Connection to 192.168.0.1 22 port [tcp/ssh] succeeded!
