@@ -59,3 +59,11 @@ PORT     STATE SERVICE
 Nous découvrons un serveur SSH accéssible seulement en local cependant nous pouvons nous y connecter en passant par le proxy.
 
 ## Enumeration Web
+
+Un WebDIR nous dévoile un directory /dompdf :
+
+![webdir](https://i.imgur.com/oQlS9iA.png)
+
+Après quelques recherches [dompdf](https://github.com/dompdf/dompdf) est un convertisseur HTML to PDF.
+
+Nous pouvons trouver la version de cette outil dans le fichier /dompdf/VERSION.
