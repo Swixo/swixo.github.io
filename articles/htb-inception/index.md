@@ -301,3 +301,7 @@ Pour faire ceci j'ai décider de générer une clé SSH et d'effectuer un **chmo
 ![rooted](https://i.imgur.com/CxE3ivh.png)
 
 Après 5 minutes d'attente nous sommes enfin root ! 😁
+
+Si vous pouvez m'envoyer un star ça pourrait être cool. 😆
+
+<script src="https://www.hackthebox.eu/badge/428983"></script>
