@@ -304,4 +304,4 @@ Après 5 minutes d'attente nous sommes enfin root ! 😁
 
 N'oubliez pas de star. 😆
 
-<script src="https://www.hackthebox.eu/badge/428983"></script>
+<script width="1000" src="https://www.hackthebox.eu/badge/428983"></script>
