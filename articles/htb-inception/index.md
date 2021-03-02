@@ -285,3 +285,12 @@ Une fois connecté nous trouvons un fichier crontab ayant comme path `/etc/cront
 
 ![ftp_crontab](https://i.imgur.com/dfIT3Q9.png)
 
+Nous pouvons voir que toutes les 5 minutes les repositories de apt sont mis à jour.
+Le but est d'exécuter des commandes lorsque apt update est lancé grâce au cron. Pour cela nous allons upload une configuration apt malveillante dans `/etc/apt/apt.conf.d/` qui va appeler l'exécution d'un reverse shell.
+
+Le format de la configuration apt est la suivante :
+
+```sh
+APT::Update::Pre-Invoke {"COMMAND"};
+```
+
