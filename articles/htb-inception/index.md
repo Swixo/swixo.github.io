@@ -303,5 +303,5 @@ Pour faire ceci j'ai décider de générer une clé SSH et d'effectuer un **chmo
 Après 5 minutes d'attente nous sommes enfin root ! 😁
 
 N'oubliez pas de star. 😆
-test
-<script width="1000" src="https://www.hackthebox.eu/badge/428983"></script>
+
+<script src="https://www.hackthebox.eu/badge/428983"></script>
