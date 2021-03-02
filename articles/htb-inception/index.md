@@ -286,11 +286,18 @@ Une fois connecté nous trouvons un fichier crontab ayant comme path `/etc/cront
 ![ftp_crontab](https://i.imgur.com/dfIT3Q9.png)
 
 Nous pouvons voir que toutes les 5 minutes les repositories de apt sont mis à jour.
-Le but est d'exécuter des commandes lorsque apt update est lancé grâce au cron. Pour cela nous allons upload une configuration apt malveillante dans `/etc/apt/apt.conf.d/` qui va appeler l'exécution d'un reverse shell.
+Le but est d'exécuter des commandes lorsque apt update est lancé grâce au cron. Pour cela nous allons upload une configuration apt malveillante dans `/etc/apt/apt.conf.d/` qui va appeler l'exécution d'un reverse shell ou autre.
 
-Le format de la configuration apt est la suivante :
+Le [format de la configuration](https://www.cyberciti.biz/faq/debian-ubuntu-linux-hook-a-script-command-to-apt-get-upgrade-command/) apt est la suivante :
 
 ```sh
 APT::Update::Pre-Invoke {"COMMAND"};
 ```
 
+À noter que l'accès à la machine hôte par TFTP permet d'accéder à des fichiers supplémentaires qui ne sont pas accessibles par FTP.
+
+Pour faire ceci j'ai décider de générer une clé SSH et d'effectuer un **chmod 600** de cette clé via la configuration apt pour que je puisse me connecter en SSH sur la machine 192.168.0.1 :
+
+![rooted](https://i.imgur.com/CxE3ivh.png)
+
+Après 5 minutes d'attente nous sommes enfin root ! 😁
