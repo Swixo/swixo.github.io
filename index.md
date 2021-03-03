@@ -13,6 +13,9 @@ Sur ce site, je vous partagerai des articles, des write-ups ainsi que mes connai
 <time datetime="2020-03-08T00:00:00+00:00">August 20, 2020</time>
 <a href="articles/stack">Fonctionnement de la stack</a>
 
+<time datetime="2020-03-03T00:00:00+00:00">March 03, 2020</time>
+<a href="articles/return_oriented_programming">Comprendre le ROP</a>
+
 ## WRITE-UPS
 
 <time datetime="2021-01-02T00:00:00+00:00">February 01, 2021</time>
@@ -23,3 +26,4 @@ Sur ce site, je vous partagerai des articles, des write-ups ainsi que mes connai
 
 <time datetime="2021-01-03T00:00:00+00:00">March 01, 2021</time>
 <a href="articles/htb-inception">HackTheBox - Inception</a>
+
