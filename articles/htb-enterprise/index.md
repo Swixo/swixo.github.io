@@ -203,6 +203,8 @@ $1 = 212
 
 Tout cela convertit en décimal et nous obtenons 212.
 
+### Exploitation + Scripting (pwntools)
+
 Maintenant que nous sommes certain de la zone à écraser nous devons effectuer un **ret2libc**.
 
 `Le ret2libc est une méthode qui permet d’exécuter des fonctions de la libc comme system, ce qui va être très pratique dans notre cas.`
