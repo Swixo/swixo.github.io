@@ -187,7 +187,9 @@ Laçons 2 listeners et il nous suffit plus qu'a trigger nos reverse shells :
 
 ![trigger_revshells](https://i.imgur.com/XYDF5D5.png)
 
-Nous avons un foothold sur 2 containers ! 😃 
+Nous avons un foothold sur 2 containers ! 😃
+
+# Escaping Joomla container
 
 IP container WordPress : 
 
@@ -204,6 +206,36 @@ www-data@a7018bfdc454:/$ ip -o addr show eth0
 ```
 
 Je vais importé un binaire static de [nmap](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/nmap) sur la machine afin de scanner une plage IP :
+
+```sh
+www-data@a7018bfdc454:/tmp$ ./nmap 172.17.0.4/16
+
+Nmap scan report for 172.17.0.1
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+443/tcp  open  https
+5355/tcp open  hostmon
+8080/tcp open  http-alt
+
+Nmap scan report for mysql (172.17.0.2) # Joomla container
+Host is up (0.00046s latency).
+Not shown: 1204 closed ports
+PORT     STATE SERVICE
+3306/tcp open  mysql
+
+Nmap scan report for 172.17.0.3 # WordPress container
+Host is up (0.00044s latency).
+Not shown: 1204 closed ports
+PORT   STATE SERVICE
+80/tcp open  http
+
+Nmap scan report for a7018bfdc454 (172.17.0.4)
+Host is up (0.00018s latency).
+Not shown: 1204 closed ports
+PORT   STATE SERVICE
+80/tcp open  http
+```
 
 # Vertical Privilege Escalation
 
