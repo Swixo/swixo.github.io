@@ -120,3 +120,59 @@ Nous trouvons encore une fois 212 octets.
 
 ### 3rd solution
 
+Posons un breakpoint à la fonction main et lançons le programme :
+
+```py
+❯ gdb -q lcars.bin  # Launch gdb-peda
+gdb-peda$ b main  # Breakpoint at main 
+  Breakpoint 1 at 0xca0
+gdb-peda$ run # Run the program
+  Starting program: /home/nuts/Documents/Hack_The_Box/Enterprise/lcars.bin
+
+  Breakpoint 1, 0x56555ca0 in main ()
+```
+
+Désassemblons la fonction main_menu pour trouver l'adresse mémoire de printf :
+
+```py
+gdb-peda$ disassemble main_menu   # Disassemble main_menu to find addr
+Dump of assembler code for function main_menu:
+   [...]
+   0x56555ad7 <+633>:	call   0x565555c0 <__isoc99_scanf@plt>
+   0x56555adc <+638>:	add    esp,0x10
+   0x56555adf <+641>:	sub    esp,0x8
+   0x56555ae2 <+644>:	lea    eax,[ebp-0xd0]
+   0x56555ae8 <+650>:	push   eax
+   0x56555ae9 <+651>:	lea    eax,[ebx-0x2138]
+   0x56555aef <+657>:	push   eax
+   0x56555af0 <+658>:	call   0x56555560 <printf@plt>
+   0x56555af5 <+663>:	add    esp,0x10
+   [...]
+```
+
+Posons un breakpoint à l'adresse juste après l'appel de la fonction printf et continuons le programme:
+
+```py
+gdb-peda$ b *0x56555af5 # Put breakpoint at after call function plt printf
+  Breakpoint 2 at 0x56555af5
+gdb-peda$ continue  # continue
+```
+
+Après avoir entrez les informations nécéssaires au binaire, nous pouvons voir notre saisie dans la stack :
+
+```py
+[----------------------------------registers-----------------------------------]
+   [...]
+[-------------------------------------code-------------------------------------]
+   [...]
+   0x56555af0 <main_menu+658>:	call   0x56555560 <printf@plt>
+=> 0x56555af5 <main_menu+663>:	add    esp,0x10
+   [...]
+[------------------------------------stack-------------------------------------]
+0000| 0xffffcaa0 --> 0x56555ec8 ("Rerouting Tertiary EPS Junctions: %s")
+0004| 0xffffcaa4 --> 0xffffcb88 ("AAAAAAAAA")
+0008| 0xffffcaa8 --> 0xffffcc58 --> 0xffffcc98 --> 0xffffccc8 --> 0x0 
+0012| 0xffffcaac --> 0x56555882 (<main_menu+36>:	sub    esp,0xc)
+   [...]
+[------------------------------------------------------------------------------]
+```
