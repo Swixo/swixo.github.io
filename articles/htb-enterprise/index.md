@@ -14,9 +14,11 @@ Bonjour à tous, aujourd'hui je vous présente une machine notée hard qui est v
 
 # Vertical Privilege Escalation
 
-Après une légère énumération, nous trouvons un binaire suid pas commum :
+Après une légère énumération, nous trouvons un binaire SUID pas commum :
 
 ![suid](https://i.imgur.com/BMkUGO3.png)
+
+SUID est un type spécial de permissions données à un fichier. Normalement, lorsqu'un programme s'exécute, il hérite des autorisations d'accès de l'utilisateur connecté. SUID est défini comme donnant des permissions temporaires à un utilisateur pour exécuter un programme/fichier avec les permissions du propriétaire du fichier plutôt que de l'utilisateur qui l'exécute.
 
 Le programme nous demande un code d'accès... Commençons par effectuer un ltrace pour en savoir plus.
 
@@ -27,7 +29,7 @@ Le programme nous demande un code d'accès... Commençons par effectuer un ltrac
 Ici nous pouvons voir que le programme appel la fonction **strcmp**, cette fonction compare 2 chaines de caratères. En l'occurence ici, il compare notre string entrée grace à la fonction fgets, avec le véritable code d'accès qui est picarda1.
 Cependant après connexion, le programme nous affiche seulement un menu principal.
 
-Nous comprenons donc que nous allons devoir exploiter une vulnérabilité de notre binaire afin d'élever nos privilèges. Cependant la fonction **fgets** vérifie le buffer / la taille de notre saisie.
+Nous comprenons donc que nous allons devoir exploiter une vulnérabilité dans notre binaire afin d'élever nos privilèges. Cependant la fonction **fgets** vérifie le buffer / la taille de notre saisie.
 
 Nous pouvons transférer l'executable pour utiliser [gdb-peda](https://github.com/longld/peda) sur notre machine :
 
