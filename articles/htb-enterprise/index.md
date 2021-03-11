@@ -175,7 +175,19 @@ Nous avons maintenant plusieurs passwords mais aussi users que j'ai trouvé dans
 
 # Getting shell on WordPress and Joomla container
 
-Les credentials `william.riker : u*Z14ru0p#ttj83zS6` fonctionnent sur WordPress. De plus, nous pouvons nous connecter avec ces logs `geordi.la.forge : ZD3YxfnSjezg67JZ` sur Joomla
+Les credentials `william.riker : u*Z14ru0p#ttj83zS6` fonctionnent sur WordPress. De plus, nous pouvons nous connecter avec ces logs `geordi.la.forge : ZD3YxfnSjezg67JZ` sur Joomla.
+
+Il suffit d'upload un [reverse shell](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) dans le thème WordPress utilisé ainsi que dans une template Joomla :
+
+![wordpress_upload_revshell](https://i.imgur.com/bYIgmbF.png)
+
+![joomla_upload_revshell](https://i.imgur.com/cLNB3HH.png)
+
+Laçons 2 listeners et il nous suffit plus qu'a trigger nos reverse shells :
+
+![trigger_revshells](https://i.imgur.com/XYDF5D5.png)
+
+Nous avons un foothold ! 😃
 
 # Vertical Privilege Escalation
 
