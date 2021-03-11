@@ -14,3 +14,6 @@ Bonjour à tous, aujourd'hui je vous présente une machine notée hard qui est v
 
 # Vertical Privilege Escalation
 
+Après une légère énumération, nous trouvons un binaire suid pas commum :
+
+![suid](https://i.imgur.com/B4a1UhZ.png)
