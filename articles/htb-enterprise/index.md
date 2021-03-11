@@ -73,7 +73,7 @@ Grâce à un buffer overflow, nous pouvons reécrire la sauvegarde EIP. (Instruc
 
 Pour cela il faut trouver le bon padding afin de overwrite convenablement nos registres (4 octets en 32 bits) et d'exécuter un shell en tant que root car je rappel que le binaire est SUID sur la machine.
 
-Pour calculer ce padding nous allons voir 2 solutions :
+Pour calculer ce padding nous allons voir 3 solutions :
 
 ### 1st solution
 
@@ -103,9 +103,20 @@ On récupére la valeur du lea juste avant la fonction stdin et on convertit cet
 
 ### 2nd solution
 
+Lorsque l’on utilise ce pattern pour causer un buffer overflow à l’intérieur d’un debugger, nous pouvons identifier exactement quels caractères écrasent l'adresse de retour.
+
 Tout d'abord je vais créer un pattern de 500 bytes :
 
 ```py
 gdb-peda$ pattern create 500
 'AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AALAAhAA7AAMAAiAA8AANAAjAA9AAOAAkAAPAAlAAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%GA%cA%2A%HA%dA%3A%IA%eA%4A%JA%fA%5A%KA%gA%6A%LA%hA%7A%MA%iA%8A%NA%jA%9A%OA%kA%PA%lA%QA%mA%RA%oA%SA%pA%TA%qA%UA%rA%VA%tA%WA%uA%XA%vA%YA%wA%ZA%xA%yA%zAs%AssAsBAs$AsnAsCAs-As(AsDAs;As)AsEAsaAs0AsFAsbAs1AsGAscAs2AsHAsdAs3AsIAseAs4AsJAsfAs5AsKAsgAs6A'
 ```
+
+Ensuite je vais run le programme avec cette structure :
+
+![pattern_search](https://i.imgur.com/g8tVTdB.png)
+
+Nous trouvons encore une fois 212 octets.
+
+### 3rd solution
+
