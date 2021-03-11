@@ -176,3 +176,35 @@ Après avoir entrez les informations nécéssaires au binaire, nous pouvons voir
    [...]
 [------------------------------------------------------------------------------]
 ```
+
+Le buffer commence à 0xffffcb88.
+
+Affichons la trame de la stack :
+
+```py
+gdb-peda$ info f
+Stack level 0, frame at 0xffffcc60:
+ eip = 0x56555af5 in main_menu; saved eip = 0x56555c5f
+ called by frame at 0xffffcca0
+ Arglist at 0xffffcc58, args: 
+ Locals at 0xffffcc58, Previous frame's sp is 0xffffcc60
+ Saved registers:
+  ebx at 0xffffcc54, ebp at 0xffffcc58, eip at 0xffffcc5c
+```
+
+EIP est à 0xffffcc5c
+
+Nous allons soustraire les adresses mémoires de EIP - adresse début buffer :
+
+```py
+gdb-peda$ p/d 0xffffcc5c - 0xffffcb88 # EIP - BEGIN BUFFER
+$1 = 212
+```
+
+Tout cela convertit en décimal et nous obtenons 212.
+
+Maintenant que nous sommes certain de la zone à écraser nous devons effectuer un **ret2libc**.
+
+`Le ret2libc est une méthode qui permet d’exécuter des fonctions de la libc comme system, ce qui va être très pratique dans notre cas.`
+
+À chaque fois que vous écrivez un programme C, vous utilisez des fonctions intégrées. Toutes les fonctions C standard ont été compilées dans un seul fichier, appelé libc. Nous pouvons utiliser [ldd](https://github.com/matrix207/ldd) pour savoir quelle libc est utilisée pour ce binaire.
