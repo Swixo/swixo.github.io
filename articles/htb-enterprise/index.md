@@ -205,8 +205,10 @@ Tout cela convertit en décimal et nous obtenons 212.
 
 ## Exploitation + Scripting (pwntools)
 
-Maintenant que nous sommes certain de la zone à écraser nous devons effectuer un **ret2libc**.
+Maintenant que nous sommes certain de la zone à écraser nous pouvons effectuer un **ret2libc**.
+
+À chaque fois que vous écrivez un programme C, vous utilisez des fonctions intégrées comme puts, fgets, scanf... Toutes ces fonctions C standard ont été compilées dans un seul fichier, appelé libc. Nous pouvons utiliser [ldd](https://github.com/matrix207/ldd) pour savoir quelle libc est utilisée pour ce binaire.
 
 `Le ret2libc est une méthode qui permet d’exécuter des fonctions de la libc comme system, ce qui va être très pratique dans notre cas.`
 
-À chaque fois que vous écrivez un programme C, vous utilisez des fonctions intégrées. Toutes les fonctions C standard ont été compilées dans un seul fichier, appelé libc. Nous pouvons utiliser [ldd](https://github.com/matrix207/ldd) pour savoir quelle libc est utilisée pour ce binaire.
+
