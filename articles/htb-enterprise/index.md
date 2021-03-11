@@ -237,5 +237,5 @@ Notre payload va alors ressembler à ceci : `212 octets + Adresse System + Adres
 
 Pour illustrer notre payload :
 
-[payload_schema](https://i.imgur.com/KtbdNeN.png)
+![payload_schema](https://i.imgur.com/KtbdNeN.png)
 
