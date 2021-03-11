@@ -77,8 +77,8 @@ Pour calculer ce padding nous allons voir 2 solutions :
 
 ### 1st solution
 
-```assembly
-gdb-peda$ info functions
+```py
+gdb-peda$ info functions  # Check binary's functions
    [...]
 gdb-peda$ disassemble main_menu 
 Dump of assembler code for function main_menu:
@@ -95,7 +95,7 @@ Dump of assembler code for function main_menu:
    0x0000095a <+252>:	push   eax
    0x0000095b <+253>:	call   0x5c0 <__isoc99_scanf@plt>
    [...]
-gdb-peda$ p/d 0xd4
+gdb-peda$ p/d 0xd4  # Convert hex to dec with gdb
 $1 = 212
 ```
 
