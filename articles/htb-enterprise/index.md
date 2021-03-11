@@ -52,6 +52,43 @@ Le serveur contient 4 services :
 
 ![webdir_8080](https://i.imgur.com/GiyGZlh.png)
 
+## Enumeration WordPress
+
+Pour automatiser notre énumération, nous allons utiliser [wpscan](https://github.com/wpscanteam/wpscan) :
+
+```sh
+❯ wpscan --url http://enterprise.htb/ --enumerate u
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+_______________________________________________________________
+
+[+] URL: http://enterprise.htb/ [10.10.10.61]
+
+Interesting Finding(s):
+
+[...]
+
+[i] User(s) Identified:
+
+[+] william.riker
+ | Found By: Author Posts - Display Name (Passive Detection)
+ | Confirmed By:
+ |  Rss Generator (Passive Detection)
+ |  Login Error Messages (Aggressive Detection)
+
+[+] william-riker
+ | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+
+[...]
+```
+
+Un utilisateur a été trouvé en regardant l'auteur d'un post : william.ricker
+
 # Vertical Privilege Escalation
 
 Après une légère énumération, nous trouvons un binaire SUID pas commum :
