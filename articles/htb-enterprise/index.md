@@ -243,6 +243,8 @@ Si vous pensez que l'import de nmap est une perte de temps nous pouvons utiliser
 for x in $(seq 1 255); do ping -W 1 -c 1 172.17.0.$x | grep from; done
 ```
 
+Nous comprenons ici que nous allons devoir pivoter vers la machine host : `172.17.0.1`
+
 # Vertical Privilege Escalation
 
 Après une légère énumération, nous trouvons un binaire SUID pas commum :
