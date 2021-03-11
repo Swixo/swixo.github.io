@@ -124,7 +124,7 @@ Essayons de générer une erreur SQL via le paramètre query :
 
 Nous sommes maintenant certain qu'une injection SQL est possible. Sortons [sqlmap](https://github.com/sqlmapproject/sqlmap) ! 😄
 
-```py
+```sh
 ❯ sqlmap -u http://10.10.10.61/wp-content/plugins/lcars/lcars_db.php\?query\=1337 --dbs
         ___
        __H__
