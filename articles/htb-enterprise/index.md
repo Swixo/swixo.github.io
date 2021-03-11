@@ -24,4 +24,4 @@ Le programme nous demande un code d'accès... Commençons par effectuer un ltrac
 
 ![ltrace](https://i.imgur.com/pS4hmx1.png)
 
-Ici nous pouvons voir que le programme appel la fonction **strcmp**, cette fonction compare 2 chaines de caratères. En l'occurence ici, il compare notre string entrée grace à la fonctione fgets, avec le véritable code d'accès qui est picarda1.
+Ici nous pouvons voir que le programme appel la fonction **strcmp**, cette fonction compare 2 chaines de caratères. En l'occurence ici, il compare notre string entrée grace à la fonction fgets, avec le véritable code d'accès qui est picarda1.
