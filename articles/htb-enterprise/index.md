@@ -31,15 +31,15 @@ Cependant après connexion, le programme nous affiche seulement un menu principa
 
 Nous comprenons donc que nous allons devoir exploiter une vulnérabilité dans notre binaire afin d'élever nos privilèges. Cependant la fonction **fgets** vérifie le buffer / la taille de notre saisie.
 
-Nous pouvons transférer l'executable pour utiliser [gdb-peda](https://github.com/longld/peda) sur notre machine :
+Nous pouvons transférer l'exécutable sur notre machine pour utiliser [gdb-peda](https://github.com/longld/peda) :
 
 ![transfert_binary](https://i.imgur.com/6uD2jeP.png)
 
-Tout d'abord vérifions les proctections applicatives que contient ce binaire ainsi que l'[ASLR](https://www.networkworld.com/article/3331199/what-does-aslr-do-for-linux.html) sur la machine cible:
+Tout d'abord vérifions les protections applicatives que contient ce binaire ainsi que l'[ASLR](https://www.networkworld.com/article/3331199/what-does-aslr-do-for-linux.html) sur la machine cible:
 
 ```sh
 ON MY MACHINE :
-  ❯ checksec --file=$PWD/lcars.bin
+  ❯ checksec --file=$PWD/lcars.bin  # Check properties
   [*] '/home/nuts/Documents/Hack_The_Box/Enterprise/lcars.bin'
       Arch:     i386-32-little
       RELRO:    Partial RELRO
@@ -49,7 +49,7 @@ ON MY MACHINE :
       RWX:      Has RWX segments
       
 ON TARGET MACHINE:
-  www-data@enterprise:/bin$ cat /proc/sys/kernel/randomize_va_space
+  www-data@enterprise:/bin$ cat /proc/sys/kernel/randomize_va_space # Check ASLR
   0
 ```
 
@@ -67,8 +67,10 @@ Après plusieurs minutes, j'ai trouvé un buffer overflow :
 
 Nous avons réussi à faire **segmentation fault** le programme grace à une saisie trop importante dans une variable non initialisée avec un buffer inférieur à la saisie car la fonction d'input ne vérifie pas la taille de notre chaine de caractères. 😁
 
-Grace à un buffer overflow, nous pouvons reécrire la sauvegarde EIP. (Instruction Pointer Register) Le registre EIP contient toujours l'adresse de la prochaine instruction à exécuter.
+Grâce à un buffer overflow, nous pouvons reécrire la sauvegarde EIP. (Instruction Pointer Register) Le registre EIP contient toujours l'adresse de la prochaine instruction à exécuter.
 
-Pour cela il faut trouver le bon padding afin de overwrite convenablement nos registres et d'executer un shell en tant que root car je rappel que le binaire est SUID sur la machine.
+![bof_schema](https://i.imgur.com/UIh4wUo.png)
 
-## Calcul padding (2 solutions)
+Pour cela il faut trouver le bon padding afin de overwrite convenablement nos registres (4 octets en 32 bits) et d'exécuter un shell en tant que root car je rappel que le binaire est SUID sur la machine.
+
+### Calcul padding (2 solutions)
