@@ -237,7 +237,7 @@ PORT   STATE SERVICE
 80/tcp open  http
 ```
 
-Si vous pensez que l'import de nmap est une perte de temps nous pouvons utiliser la magie de bash :
+Si vous pensez que l'import de nmap est une perte de temps nous pouvons utiliser la magie du shell scripting :
 
 ```sh
 for x in $(seq 1 255); do ping -W 1 -c 1 172.17.0.$x | grep from; done
