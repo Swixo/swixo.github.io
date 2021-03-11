@@ -4,7 +4,7 @@ description: Walkthrough de la machine Enterprise sur HackTheBox
 ---
 ![enterprise](https://i.imgur.com/I3wDQWo.png)
 
-Bonjour à tous, aujourd'hui je vous présente une machine notée hard qui est vraiment cool pour les débutants en **exploitation** de **binaire** et  : **Enterprise** de **HackTheBox**. 😃
+Bonjour à tous, aujourd'hui je vous présente une machine notée hard qui est vraiment cool pour les débutants en **exploitation** de **binaire** et en **Docker container escapes** : **Enterprise** de **HackTheBox**. 😃
 
 # Recon
 
