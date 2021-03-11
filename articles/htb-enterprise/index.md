@@ -173,6 +173,10 @@ Nous avons maintenant plusieurs passwords mais aussi users que j'ai trouvé dans
 
 ![joomla_users](https://i.imgur.com/3geNGLd.png)
 
+# Getting shell on WordPress and Joomla container
+
+Les credentials `william.riker : u*Z14ru0p#ttj83zS6` fonctionnent sur WordPress. De plus, nous pouvons nous connecter avec ces logs `geordi.la.forge : ZD3YxfnSjezg67JZ` sur Joomla
+
 # Vertical Privilege Escalation
 
 Après une légère énumération, nous trouvons un binaire SUID pas commum :
