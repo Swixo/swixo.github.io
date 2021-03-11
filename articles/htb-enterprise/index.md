@@ -16,4 +16,4 @@ Bonjour à tous, aujourd'hui je vous présente une machine notée hard qui est v
 
 Après une légère énumération, nous trouvons un binaire suid pas commum :
 
-![suid](https://i.imgur.com/B4a1UhZ.png)
+![suid](https://i.imgur.com/BMkUGO3.png)
