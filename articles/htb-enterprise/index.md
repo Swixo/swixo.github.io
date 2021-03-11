@@ -187,7 +187,23 @@ Laçons 2 listeners et il nous suffit plus qu'a trigger nos reverse shells :
 
 ![trigger_revshells](https://i.imgur.com/XYDF5D5.png)
 
-Nous avons un foothold ! 😃
+Nous avons un foothold sur 2 containers ! 😃 
+
+IP container WordPress : 
+
+```sh
+www-data@b8319d86d21e:/$ ip -o addr show eth0
+6: eth0    inet 172.17.0.3/16 scope global eth0\       valid_lft forever preferred_lft forever
+```
+
+IP container Joomla :
+
+```sh
+www-data@a7018bfdc454:/$ ip -o addr show eth0
+8: eth0    inet 172.17.0.4/16 scope global eth0\       valid_lft forever preferred_lft forever
+```
+
+Je vais importé un binaire static de [nmap](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/nmap) sur la machine afin de scanner une plage IP :
 
 # Vertical Privilege Escalation
 
