@@ -33,7 +33,7 @@ Nous pouvons transférer l'executable pour utiliser [gdb-peda](https://github.co
 
 ![transfert_binary](https://i.imgur.com/6uD2jeP.png)
 
-Tout d'abord vérifions les proctections que contient ce binaire ainsi que l'ASLR sur la machine cible:
+Tout d'abord vérifions les proctections applicatives que contient ce binaire ainsi que l'[ASLR](https://www.networkworld.com/article/3331199/what-does-aslr-do-for-linux.html) sur la machine cible:
 
 ```sh
 ON MY MACHINE :
@@ -51,14 +51,22 @@ ON TARGET MACHINE:
   0
 ```
 
-L'ASLR est donc désactivé car sa valeur vaut 0 et non 2. Deplus NX 
+L'ASLR est donc désactivé car sa valeur vaut 0 et non 2. Deplus NX n'est pas activé.
 
 `L’address space layout randomization (ASLR) est une technique permettant de placer de façon aléatoire les zones de données dans la mémoire virtuelle.`
 
-`NX est une protection qui rend la pile **N**on e**X**écutable.`
+`NX est une protection qui rend la pile Non eXécutable.`
 
-Je vais alors debugger le programme afin de comprendre son fonctionnement :
+Je vais alors debugger le programme afin de comprendre son fonctionnement.
 
+Après plusieurs minutes, j'ai trouvé un buffer overflow :
 
+![segfault](https://i.imgur.com/bII4f6j.png)
 
+Nous avons réussi à faire **segmentation fault** le programme grace à une saisie trop importante dans une variable non initialisée avec un buffer inférieur à la saisie car la fonction d'input ne vérifie pas la taille de notre chaine de caractères. 😁
 
+Grace à un buffer overflow, nous pouvons reécrire la sauvegarde EIP. (Instruction Pointer Register) Le registre EIP contient toujours l'adresse de la prochaine instruction à exécuter.
+
+Pour cela il faut trouver le bon padding afin de overwrite convenablement nos registres et d'executer un shell en tant que root car je rappel que le binaire est SUID sur la machine.
+
+## Calcul padding (2 solutions)
