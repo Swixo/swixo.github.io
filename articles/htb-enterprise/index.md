@@ -55,6 +55,8 @@ L'ASLR est donc désactivé car sa valeur vaut 0 et non 2. Deplus NX
 
 `L’address space layout randomization (ASLR) est une technique permettant de placer de façon aléatoire les zones de données dans la mémoire virtuelle.`
 
+`NX est une protection qui rend la pile **N**on e**X**écutable.`
+
 Je vais alors debugger le programme afin de comprendre son fonctionnement :
 
 
