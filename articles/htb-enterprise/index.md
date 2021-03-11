@@ -116,11 +116,13 @@ if (isset($_GET['query'])){
 ?>
 ```
 
-# Exploitation
+# Exploitation SQLi
 
 Essayons de générer une erreur SQL via le paramètre query :
 
 ![error_sql](https://i.imgur.com/EEfQJrb.png)
+
+
 
 # Vertical Privilege Escalation
 
