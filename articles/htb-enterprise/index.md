@@ -77,7 +77,7 @@ Pour calculer ce padding nous allons voir 2 solutions :
 
 ### 1st solution
 
-```py
+```assembly
 gdb-peda$ info functions
    [...]
 gdb-peda$ disassemble main_menu 
