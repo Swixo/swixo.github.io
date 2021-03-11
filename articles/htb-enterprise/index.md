@@ -154,7 +154,7 @@ Table: wp_posts
 Needed somewhere to put some passwords quickly\r\n\r\nZxJyhGem4k338S2Y\r\n\r\nenterprisencc170\r\n\r\nZD3YxfnSjezg67JZ\r\n\r\nu*Z14ru0p#ttj83zS6\r\n\r\n \r\n\r\n
 ```
 
-Cependant à cause des End Of Line, les mot de passe sont difficilement lisibles, j'ai donc simplement echo cette chaine de caractère en bash :
+Cependant à cause des End Of Line, les mot de passe sont difficilement lisibles, j'ai donc simplement echo cette chaine de caractère pour qu'ils soient interprétés :
 
 ```sh
 ❯ echo 'Needed somewhere to put some passwords quickly\r\n\r\nZxJyhGem4k338S2Y\r\n\r\nenterprisencc170\r\n\r\nZD3YxfnSjezg67JZ\r\n\r\nu*Z14ru0p#ttj83zS6\r\n\r\n \r\n\r\n'
@@ -168,6 +168,10 @@ ZD3YxfnSjezg67JZ
 
 u*Z14ru0p#ttj83zS6
 ```
+
+Nous avons maintenant plusieurs passwords mais aussi users que j'ai trouvé dans la base de donnée de Joomla :
+
+![joomla_users](https://i.imgur.com/3geNGLd.png)
 
 # Vertical Privilege Escalation
 
