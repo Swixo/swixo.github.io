@@ -211,4 +211,13 @@ Maintenant que nous sommes certain de la zone à écraser nous pouvons effectuer
 
 `Le ret2libc est une méthode qui permet d’exécuter des fonctions de la libc comme system, ce qui va être très pratique dans notre cas.`
 
+Maintenant, nous devons localiser les emplacements des fonctions nécessaires sur la machine cible. Ceci est simple car l'ASLR est désactivé :
 
+```py
+(gdb) p system
+p system
+$1 = {<text variable, no debug info>} 0xf7e4c060 <system>
+(gdb) p exit
+p exit
+$2 = {<text variable, no debug info>} 0xf7e3faf0 <exit>
+```
