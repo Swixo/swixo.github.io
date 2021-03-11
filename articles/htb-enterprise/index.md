@@ -98,3 +98,5 @@ Dump of assembler code for function main_menu:
 gdb-peda$ p/d 0xd4
 $1 = 212
 ```
+
+On prend la valeur du lea juste avant la fonction stdin
