@@ -271,6 +271,11 @@ r.sendline(pld)
 r.interactive()
 ```
 
-Pour trouver le port cible nous pouvons lister les ports ouverts sur la machine :
+Pour trouver le port cible nous devons lister les ports ouverts sur la machine :
 
 ![port31812](https://i.imgur.com/cMMIQmh.png)
+
+![execution_script_py](https://i.imgur.com/UT2Tv5w.png)
+
+Voila nous sommes enfin root ! 😎
+
