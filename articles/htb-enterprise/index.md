@@ -99,4 +99,10 @@ gdb-peda$ p/d 0xd4  # Convert hex to dec with gdb
 $1 = 212
 ```
 
-On prend la valeur du lea juste avant la fonction stdin
+On récupére la valeur du lea juste avant la fonction stdin et on convertit cette valeur hexadécimal en décimal et on obtient un buffer de 212 chars.
+
+### 2nd solution
+
+```py
+print("test")
+```
