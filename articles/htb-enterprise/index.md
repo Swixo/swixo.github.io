@@ -183,7 +183,7 @@ Il suffit d'upload un [reverse shell](https://github.com/pentestmonkey/php-rever
 
 ![joomla_upload_revshell](https://i.imgur.com/cLNB3HH.png)
 
-Laçons 2 listeners et il nous suffit plus qu'a trigger nos reverse shells :
+Lançons 2 listeners et il nous suffit plus qu'a trigger nos reverse shells :
 
 ![trigger_revshells](https://i.imgur.com/XYDF5D5.png)
 
@@ -245,7 +245,7 @@ for x in $(seq 1 255); do ping -W 1 -c 1 172.17.0.$x | grep from; done
 
 Nous comprenons ici que nous allons devoir pivoter vers la machine host : `172.17.0.1`.
 
-Après quelques temps d'énumération, j'ai découvert que nous que les CMS sont exécutés dans un container mais le serveur Web sur le port 443 ne l'est pas. Nous avons un dossier partagé entre les 2 serveurs Web : `/var/www/html/files/`. Depuis l'utilisateur www-data de Joomla nous pouvons upload un reverse shell sur ce serveur Web et le déclencher à partir du port 443 :
+Après quelques temps d'énumération, j'ai découvert que les CMS sont exécutés dans un container mais le serveur Web sur le port 443 ne l'est pas. Nous avons un dossier partagé entre les 2 serveurs Web : `/var/www/html/files/`. Depuis l'utilisateur www-data de Joomla nous pouvons upload un reverse shell sur ce serveur Web et le déclencher à partir du port 443 :
 
 ![container_escaped](https://i.imgur.com/SmKbYD5.png)
 
