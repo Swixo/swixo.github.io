@@ -89,6 +89,38 @@ Interesting Finding(s):
 
 Un utilisateur a été trouvé en regardant l'auteur d'un post : william.ricker
 
+Après quelques minutes d'énumération, j'ai trouvé un fichier compréssé dans le /files, en me renseignant sur lcars je me suis rendu compte qu'il s'agissait d'un plugin :
+
+![curl_lcars](https://i.imgur.com/ni8l4jn.png)
+
+À l'intérieur nous avons du code php qui nous révèle une injection SQL :
+
+```php
+❯ cat lcars/lcars_db.php
+<?php
+include "/var/www/html/wp-config.php";
+$db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+// Test the connection:
+if (mysqli_connect_errno()){
+    // Connection Error
+    exit("Couldn't connect to the database: ".mysqli_connect_error());
+}
+
+
+// test to retireve an ID
+if (isset($_GET['query'])){
+    $query = $_GET['query'];
+    $sql = "SELECT ID FROM wp_posts WHERE post_name = $query";
+    $result = $db->query($sql);
+    echo $result;
+} else {
+    echo "Failed to read query";
+}
+
+
+?>
+```
+
 # Vertical Privilege Escalation
 
 Après une légère énumération, nous trouvons un binaire SUID pas commum :
