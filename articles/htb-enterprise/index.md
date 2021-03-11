@@ -27,7 +27,7 @@ Le programme nous demande un code d'accès... Commençons par effectuer un ltrac
 Ici nous pouvons voir que le programme appel la fonction **strcmp**, cette fonction compare 2 chaines de caratères. En l'occurence ici, il compare notre string entrée grace à la fonction fgets, avec le véritable code d'accès qui est picarda1.
 Cependant après connexion, le programme nous affiche seulement un menu principal.
 
-Nous comprenons donc que nous allons devoir exploiter une vulnérabilité de notre binaire afin d'élever nos privilèges. Cependant la fonction **fgets** vérifie le buffer (taille) de la chaine entrée.
+Nous comprenons donc que nous allons devoir exploiter une vulnérabilité de notre binaire afin d'élever nos privilèges. Cependant la fonction **fgets** vérifie le buffer / la taille de notre saisie.
 
 Je vais alors debugger le binaire afin de comprendre son fonctionnement :
 
