@@ -77,7 +77,7 @@ Pour calculer ce padding nous allons voir 2 solutions :
 
 ### 1st solution
 
-```x86asm
+```assembly
 gdb-peda$ disassemble main_menu 
 Dump of assembler code for function main_menu:
    0x0000085e <+0>:	push   ebp
