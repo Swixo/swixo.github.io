@@ -203,7 +203,7 @@ $1 = 212
 
 Tout cela convertit en décimal et nous obtenons 212.
 
-### Exploitation + Scripting (pwntools)
+## Exploitation + Scripting (pwntools)
 
 Maintenant que nous sommes certain de la zone à écraser nous devons effectuer un **ret2libc**.
 
