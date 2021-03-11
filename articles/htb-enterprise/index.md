@@ -253,7 +253,9 @@ Nous avons enfin escape le container et nous pouvons afficher le flag user.txt !
 
 ### Upgrade Shell
 
+Voici un cheat sheet pour upgrade un shell netcat en Fully Interactive : [CHEAT SHEET](https://null-byte.wonderhowto.com/how-to/upgrade-dumb-shell-fully-interactive-shell-for-more-flexibility-0197224/)
 
+![upgrade_sh](https://i.imgur.com/QaMeXjn.png)
 
 # Vertical Privilege Escalation
 
