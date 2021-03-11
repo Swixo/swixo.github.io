@@ -268,7 +268,7 @@ On récupére la valeur du lea juste avant la fonction stdin et on convertit cet
 
 ### 2nd solution
 
-Lorsque l’on utilise ce pattern pour causer un buffer overflow à l’intérieur d’un debugger, nous pouvons identifier exactement quels caractères écrasent l'adresse de retour.
+Lorsque l’on utilise un pattern pour causer un buffer overflow à l’intérieur d’un debugger, nous pouvons identifier exactement quels caractères écrasent l'adresse de retour.
 
 Tout d'abord je vais créer un pattern de 500 bytes :
 
