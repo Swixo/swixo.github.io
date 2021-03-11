@@ -29,6 +29,31 @@ Cependant après connexion, le programme nous affiche seulement un menu principa
 
 Nous comprenons donc que nous allons devoir exploiter une vulnérabilité de notre binaire afin d'élever nos privilèges. Cependant la fonction **fgets** vérifie le buffer / la taille de notre saisie.
 
-Je vais alors debugger le binaire afin de comprendre son fonctionnement :
+Nous pouvons transférer l'executable pour utiliser [gdb-peda](https://github.com/longld/peda) sur notre machine :
+
+![transfert_binary](https://i.imgur.com/6uD2jeP.png)
+
+Tout d'abord vérifions les proctections que contient ce binaire ainsi que l'ASLR sur la machine cible:
+
+```sh
+ON MY MACHINE :
+  ❯ checksec --file=$PWD/lcars.bin
+  [*] '/home/nuts/Documents/Hack_The_Box/Enterprise/lcars.bin'
+      Arch:     i386-32-little
+      RELRO:    Partial RELRO
+      Stack:    No canary found
+      NX:       NX disabled
+      PIE:      PIE enabled
+      RWX:      Has RWX segments
+ON TARGET MACHINE:
+  www-data@enterprise:/bin$ cat /proc/sys/kernel/randomize_va_space
+  0
+```
+
+L'ASLR est donc désactivé car sa valeur vaut 0 et non 2. Deplus NX 
+
+Je vais alors debugger le programme afin de comprendre son fonctionnement :
+
+
 
 
