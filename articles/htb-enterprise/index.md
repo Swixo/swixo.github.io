@@ -10,7 +10,38 @@ Bonjour à tous, aujourd'hui je vous présente une machine notée hard qui est v
 
 ## Nmap 
 
-[...]
+```sh
+PORT     STATE SERVICE  VERSION
+22/tcp   open  ssh      OpenSSH 7.4p1 Ubuntu 10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 c4:e9:8c:c5:b5:52:23:f4:b8:ce:d1:96:4a:c0:fa:ac (RSA)
+|   256 f3:9a:85:58:aa:d9:81:38:2d:ea:15:18:f7:8e:dd:42 (ECDSA)
+|_  256 de:bf:11:6d:c0:27:e3:fc:1b:34:c0:4f:4f:6c:76:8b (ED25519)
+80/tcp   open  http     Apache httpd 2.4.10 ((Debian))
+|_http-generator: WordPress 4.8.1
+|_http-server-header: Apache/2.4.10 (Debian)
+|_http-title: USS Enterprise &#8211; Ships Log
+443/tcp  open  ssl/http Apache httpd 2.4.25 ((Ubuntu))
+|_http-server-header: Apache/2.4.25 (Ubuntu)
+|_http-title: Apache2 Ubuntu Default Page: It works
+| ssl-cert: Subject: commonName=enterprise.local/organizationName=USS Enterprise/stateOrProvinceName=United Federation of Planets/countryName=UK
+| Not valid before: 2017-08-25T10:35:14
+|_Not valid after:  2017-09-24T10:35:14
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  http/1.1
+8080/tcp open  http     Apache httpd 2.4.10 ((Debian))
+|_http-generator: Joomla! - Open Source Content Management
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+| http-robots.txt: 15 disallowed entries 
+| /joomla/administrator/ /administrator/ /bin/ /cache/ 
+| /cli/ /components/ /includes/ /installation/ /language/ 
+|_/layouts/ /libraries/ /logs/ /modules/ /plugins/ /tmp/
+|_http-server-header: Apache/2.4.10 (Debian)
+|_http-title: Home
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+```
 
 # Vertical Privilege Escalation
 
