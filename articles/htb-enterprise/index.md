@@ -45,12 +45,15 @@ ON MY MACHINE :
       NX:       NX disabled
       PIE:      PIE enabled
       RWX:      Has RWX segments
+      
 ON TARGET MACHINE:
   www-data@enterprise:/bin$ cat /proc/sys/kernel/randomize_va_space
   0
 ```
 
 L'ASLR est donc désactivé car sa valeur vaut 0 et non 2. Deplus NX 
+
+`L’address space layout randomization (ASLR) est une technique permettant de placer de façon aléatoire les zones de données dans la mémoire virtuelle.`
 
 Je vais alors debugger le programme afin de comprendre son fonctionnement :
 
