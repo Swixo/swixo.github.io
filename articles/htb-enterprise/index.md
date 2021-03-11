@@ -38,6 +38,20 @@ Le serveur contient 4 services :
   3. Un serveur Web sur le port 443
   4. Un serveur Web sur le port 8080 avec un CMS Joomla
 
+## WebDIR
+
+### Port 80
+
+![webdir_80](https://i.imgur.com/ABdoKvx.png)
+
+### Port 443
+
+![webdir_443]()
+
+### Port 8080
+
+![webdir_8080]()
+
 # Vertical Privilege Escalation
 
 Après une légère énumération, nous trouvons un binaire SUID pas commum :
