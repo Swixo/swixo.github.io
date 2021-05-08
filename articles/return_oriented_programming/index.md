@@ -4,7 +4,7 @@ description: Article théorique et pratique sur le ROP
 ---
 
 # Sommaire
-1. [Les sections](#section)
+1. [Les sections d'un binaire](#Les_sections)
 
 ```py
 from pwn import *
@@ -62,5 +62,5 @@ p.interactive() # spawn interactive shell
 
 p.close()
 ```
-<div id='section'/>
-# Les sections
+<div id='Les_sections'/>
+# Les sections d'un binaire
