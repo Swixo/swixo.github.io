@@ -1,5 +1,5 @@
 ---
-title: "Return-oriented programming"
+title: "Return-oriented programming (ROP)"
 description: Article théorique et pratique sur le ROP
 ---
 
