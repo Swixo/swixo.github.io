@@ -1,6 +1,6 @@
 ---
 title: "Return-oriented programming"
-description: Article sur le ROP
+description: Article théorique et pratique sur le ROP
 ---
 
 # COMING...
