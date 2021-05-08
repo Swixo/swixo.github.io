@@ -7,6 +7,7 @@ description: Article théorique et pratique sur le ROP
 1. [Les sections d'un binaire](#Les_sections)
 2. [Les protections](#Les_protections)
 3. [Qu'est ce que le ROP ?](#ROP)
+4. [Exploitation + Walkthrough ROPME - HackTheBox](#ropme)
 
 Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout ...
 
@@ -103,7 +104,11 @@ char var[256] = "nuts";
 
 - PIE permet de placer de facon aléatoire des emplacements mémoires (comme l'ASLR) mais cette fois ci, pour la zone de code et la zone de donnée.
 
-- Le canary ou la Stack Smashing Protection (SSP) est une protection qui est placé entre le buffer et le couple EBP et EIP. Si la valeur du canary est réecrite alors le programme se ferme. (4 octets en 32 bits, 8 octets en 64 bits) Cependant, en assembleur nos ordinateurs vérifient octets par octets les chaines de caractères, alors nous pouvons brute force byte par byte la valeur du canary afin de la leak et de réecrire la bonne valeur du canary.
+- Le canary ou la Stack Smashing Protection (SSP) est une protection qui est placé entre le buffer et le couple EBP et EIP (32 bits) ou RBP et RIP (64 bits). Si la valeur du canary est réecrite alors le programme se ferme. (4 octets en 32 bits, 8 octets en 64 bits) Cependant, en assembleur nos ordinateurs vérifient octets par octets les chaines de caractères, alors nous pouvons brute force byte par byte la valeur du canary afin de la leak et de réecrire la bonne valeur du canary.
 
 <div id='ROP'/>
 # Qu'est ce que le ROP ?
+
+
+<div id='ropme'/>
+# Exploitation + Walkthrough ROPME - HackTheBox
