@@ -9,7 +9,7 @@ description: Article théorique et pratique sur le ROP
 3. [Qu'est ce que le ROP ?](#ROP)
 4. [Exploitation + Walkthrough ROPME - HackTheBox](#ropme)
 
-Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout ...
+Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout les différentes sections
 
 <div id='Les_sections'/>
 # Les sections d'un binaire
@@ -24,14 +24,14 @@ La GOT (Global Offset Table) est une section qui effectue une résolution d'adre
 
 La PLT (Procedure Linkage Table) est une section qui contient du code permettant de résoudre les fonctions de la libc exécutées dans le binaire. C'est une table servant à faire le lien avec les fonctions situées dans des bibliothèques dynamiques. Cette section se trouve à des adresses fixes
 
-### Autres sections d'un binaire
+### Les segments d'un binaire
 
-- La section TEXT contient le code du binaire
-- La section BSS contient les variables non itilialisées, par exemple en C :
+- Le segment TEXT contient le code du binaire
+- Le segment BSS contient les variables non itilialisées, par exemple en C :
 ```c
 char var[256];
 ```
-- La section DATA contient les variables initialisées, par exemple en C : 
+- Le segment DATA contient les variables initialisées, par exemple en C : 
 ```c
 char var[256] = "nuts";
 ```
@@ -55,6 +55,7 @@ char var[256] = "nuts";
 
 <div id='ROP'/>
 # Qu'est ce que le ROP ?
+
 
 
 <div id='ropme'/>
