@@ -126,4 +126,6 @@ p.interactive() # spawn interactive shell
 p.close()
 ```
 
-![end_shell](https://media.giphy.com/media/VY20vTr6KCbOBKiGIL/giphy.gif)
+<p align="center">
+  <img width="460" height="300" src="https://media.giphy.com/media/VY20vTr6KCbOBKiGIL/giphy.gif">
+</p>
