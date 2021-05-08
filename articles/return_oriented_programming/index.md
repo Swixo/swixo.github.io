@@ -39,7 +39,7 @@ char var[256] = "nuts";
 <div id='Les_protections'/>
 # Les protections des exécutables
 
-- **NX** est une protection qui rend la pile Non eXécutable, cette technique empeche l'exécution d'un shellcode dans la stack.
+- **NX** est une protection qui rend la pile Non eXécutable. TL;DR: Cette technique empeche l'exécution d'un shellcode dans la stack. 
 
 - Le **DEP** (Data Execution Prevention) consiste à protéger les zones de mémoires non exécutables. L'activation de la fonctionnalité DEP consiste à passer le bit NX à 1 dans le processeur.
 
