@@ -43,7 +43,7 @@ char var[256] = "nuts";
 
 - Le DEP (Data Execution Prevention) consiste à protéger les zones de mémoires non exécutables. L'activation de la fonctionnalité DEP consiste à passer le bit NX à 1 dans le processeur.
 
-- L’address space layout randomization (ASLR) est une technique permettant de placer de façon aléatoire les adresses de la stack, du tas et des bibliothèques partagées.
+- L’ASLR (Address space layout randomization) est une technique permettant de placer de façon aléatoire les adresses de la stack, du tas et des bibliothèques partagées.
 
 - PIE permet de placer de facon aléatoire des emplacements mémoires (comme l'ASLR) mais cette fois ci, pour la zone de code et la zone de donnée.
 
