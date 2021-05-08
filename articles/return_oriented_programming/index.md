@@ -74,4 +74,4 @@ La GOT (Global Offset Table) est une section qui effectue une résolution d'adre
 
 ### Procedure Linkage Table (PLT)
 
-
+La PLT (Procedure Linkage Table) est une section qui contient du code permettant de résoudre les fonctions de la libc exécutées dans le binaire. C'est une table servant à faire le lien avec les fonctions situées dans des bibliothèques dynamiques. Cette section se trouve à des adresses fixes
