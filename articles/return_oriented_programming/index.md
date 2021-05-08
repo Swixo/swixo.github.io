@@ -4,7 +4,8 @@ description: Article théorique et pratique sur le ROP
 ---
 
 # Sommaire
-1. [Les sections d'un binaire](#Les_sections)
+1. [Qu'est ce que le ROP ?](#ROP)
+2. [Les sections d'un binaire](#Les_sections)
 
 ```py
 from pwn import *
@@ -63,6 +64,11 @@ p.interactive() # spawn interactive shell
 p.close()
 ```
 
+<div id='ROP'/>
+# Qu'est ce que le ROP ?
+
+
+
 <div id='Les_sections'/>
 # Les sections d'un binaire
 
@@ -87,3 +93,4 @@ char var[256];
 ```c
 char var[256] = "nuts";
 ```
+
