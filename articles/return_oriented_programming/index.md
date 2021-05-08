@@ -62,5 +62,12 @@ p.interactive() # spawn interactive shell
 
 p.close()
 ```
+
 <div id='Les_sections'/>
 # Les sections d'un binaire
+
+Pour le ROP nous allons nous intéréssé particulièrement à ces sections :
+
+### Global Offset Table (GOT)
+
+La GOT (Global Offset Table) est une section qui effectue une résolution d'adresse de la libc pour un gain de temps au processeur. C'est un tableau de pointeurs qui stocke les vrais adresses des fonctions de la libc.
