@@ -11,6 +11,51 @@ description: Article théorique et pratique sur le ROP
 
 Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout ...
 
+<div id='Les_sections'/>
+# Les sections d'un binaire
+
+Pour le ROP nous allons nous intéréssé particulièrement à ces sections :
+
+### Global Offset Table (GOT)
+
+La GOT (Global Offset Table) est une section qui effectue une résolution d'adresse de la libc pour un gain de temps au processeur. C'est un tableau de pointeurs qui stocke les vrais adresses des fonctions de la libc.
+
+### Procedure Linkage Table (PLT)
+
+La PLT (Procedure Linkage Table) est une section qui contient du code permettant de résoudre les fonctions de la libc exécutées dans le binaire. C'est une table servant à faire le lien avec les fonctions situées dans des bibliothèques dynamiques. Cette section se trouve à des adresses fixes
+
+### Autres sections d'un binaire
+
+- La section TEXT contient le code du binaire
+- La section BSS contient les variables non itilialisées, par exemple en C :
+```c
+char var[256];
+```
+- La section DATA contient les variables initialisées, par exemple en C : 
+```c
+char var[256] = "nuts";
+```
+
+<div id='Les_protections'/>
+# Les protections
+
+- NX est une protection qui rend la pile Non eXécutable, cette technique empeche l'exécution d'un shellcode dans la stack.
+
+- Le DEP (Data Execution Prevention) consiste à protéger les zones de mémoires non exécutables. L'activation de la fonctionnalité DEP consiste à passer le bit NX à 1 dans le processeur. Il préviendra toute exécution de code dans la plage mémoire allouée aux données et remontera une exception si cela arrive. 
+
+- L’address space layout randomization (ASLR) est une technique permettant de placer de façon aléatoire les adresses de la stack, du tas et des bibliothèques partagées.
+
+- PIE permet de placer de facon aléatoire des emplacements mémoires (comme l'ASLR) mais cette fois ci, pour la zone de code et la zone de donnée.
+
+- Le canary ou la Stack Smashing Protection (SSP) est une protection qui est placé entre le buffer et le couple EBP et EIP (32 bits) ou RBP et RIP (64 bits). Si la valeur du canary est réecrite alors le programme se ferme. (4 octets en 32 bits, 8 octets en 64 bits) Cependant, en assembleur nos ordinateurs vérifient octets par octets les chaines de caractères, alors nous pouvons brute force byte par byte la valeur du canary afin de la leak et de réecrire la bonne valeur du canary.
+
+<div id='ROP'/>
+# Qu'est ce que le ROP ?
+
+
+<div id='ropme'/>
+# Exploitation + Walkthrough ROPME - HackTheBox
+
 ```py
 from pwn import *
 
@@ -67,48 +112,3 @@ p.interactive() # spawn interactive shell
 
 p.close()
 ```
-
-<div id='Les_sections'/>
-# Les sections d'un binaire
-
-Pour le ROP nous allons nous intéréssé particulièrement à ces sections :
-
-### Global Offset Table (GOT)
-
-La GOT (Global Offset Table) est une section qui effectue une résolution d'adresse de la libc pour un gain de temps au processeur. C'est un tableau de pointeurs qui stocke les vrais adresses des fonctions de la libc.
-
-### Procedure Linkage Table (PLT)
-
-La PLT (Procedure Linkage Table) est une section qui contient du code permettant de résoudre les fonctions de la libc exécutées dans le binaire. C'est une table servant à faire le lien avec les fonctions situées dans des bibliothèques dynamiques. Cette section se trouve à des adresses fixes
-
-### Autres sections d'un binaire
-
-- La section TEXT contient le code du binaire
-- La section BSS contient les variables non itilialisées, par exemple en C :
-```c
-char var[256];
-```
-- La section DATA contient les variables initialisées, par exemple en C : 
-```c
-char var[256] = "nuts";
-```
-
-<div id='Les_protections'/>
-# Les protections
-
-- NX est une protection qui rend la pile Non eXécutable, cette technique empeche l'exécution d'un shellcode dans la stack.
-
-- Le DEP (Data Execution Prevention) consiste à protéger les zones de mémoires non exécutables. L'activation de la fonctionnalité DEP consiste à passer le bit NX à 1 dans le processeur. Il préviendra toute exécution de code dans la plage mémoire allouée aux données et remontera une exception si cela arrive. 
-
-- L’address space layout randomization (ASLR) est une technique permettant de placer de façon aléatoire les adresses de la stack, du tas et des bibliothèques partagées.
-
-- PIE permet de placer de facon aléatoire des emplacements mémoires (comme l'ASLR) mais cette fois ci, pour la zone de code et la zone de donnée.
-
-- Le canary ou la Stack Smashing Protection (SSP) est une protection qui est placé entre le buffer et le couple EBP et EIP (32 bits) ou RBP et RIP (64 bits). Si la valeur du canary est réecrite alors le programme se ferme. (4 octets en 32 bits, 8 octets en 64 bits) Cependant, en assembleur nos ordinateurs vérifient octets par octets les chaines de caractères, alors nous pouvons brute force byte par byte la valeur du canary afin de la leak et de réecrire la bonne valeur du canary.
-
-<div id='ROP'/>
-# Qu'est ce que le ROP ?
-
-
-<div id='ropme'/>
-# Exploitation + Walkthrough ROPME - HackTheBox
