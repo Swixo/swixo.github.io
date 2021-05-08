@@ -41,7 +41,7 @@ char var[256] = "nuts";
 
 - NX est une protection qui rend la pile Non eXécutable, cette technique empeche l'exécution d'un shellcode dans la stack.
 
-- Le DEP (Data Execution Prevention) consiste à protéger les zones de mémoires non exécutables. L'activation de la fonctionnalité DEP consiste à passer le bit NX à 1 dans le processeur. Il préviendra toute exécution de code dans la plage mémoire allouée aux données et remontera une exception si cela arrive. 
+- Le DEP (Data Execution Prevention) consiste à protéger les zones de mémoires non exécutables. L'activation de la fonctionnalité DEP consiste à passer le bit NX à 1 dans le processeur.
 
 - L’address space layout randomization (ASLR) est une technique permettant de placer de façon aléatoire les adresses de la stack, du tas et des bibliothèques partagées.
 
