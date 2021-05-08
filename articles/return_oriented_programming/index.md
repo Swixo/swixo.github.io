@@ -6,8 +6,6 @@ description: Article théorique et pratique sur le ROP
 # Sommaire
 1. [Les sections](# Les sections)
 
-# Les sections
-
 ```py
 from pwn import *
 
@@ -64,3 +62,5 @@ p.interactive() # spawn interactive shell
 
 p.close()
 ```
+
+# Les sections
