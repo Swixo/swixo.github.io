@@ -75,3 +75,15 @@ La GOT (Global Offset Table) est une section qui effectue une résolution d'adre
 ### Procedure Linkage Table (PLT)
 
 La PLT (Procedure Linkage Table) est une section qui contient du code permettant de résoudre les fonctions de la libc exécutées dans le binaire. C'est une table servant à faire le lien avec les fonctions situées dans des bibliothèques dynamiques. Cette section se trouve à des adresses fixes
+
+### Autres sections d'un binaire
+
+- La section TEXT contient le code du binaire
+- La section BSS contient les variables non itilialisées, par exemple :
+```c
+char var[256];
+```
+- La section DATA contient les variables initialisées, par exemple : 
+```c
+char var[256] = "nuts";
+```
