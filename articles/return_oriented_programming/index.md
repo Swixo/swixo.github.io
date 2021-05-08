@@ -58,7 +58,9 @@ char var[256] = "nuts";
 
 Le ROP (Return-oriented programming) est une technique d'exploitation reposant sur la recherche de blocs d'instructions à l'intérieur du binaire, c'est ce qu'on appel un **gadget**. Ces instructions terminent généralement par un ret, un call ou un jmp. Nous allons pouvoir chainer ces gadgets afin d'exécuter une suite d'actions, appelé **ROP Chain**.
 
-<img align="right" width="100" height="100" src="https://media.giphy.com/media/q6RoNkLlFNjaw/giphy.gif">
+<p align="center">
+  <img width="460" height="300" src="https://media.giphy.com/media/q6RoNkLlFNjaw/giphy.gif">
+</p>
 
 <div id='ropme'/>
 # Exploitation + Walkthrough ROPME - HackTheBox
