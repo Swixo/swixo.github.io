@@ -76,7 +76,7 @@ Commencons la pratique ! Pour un exemple d'exploitation de ROP Chain via un leak
 
 Avant tout, essayons de désassembler la fonction main du programme et de trouver une fonction vulnérable aux buffer overflow :
 
-```sh
+```rb
 ❯ gdb -q ropme
 GEF for linux ready, type `gef' to start, `gef config' to configure
 89 commands loaded for GDB 10.1 using Python engine 3.9
