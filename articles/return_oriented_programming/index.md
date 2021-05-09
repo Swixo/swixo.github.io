@@ -78,11 +78,6 @@ Avant tout, essayons de désassembler la fonction main du programme et de trouve
 
 ```py
 ❯ gdb -q ropme
-GEF for linux ready, type `gef' to start, `gef config' to configure
-89 commands loaded for GDB 10.1 using Python engine 3.9
-[*] 3 commands could not be loaded, run `gef missing` to know why.
-Reading symbols from ropme...
-(No debugging symbols found in ropme)
 gef➤  disassemble main 
 Dump of assembler code for function main:
    0x0000000000400626 <+0>:	push   rbp
