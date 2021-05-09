@@ -8,6 +8,7 @@ description: Article théorique et pratique sur le ROP
 2. [Les protections](#Les_protections)
 3. [Qu'est ce que le ROP ?](#ROP)
 4. [Exploitation + Walkthrough ROPME - HackTheBox](#ropme)
+5. [Bonus - ROP Chain via le gadget int 0x80](#bonus_ropchain)
 
 Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout quelques notions essentielles à la bonne compréhension de la suite de cette article ! 😀
 
@@ -129,3 +130,6 @@ p.close()
 <p align="center">
   <img width="460" height="300" src="https://media.giphy.com/media/VY20vTr6KCbOBKiGIL/giphy.gif">
 </p>
+
+<div id='bonus_ropchain'/>
+# Bonus - ROP Chain via le gadget int 0x80
