@@ -59,7 +59,7 @@ char var[256] = "nuts";
 <div id='ROP'/>
 # Qu'est ce que le ROP ?
 
-Le ROP (Return-oriented programming) est une technique d'exploitation reposant sur la recherche de blocs d'instructions à l'intérieur d'un binaire, ces blocs sont appelés **gadget**. Ces morceaux de code terminent généralement par un ret (= pop rdi), un call ou un jmp. Nous allons pouvoir chainer ces gadgets afin d'exécuter une suite d'actions, appelé **ROP Chain**.
+Le ROP (Return-oriented programming) est une technique d'exploitation reposant sur la recherche de blocs d'instructions à l'intérieur d'un binaire, ces blocs sont appelés **gadget**. Ces morceaux de code terminent généralement par un ret (= pop rdi), un call ou un jmp. Nous allons pouvoir chainer ces gadgets dans la stack afin d'exécuter une suite d'actions, appelé **ROP Chain**.
 
 <p align="center">
   <img width="460" height="300" src="https://media.giphy.com/media/q6RoNkLlFNjaw/giphy.gif">
@@ -71,6 +71,12 @@ Le ROP va permettre de bypass principalement des protections telles que NX, l'AS
 
 <div id='ropme'/>
 # Exploitation + Walkthrough ROPME - HackTheBox
+
+Commencons la pratique ! Pour un exemple d'exploitation de ROP Chain via un leak d'adresse de la libc, j'ai décidé d'utiliser le challenge [Ropme de HackTheBox](https://www.hackthebox.eu/home/challenges/download/8).
+
+Avant tout, essayons de désassembler la fonction main du programme et de trouver une fonction vulnérable aux buffer overflow :
+
+![segfault_first](https://i.imgur.com/GMPZj4u.png)
 
 ```py
 from pwn import *
