@@ -5,12 +5,8 @@ description: Article théorique et pratique sur le ROP
 
 # Sommaire
 1. Théorie
-  1.1 [Les sections d'un binaire](#Les_sections)
-  1.2 [Les protections](#Les_protections)
-  1.3 [Qu'est ce que le ROP ?](#ROP)
-2. Pratique
-  2.1 [Exploitation + Walkthrough ROPME - HackTheBox](#ropme)
-  2.2 [Bonus - ROP Chain via le gadget int 0x80](#bonus_ropchain)
+  2. Test
+3. Pratique
 
 Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout quelques notions essentielles à la bonne compréhension de la suite de cette article ! 😀
 
