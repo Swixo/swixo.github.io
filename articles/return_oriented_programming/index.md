@@ -10,7 +10,9 @@ description: Article théorique et pratique sur le ROP
 4. [Exploitation + Walkthrough ROPME - HackTheBox](#ropme)
 5. [Bonus - ROP Chain via le gadget int 0x80](#bonus_ropchain)
 
+
 Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout quelques notions essentielles à la bonne compréhension de la suite de cette article ! 😀
+
 
 <div id='Les_sections'/>
 # Les sections d'un binaire
