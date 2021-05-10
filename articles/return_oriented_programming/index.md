@@ -94,7 +94,7 @@ Dump of assembler code for function main:
    0x0000000000400655 <+47>:	lea    rax,[rbp-0x40]
    0x0000000000400659 <+51>:	mov    esi,0x1f4
    0x000000000040065e <+56>:	mov    rdi,rax
-   0x0000000000400661 <+59>:	call   0x400500 <fgets@plt>
+   0x0000000000400661 <+59>:	call   0x400500 <fgets@plt> # VULN FUNCTION
    0x0000000000400666 <+64>:	mov    eax,0x0
    0x000000000040066b <+69>:	leave  
    0x000000000040066c <+70>:	ret    
@@ -105,6 +105,10 @@ ROP me outside, how 'about dah?
 [1]    68022 done                              python2 -c "print 'A' * 200" | 
        68023 segmentation fault (core dumped)  ./ropme
 ```
+
+Ici la fonction fgets ne vérifie pas la taille de la string entrée par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante pour l'espace alloué.
+
+
 
 ```py
 from pwn import *
