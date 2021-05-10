@@ -106,7 +106,7 @@ ROP me outside, how 'about dah?
        68023 segmentation fault (core dumped)  ./ropme
 ```
 
-Ici la fonction fgets ne vérifie pas la taille de la string entrée par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante pour l'espace alloué.
+Ici la fonction fgets ne vérifie pas le nombre d'octets entrée par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante par rapport à l'espace alloué par le buffer.
 
 
 
