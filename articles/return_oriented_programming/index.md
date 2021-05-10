@@ -15,7 +15,7 @@ Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant 
 
 
 <div id='Les_sections'/>
-# Les sections d'un binaire
+# Les sections/segments d'un binaire
 
 Pour le ROP nous allons nous intéréssé particulièrement à ces sections :
 
