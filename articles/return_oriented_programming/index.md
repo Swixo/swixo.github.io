@@ -72,7 +72,7 @@ Le ROP va permettre de bypass principalement des protections telles que NX, l'AS
 <div id='ropme'/>
 # Exploitation + Walkthrough ROPME - HackTheBox
 
-Commencons la pratique ! Pour un exemple d'exploitation de ROP Chain via un leak d'adresse de la libc, j'ai décidé d'utiliser le challenge [Ropme de HackTheBox](https://www.hackthebox.eu/home/challenges/download/8).
+Passon à la pratique ! Pour un exemple d'exploitation de ROP Chain via un leak d'adresse de la libc, j'ai décidé d'utiliser le challenge [Ropme de HackTheBox](https://www.hackthebox.eu/home/challenges/download/8). (binaire 64 bits)
 
 Avant tout, essayons de désassembler la fonction main du programme et de trouver une fonction vulnérable aux buffer overflow :
 
@@ -108,7 +108,8 @@ ROP me outside, how 'about dah?
 
 Ici la fonction fgets ne vérifie pas le nombre d'octets entrée par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante par rapport à l'espace alloué par le buffer.
 
-
+Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A".
+Dans la fonction main on peut observer que le buffer est alloué à cette instruction : `0x0000000000400655 <+47>:	lea    rax,[rbp-0x40]`. 0x40 est égal à 62 en décimal (`gef➤  p/d 0x40  $1 = 64`), donc 62 octets sont alloués dans la pile, les 8 octets suivants seront la sauvegarde RBP de la précédente stack frame, et les 8 octets suivants seront l'adresse de retour (RIP).
 
 ```py
 from pwn import *
