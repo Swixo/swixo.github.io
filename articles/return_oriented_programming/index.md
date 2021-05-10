@@ -112,6 +112,18 @@ Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset 
 Dans la fonction main on peut observer que le buffer est alloué à cette instruction : `0x0000000000400655 <+47>:	lea    rax,[rbp-0x40]`.<br/>
 0x40 est égal à 62 en décimal (`gef➤  p/d 0x40  $1 = 64`), donc 62 octets sont alloués dans la pile, les 8 octets suivants seront la sauvegarde RBP de la précédente stack frame, et les 8 octets suivants seront l'adresse de retour (RIP).
 
+Une **ret2libc** afin d'exécuter un shellcode dans la stack aurait été possible si le bit NX n'était pas activé, cependant ce n'est pas le cas, ainsi que l'ASLR sur le serveur distant :
+
+```py
+❯ checksec --file=ropme
+[*] '/home/nuts/ropme'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+```
+
 ```py
 from pwn import *
 
