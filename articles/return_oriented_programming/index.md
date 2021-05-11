@@ -310,7 +310,7 @@ Dans ce cas nous allons pouvoir afficher l'adresse d'une fonction de la GOT afin
 Mais à quoi ca sert de passer à argument ? (pop rdi ; ret) Et bien cela va permettre de passer en argument à puts la valeur de l'adresse de puts dans la GOT ainsi nous pourrons calculer la différence entre cette fonction et la fonction system 
 
 
-__TL;DR__ :
+_TL;DR_ :
 
 ```py
 from pwn import *
