@@ -67,7 +67,7 @@ Le ROP (Return-oriented programming) est une technique d'exploitation reposant s
 
 Le ROP va permettre de bypass principalement des protections telles que NX, l'ASLR et le DEP.
 
-
+![schema_ropchain](https://i.imgur.com/PLNqJLP.png)
 
 <div id='ropme'/>
 # Exploitation + Walkthrough ROPME - HackTheBox
@@ -112,7 +112,7 @@ Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset 
 Dans la fonction main on peut observer que le buffer est alloué à cette instruction : `0x0000000000400655 <+47>:	lea    rax,[rbp-0x40]`.<br/>
 0x40 est égal à 62 en décimal (`gef➤  p/d 0x40  $1 = 64`), donc 62 octets sont alloués dans la pile, les 8 octets suivants seront la sauvegarde RBP de la précédente stack frame, et les 8 octets suivants seront l'adresse de retour (RIP).
 
-Une **ret2libc** afin d'exécuter un shellcode dans la stack aurait été suffisante si le bit NX n'était pas activé, cependant ce n'est pas le cas, ainsi que l'ASLR sur le serveur distant :
+Un ret2libc afin d'exécuter un shellcode dans la stack aurait été suffisante si le bit NX n'était pas activé, cependant ce n'est pas le cas, ainsi que l'ASLR est activé sur le serveur distant :
 
 ```py
 ❯ checksec --file=ropme
@@ -123,6 +123,8 @@ Une **ret2libc** afin d'exécuter un shellcode dans la stack aurait été suffis
     NX:       NX enabled
     PIE:      No PIE (0x400000)
 ```
+
+
 
 ```py
 from pwn import *
