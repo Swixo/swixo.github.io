@@ -106,14 +106,15 @@ End of assembler dump.
 gef➤  quit
 ❯ python2 -c "print 'A' * 100" | ./ropme
 ROP me outside, how 'about dah?
-[1]    68022 done                              python2 -c "print 'A' * 200" | 
+[1]    68022 done                              python2 -c "print 'A' * 100" | 
        68023 segmentation fault (core dumped)  ./ropme
 ```
 
 Ici la fonction fgets ne vérifie pas le nombre d'octets entrée par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante par rapport à l'espace alloué par le buffer.
 
-Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A", soit 0x41 en hexadécimal.
 
+Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A", soit 0x41 en hexadécimal.
+Pour se faire nous allons créer un pattern de 100 chars, lancer le programme avec ce pattern et chercher à quelle offset se trouve le push RBP au prologue de la fonction fgets :
 
 ```py
 gef➤  pattern create 100    # Create pattern of 100 bytes
@@ -173,6 +174,8 @@ gef➤  pattern search iaaaaaaa   # Find bytes to overwrite RBP
 [+] Searching 'iaaaaaaa'
 [+] Found at offset 64 (little-endian search)
 ```
+
+
 
 Un ret2libc afin d'exécuter un shellcode dans la stack aurait été suffisante si le bit NX n'était pas activé, cependant ce n'est pas le cas, ainsi que l'ASLR est activé sur le serveur distant :
 
