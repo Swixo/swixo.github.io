@@ -116,11 +116,11 @@ Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset 
 
 
 ```py
-gef➤  pattern create 100
+gef➤  pattern create 100    # Create pattern of 100 bytes
 [+] Generating a pattern of 100 bytes
 aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
 [+] Saved as '$_gef0'
-gef➤  run
+gef➤  run   # Run the program with the pattern
 Starting program: /home/nuts/ropme 
 ROP me outside, how 'about dah?
 aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
@@ -135,7 +135,7 @@ $rbx   : 0x0000000000400670  →  <__libc_csu_init+0> push r15
 $rcx   : 0x0000000000602715  →  0x0000000000000000
 $rdx   : 0x0               
 $rsp   : 0x00007fffffffdb78  →  "jaaaaaaakaaaaaaalaaaaaaamaaa\n"
-$rbp   : 0x6161616161616169 ("iaaaaaaa"?)
+$rbp   : 0x6161616161616169 ("iaaaaaaa"?) 
 $rsi   : 0x00000000006026b1  →  "aaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaa[...]"
 $rdi   : 0x00007ffff7f844e0  →  0x0000000000000000
 $rip   : 0x000000000040066c  →  <main+70> ret 
@@ -169,7 +169,7 @@ $cs: 0x0033 $ss: 0x002b $ds: 0x0000 $es: 0x0000 $fs: 0x0000 $gs: 0x0000
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── trace ────
 [#0] 0x40066c → main()
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-gef➤  pattern search iaaaaaaa
+gef➤  pattern search iaaaaaaa   # Find bytes to overwrite RBP
 [+] Searching 'iaaaaaaa'
 [+] Found at offset 64 (little-endian search)
 ```
