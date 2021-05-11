@@ -175,7 +175,7 @@ gef➤  pattern search iaaaaaaa   # Find bytes to overwrite RBP
 [+] Found at offset 64 (little-endian search)
 ```
 
-
+Nous avons donc un offset de 64 caractères (buffer) ainsi qu'un padding de 72 octets avant d'écraser la sauvegarde RIP.
 
 Un ret2libc afin d'exécuter un shellcode dans la stack aurait été suffisante si le bit NX n'était pas activé, cependant ce n'est pas le cas, ainsi que l'ASLR est activé sur le serveur distant :
 
@@ -188,8 +188,6 @@ Un ret2libc afin d'exécuter un shellcode dans la stack aurait été suffisante 
     NX:       NX enabled
     PIE:      No PIE (0x400000)
 ```
-
-Notre padding est donc de 72 octets.
 
 ```py
 from pwn import *
