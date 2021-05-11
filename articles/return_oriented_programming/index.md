@@ -62,7 +62,7 @@ char var[256] = "nuts";
 Le ROP (Return-oriented programming) est une technique d'exploitation reposant sur la recherche de blocs d'instructions à l'intérieur d'un binaire, ces blocs sont appelés **gadget**. Ces morceaux de code terminent généralement par un ret (= pop rdi), un call ou un jmp. Nous allons pouvoir chainer ces gadgets dans la stack afin d'exécuter une suite d'actions, appelé **ROP Chain**.
 
 <p align="center">
-  <img width="460" height="300" src="https://media.giphy.com/media/q6RoNkLlFNjaw/giphy.gif">
+  <img src="https://media.giphy.com/media/q6RoNkLlFNjaw/giphy.gif">
 </p>
 
 Le ROP va permettre de bypass principalement des protections telles que NX, l'ASLR et le DEP.
@@ -186,7 +186,7 @@ p.close()
 ```
 
 <p align="center">
-  <img width="460" height="300" src="https://media.giphy.com/media/VY20vTr6KCbOBKiGIL/giphy.gif">
+  <img src="https://media.giphy.com/media/VY20vTr6KCbOBKiGIL/giphy.gif">
 </p>
 
 <div id='bonus_ropchain'/>
