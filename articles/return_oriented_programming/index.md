@@ -67,7 +67,9 @@ Le ROP (Return-oriented programming) est une technique d'exploitation reposant s
 
 Le ROP va permettre de bypass principalement des protections telles que NX, l'ASLR et le DEP.
 
-![schema_ropchain](https://i.imgur.com/PLNqJLP.png)
+<p align="center">
+  <img width="460" height="300" src="https://i.imgur.com/PLNqJLP.png">
+</p>
 
 <div id='ropme'/>
 # Exploitation + Walkthrough ROPME - HackTheBox
