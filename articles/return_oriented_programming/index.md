@@ -113,7 +113,7 @@ ROP me outside, how 'about dah?
 Ici la fonction fgets ne vérifie pas le nombre d'octets entrée par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante par rapport à l'espace alloué par le buffer.
 
 
-Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A", soit 0x41 en hexadécimal.
+Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A", soit 0x41 en hexadécimal.<br/>
 Pour se faire nous allons créer un pattern de 100 chars, lancer le programme avec ce pattern et chercher à quelle offset se trouve le push RBP au prologue de la fonction fgets :
 
 ```py
