@@ -104,7 +104,7 @@ Dump of assembler code for function main:
    0x000000000040066c <+70>:	ret    
 End of assembler dump.
 gef➤  quit
-❯ python2 -c "print 'A' * 200" | ./ropme
+❯ python2 -c "print 'A' * 100" | ./ropme
 ROP me outside, how 'about dah?
 [1]    68022 done                              python2 -c "print 'A' * 200" | 
        68023 segmentation fault (core dumped)  ./ropme
