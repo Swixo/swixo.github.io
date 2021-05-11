@@ -124,7 +124,7 @@ Un ret2libc afin d'exécuter un shellcode dans la stack aurait été suffisante 
     PIE:      No PIE (0x400000)
 ```
 
-
+Notre padding est donc de 72 octets.
 
 ```py
 from pwn import *
