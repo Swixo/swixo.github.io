@@ -296,7 +296,9 @@ Nous avons un gadget particulièrement intéréssant dans ce binaire : `pop rdi 
 Nous pouvons passer des arguments à des fonctions avec ces gadgets :
 
 > 1er argument = pop rdi ; ret
+
 > 2ème argument = pop rsi ; ret
+
 > 3ème argument = pop rdx ; ret
 
 <br/>
