@@ -293,6 +293,13 @@ Unique gadgets found: 93
 ```
 
 Nous avons un gadget particulièrement intéréssant dans ce binaire : `pop rdi ; ret` à l'adresse `0x4006d3`. Cette instruction permet de passer un 1er argument à une fonction.<br/>
+Nous pouvons passer des arguments à des fonctions avec ces gadgets :
+```py
+1er argument : pop rdi ; ret;
+2ème argument : pop rsi ; ret;
+3ème argument : pop rdx ; ret;
+```
+<br/>
 Le but va etre d'effectuer un **ret2plt** afin d'exécuter une fonction contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
 
 ```py
