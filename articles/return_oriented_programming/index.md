@@ -309,7 +309,7 @@ gef➤  got
 
 GOT protection: Partial RelRO | GOT functions: 4
  
-[0x601018] puts@GLIBC_2.2.5  →  0x4004e6
+[0x601018] puts@GLIBC_2.2.5  →  0x4004e0
 [0x601020] __libc_start_main@GLIBC_2.2.5  →  0x7ffff7de7a50
 [0x601028] fgets@GLIBC_2.2.5  →  0x400506
 [0x601030] fflush@GLIBC_2.2.5  →  0x400516
