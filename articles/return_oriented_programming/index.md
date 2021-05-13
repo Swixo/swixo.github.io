@@ -302,7 +302,7 @@ Nous pouvons passer des arguments à des fonctions avec ces gadgets :
 > **3ème** argument = `pop rdx ; ret`
 
 <br/>
-Le but va etre d'effectuer un **ret2plt** afin d'exécuter une fonction contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
+Le but va être d'effectuer un **ret2plt** afin d'exécuter une fonction contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
 
 ```py
 gef➤  got
@@ -315,7 +315,7 @@ GOT protection: Partial RelRO | GOT functions: 4
 [0x601030] fflush@GLIBC_2.2.5  →  0x400516
 ```
 
-Dans ce cas nous allons pouvoir afficher l'adresse d'une fonction de la GOT afin de calculer la distance entre cette fonction et la fonction system car l'ASLR est random mais la distance entre les fonctions dans la GOT ne change pas.
+Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR est random mais la distance entre les fonctions dans la GOT ne change pas.
 Mais à quoi ca sert de passer à argument ? (pop rdi ; ret) Et bien cela va permettre de passer en argument à puts la valeur de l'adresse de puts dans la GOT ainsi nous pourrons calculer la différence entre cette fonction et la fonction system 
 
 
