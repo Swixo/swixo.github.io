@@ -315,13 +315,13 @@ GOT protection: Partial RelRO | GOT functions: 4
 [0x601030] fflush@GLIBC_2.2.5  →  0x400516
 ```
 
-Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR est random mais la distance entre les fonctions dans la GOT ne change pas.
-Mais à quoi ca sert de passer à argument ? (pop rdi ; ret) Et bien cela va permettre de passer en argument à puts la valeur de l'adresse de puts dans la GOT ainsi nous pourrons calculer la différence entre cette fonction et la fonction system 
+Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR est random mais la distance entre les fonctions de la libc ne change pas.
+Mais à quoi ca sert de passer un argument ? (pop rdi ; ret) Et bien cela va permettre de passer en argument à puts la valeur de l'adresse de puts ainsi nous pourrons calculer la différence entre cette fonction et la fonction system 
 
 Le **ret2main** va permettre de ne pas subir la randomization de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer.
 
 _TL;DR_ : ropchain = puts(addr_puts) + main + system(/bin/sh)
-
+                        ret2plt      ret2main   ret2libc
 ```py
 from pwn import *
 
