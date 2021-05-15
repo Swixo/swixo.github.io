@@ -321,7 +321,7 @@ Mais à quoi ca sert de passer un argument ? (pop rdi ; ret) Et bien cela va per
 Le **ret2main** va permettre de ne pas subir la randomization de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer.
 
 _TL;DR_ : ropchain = puts(addr_puts) + main + system(/bin/sh)<br/>
-&nbsp;ropchain =    ret2plt      ret2main   ret2libc
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ropchain =    ret2plt      ret2main   ret2libc
 ```py
 from pwn import *
 
