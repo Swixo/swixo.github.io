@@ -114,7 +114,7 @@ Ici la fonction fgets ne vérifie pas le nombre d'octets entrée par l'utilisate
 
 
 Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A", soit 0x41 en hexadécimal.<br/>
-Pour se faire nous allons créer un pattern (chaine de caractères non cyclique) de 100 chars, lancer le programme avec ce pattern et chercher à quelle offset se trouve le push RBP au prologue de la fonction fgets :
+Pour se faire nous allons créer un pattern (chaine de caractères non cyclique) de 100 chars, lancer le programme avec ce pattern et chercher à quelle offset nous avons overwrite la sauvegarde RIP (la save RIP garde en mémoire l'adresse de retour après l'épilogue de l'appel d'une fonction) :
 
 ```py
 gef➤  pattern create 100    # Create pattern of 100 bytes
@@ -302,7 +302,7 @@ Nous pouvons passer des arguments à des fonctions avec ces gadgets :
 > **3ème** argument = `pop rdx ; ret`
 
 <br/>
-Le but va être d'effectuer un **ret2plt** afin d'exécuter une fonction contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
+Le but va être d'effectuer premièrement un **ret2plt** afin de leak une fonction de la libc contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
 
 ```py
 gef➤  got
@@ -315,13 +315,16 @@ GOT protection: Partial RelRO | GOT functions: 4
 [0x601030] fflush@GLIBC_2.2.5  →  0x400516
 ```
 
-Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR est random mais la distance entre les fonctions de la libc ne change pas.
-Mais à quoi ca sert de passer un argument ? (pop rdi ; ret) Et bien cela va permettre de passer en argument à puts la valeur de l'adresse de puts ainsi nous pourrons calculer la différence entre cette fonction et la fonction system 
+Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR randomise l'adresse de la base mais l'écart entre les fonctions de la libc ne change pas. Nous pouvons alors retrouver les adresses des fonctions de la libc, nous avons donc bypass l'ASLR ! 😀
+
 
 Le **ret2main** va permettre de ne pas subir la randomization de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer.
 
+Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et exécuter un shell.
+
 _TL;DR_ : ropchain = puts(addr_puts) + main + system(/bin/sh)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ret2plt      +        ret2main       +         ret2libc`
+
 ```py
 from pwn import *
 
