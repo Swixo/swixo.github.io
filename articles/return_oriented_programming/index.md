@@ -325,6 +325,11 @@ Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et e
 _TL;DR_ : ropchain = puts(addr_puts) + main + system(/bin/sh)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ret2plt      +        ret2main       +         ret2libc`
 
+<p align="center">
+  <img src="http://image.noelshack.com/fichiers/2021/20/2/1621372024-ropchain.png">
+</p>
+
+
 ```py
 from pwn import *
 
