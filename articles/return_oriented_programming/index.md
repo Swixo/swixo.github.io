@@ -177,7 +177,7 @@ gef➤  pattern search iaaaaaaa   # Find bytes to overwrite RBP
 
 Nous avons donc un offset de 64 caractères (buffer) ainsi qu'un padding de 72 octets avant d'écraser la sauvegarde RIP.
 
-Un ret2libc afin d'exécuter un shellcode dans la stack aurait été suffisant si le bit NX était désactivé, cependant ce n'est pas le cas, ainsi l'ASLR est activé sur le serveur distant :
+Un ret2libc avec une exécution d'un shellcode dans la stack aurait été suffisant si le bit NX était désactivé, cependant ce n'est pas le cas, ainsi l'ASLR est activé sur le serveur distant :
 
 ```py
 ❯ checksec --file=ropme
