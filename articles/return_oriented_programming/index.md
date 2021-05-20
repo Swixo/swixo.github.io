@@ -302,7 +302,7 @@ Nous pouvons passer des arguments à des fonctions avec ces gadgets :
 > **3ème** argument = `pop rdx ; ret`
 
 <br/>
-Premièrement, le but va être d'effectuer un **ret2plt** afin de leak une fonction de la libc contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
+- Premièrement, le but va être d'effectuer un **ret2plt** afin de leak une fonction de la libc contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
 
 ```py
 gef➤  got
@@ -314,13 +314,13 @@ GOT protection: Partial RelRO | GOT functions: 4
 [0x601028] fgets@GLIBC_2.2.5  →  0x400506
 [0x601030] fflush@GLIBC_2.2.5  →  0x400516
 ```
-Je vais utiliser l’adresse de put dans la plt afin d’afficher une adresse de la got (par exemple puts)
+Je vais utiliser l’adresse de puts dans la PLT afin d’afficher une adresse de la GOT (par exemple puts)
 Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR randomise l'adresse de la base mais l'écart entre toutes les fonctions de la libc ne change pas. Nous pouvons alors retrouver les adresses des fonctions de la libc, nous avons donc bypass l'ASLR ! 😀
 
 
-Le **ret2main** va permettre de ne pas subir la randomisation de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer grâce au ret et à la réecriture de la sauvegarde RIP.
+- Le **ret2main** va permettre de ne pas subir la randomisation de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer grâce au ret et à la réecriture de la sauvegarde RIP.
 
-Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et exécuter un shell à l'aide la fonction shell qui a été calculer à partir de la base de la libc.
+- Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et exécuter un shell à l'aide la fonction shell qui a été calculer à partir de la base de la libc.
 
 _TL;DR_ : <br/>
 
