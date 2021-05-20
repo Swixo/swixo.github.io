@@ -318,17 +318,13 @@ GOT protection: Partial RelRO | GOT functions: 4
 
 Je vais utiliser l’adresse de puts dans la PLT afin d’afficher une adresse de la GOT (par exemple puts)
 Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR randomise l'adresse de la base mais l'écart entre toutes les fonctions de la libc ne change pas. Nous pouvons alors retrouver les adresses des fonctions de la libc, nous avons donc bypass l'ASLR ! 😀
-<br/>
+<br/><br/>
 
 - Le **ret2main** va permettre de ne pas subir la randomisation de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer grâce au ret et à la réecriture de la sauvegarde RIP par l'adresse de la fonction main.
-
-<br/>
 
 - Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et exécuter un shell à l'aide la fonction shell qui a été calculer à partir de la base de la libc.
 
 _TL;DR_ : 
-
-<br/>
 
 <p align="center">
   <img src="http://image.noelshack.com/fichiers/2021/20/2/1621372024-ropchain.png">
