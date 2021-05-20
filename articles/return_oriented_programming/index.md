@@ -321,10 +321,14 @@ Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la
 <br/>
 
 - Le **ret2main** va permettre de ne pas subir la randomisation de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer grâce au ret et à la réecriture de la sauvegarde RIP par l'adresse de la fonction main.
+
 <br/>
+
 - Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et exécuter un shell à l'aide la fonction shell qui a été calculer à partir de la base de la libc.
 
-_TL;DR_ : <br/>
+_TL;DR_ : 
+
+<br/>
 
 <p align="center">
   <img src="http://image.noelshack.com/fichiers/2021/20/2/1621372024-ropchain.png">
