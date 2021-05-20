@@ -302,7 +302,7 @@ Nous pouvons passer des arguments à des fonctions avec ces gadgets :
 > **3ème** argument = `pop rdx ; ret`
 
 <br/>
-Le but va être d'effectuer premièrement un **ret2plt** afin de leak une fonction de la libc contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
+Premièrement, le but va être d'effectuer un **ret2plt** afin de leak une fonction de la libc contenue dans la GOT (ici puts car system n'est pas dans la GOT du programme) :
 
 ```py
 gef➤  got
