@@ -318,7 +318,7 @@ Je vais utiliser l’adresse de put dans la plt afin d’afficher une adresse de
 Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR randomise l'adresse de la base mais l'écart entre toutes les fonctions de la libc ne change pas. Nous pouvons alors retrouver les adresses des fonctions de la libc, nous avons donc bypass l'ASLR ! 😀
 
 
-Le **ret2main** va permettre de ne pas subir la randomization de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer grâce au ret et à la réecriture de la sauvegarde RIP.
+Le **ret2main** va permettre de ne pas subir la randomisation de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer grâce au ret et à la réecriture de la sauvegarde RIP.
 
 Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et exécuter un shell à l'aide la fonction shell qui a été calculer à partir de la base de la libc.
 
