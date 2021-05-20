@@ -314,11 +314,11 @@ GOT protection: Partial RelRO | GOT functions: 4
 [0x601028] fgets@GLIBC_2.2.5  →  0x400506
 [0x601030] fflush@GLIBC_2.2.5  →  0x400516
 ```
+Je vais utiliser l’adresse de put dans la plt afin d’afficher une adresse de la got (par exemple puts)
+Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR randomise l'adresse de la base mais l'écart entre toutes les fonctions de la libc ne change pas. Nous pouvons alors retrouver les adresses des fonctions de la libc, nous avons donc bypass l'ASLR ! 😀
 
-Dans ce cas nous allons pouvoir afficher l'adresse mémoire d'une fonction de la libc afin de calculer la distance entre cette fonction et la fonction system car l'ASLR randomise l'adresse de la base mais l'écart entre les fonctions de la libc ne change pas. Nous pouvons alors retrouver les adresses des fonctions de la libc, nous avons donc bypass l'ASLR ! 😀
 
-
-Le **ret2main** va permettre de ne pas subir la randomization de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer.
+Le **ret2main** va permettre de ne pas subir la randomization de l'ASLR au redémarrage du programme, il va toujours revenir à la fonction main et le programme ne va pas se terminer grâce au ret et à la réecriture de la sauvegarde RIP.
 
 Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et exécuter un shell.
 
