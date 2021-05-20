@@ -322,8 +322,7 @@ Le **ret2main** va permettre de ne pas subir la randomization de l'ASLR au redé
 
 Ensuite, nous allons exploiter un **ret2libc** afin de contourner le bit NX et exécuter un shell.
 
-_TL;DR_ : ropchain = puts(addr_puts) + main + system(/bin/sh)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ret2plt      +        ret2main       +         ret2libc`
+_TL;DR_ : <br/>
 
 <p align="center">
   <img src="http://image.noelshack.com/fichiers/2021/20/2/1621372024-ropchain.png">
