@@ -351,7 +351,7 @@ $2 = {<text variable, no debug info>} 0x400626 <main>
 ```
 5. L'adresse de puts, dans la libc utilisé pour calculer l'adresse de la base de la libc :
 ```py
-coming..
+coming...
 ```
 6. L'adresse de system et /bin/sh pour calculer l'écart avec la base :
 ```py
