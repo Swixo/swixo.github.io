@@ -358,6 +358,8 @@ $2 = {<text variable, no debug info>} 0x400626 <main>
 
 ```
 
+Pour automatiser ces étapes j'ai développé un script python avec le module [pwntools](https://github.com/Gallopsled/pwntools) :
+
 ```py
 from pwn import *
 
