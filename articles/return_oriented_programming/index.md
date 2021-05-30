@@ -189,7 +189,7 @@ Un ret2libc avec une exécution d'un shellcode dans la stack aurait été suffis
     PIE:      No PIE (0x400000)
 ```
 
-Commencons notre ROP Chain par la recherche de gadgets utiles pour notre exploitation avec [Ropper](https://github.com/sashs/Ropper), avec [ROPgadget](https://github.com/JonathanSalwan/ROPgadget) ou avec l'option `/R <instruction` sur [radare2](https://github.com/radareorg/radare2) :
+Commencons notre ROP Chain par la recherche de gadgets utiles pour notre exploitation avec [Ropper](https://github.com/sashs/Ropper), avec [ROPgadget](https://github.com/JonathanSalwan/ROPgadget) ou avec l'option `/R <instruction>` sur [radare2](https://github.com/radareorg/radare2) :
 
 ```py
 ❯ ROPgadget --binary=ropme
