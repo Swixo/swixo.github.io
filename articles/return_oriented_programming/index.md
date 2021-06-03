@@ -445,9 +445,9 @@ p.close()
 
 void vuln()
 {
-        char buffer[256];
-        gets(buffer);
-        printf("%s\n", buffer);
+        char buf[256];
+        gets(buf);
+        printf("%s\n", buf);
 }
 
 int main(int argc, char **argv)
