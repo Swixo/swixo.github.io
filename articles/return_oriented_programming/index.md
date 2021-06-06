@@ -189,13 +189,13 @@ Un ret2libc avec une exécution d'un shellcode dans la stack aurait été suffis
     PIE:      No PIE (0x400000)
 ```
 
-</br>
+<br/>
 Rappel sur le fonctionnement de l'ASLR :
 
 <p align="center">
   <img src="https://i.imgur.com/ozdoTnu.png">
 </p>
-</br>
+<br/>
 
 Commencons notre ROP Chain par la recherche de gadgets utiles pour notre exploitation avec [Ropper](https://github.com/sashs/Ropper), avec [ROPgadget](https://github.com/JonathanSalwan/ROPgadget) ou avec l'option `/R <instruction>` sur [radare2](https://github.com/radareorg/radare2) :
 
