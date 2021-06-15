@@ -128,7 +128,7 @@ En résumé :
 
 - MOD 00 : Aucun déplacement qui est effectuer (octet immédiat)
 - MOD 01 : Déplacement de 1 octet
-- MOD 10 : Déplacement de 4 octet
+- MOD 10 : Déplacement de 4 octets
 - MOD 11 : Le champ R/M est un registre
 
 Afin de déterminer quel opérande est la source et lequel est la destination, nous devons récupérer le **d bit**. (avant dernier bit de l'octet/l'opcode)
