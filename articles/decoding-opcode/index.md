@@ -66,4 +66,29 @@ mov eax, 0x1337
 <div id='example_decode_opcode'/>
 # Décodons nos premiers opcodes !
 
+En guise d'exemple nous allons développer une petite fonction en C et récupérer l'hexdump du binaire :
+
+```c
+int main(int a, int b) {
+    return a + b;
+}
+```
+
+Voici les opcodes du programme :
+
+```py
+55
+89 e5
+83 ec 10
+8b 45 08
+8b 55 0c
+01 d0
+c9
+c3
+```
+
+
+
+
+
 
