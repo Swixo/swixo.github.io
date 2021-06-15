@@ -118,10 +118,14 @@ Voici un schéma simple pour comprendre la composition du byte Mod R/M :
   <img src="https://i.imgur.com/XzHMDtT.png">
 </p>
 
-Le champ MOD peut prendre plusieurs valeurs ainsi ce dernier va définir le mode d'adressage :
+Le **champ MOD** peut prendre plusieurs valeurs ainsi ce dernier va définir le mode d'adressage :
 
 <p align="center">
   <img src="https://i.imgur.com/PeZmzAN.png">
 </p>
 
+Afin de déterminer quel opérande est la source et lequel est la destination, nous devons récupérer le **d bit**. (avant dernier bit de l'octet/l'opcode)
+
+- Si d = 0 : MOD R/M <- REG, REG est la source
+- Si d = 1 : REG <- MOD R/M, REG est la destination
 
