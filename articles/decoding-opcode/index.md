@@ -5,6 +5,7 @@ description: Comment décoder des opcodes ?
 
 # Sommaire
 1. [Qu'est ce qu'un opcode ?](#what_is_opcode)
+2. [Le format des instructions des architectures Intel 64 et IA-32](#instruction_format)
 
 <br/>
 
@@ -25,3 +26,7 @@ L'**hexdump** d'un binaire est l'ensemble des opcodes du programme. Voici un sam
 000002d0: 474e 5500 244c 91c8 e319 bc06 2283 5226  GNU.$L......".R&
 <...>
 ```
+
+<div id='instruction_format'/>
+# Le format des instructions des architectures Intel® 64 et IA-32
+
