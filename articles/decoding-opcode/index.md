@@ -50,6 +50,6 @@ Un déplacement est simplement une constante qui est ajoutée au reste de l'adre
 
 Par exemple avec ce déplacement nous mettons la valeur pointée par RBP + 8 dans le registre de destination RAX :
 
-```x86asm
+```py
 mov rax, DWORD [rbp + 0x8]
 ```
