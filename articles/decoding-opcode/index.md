@@ -30,3 +30,15 @@ L'**hexdump** d'un binaire est l'ensemble des opcodes du programme. Voici un sam
 <div id='instruction_format'/>
 # Le format des instructions des architectures Intel® 64 et IA-32
 
+Premièrement les instructions sont composées de :
+
+- Préfixes d'instruction (facultatif)
+- Octets d'opcode primaire (3 bytes maximum)
+- Spécificateur de forme d'adressage (si nécessaire) constitué d'un octet **Mod R/M** et parfois d'un octet **SIB** (Scale-Index-Base)
+- Déplacement (si nécessaire)
+- Un champ de données immédiates (si nécessaire)
+
+Voici un schéma qui résume le format des instructions en architecture Intel® 64 et IA-32 :
+
+![schema_format](https://i.imgur.com/pJfQoOO.png)
+
