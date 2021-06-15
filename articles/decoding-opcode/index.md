@@ -103,12 +103,12 @@ Ensuite, les 2 opcodes suivants sont 0x89 0xe5.
 Commencons par le premier opcode en regardant dans la table :
 
 <p align="center">
-  <img src="https://prnt.sc/15g3rik">
+  <img src="https://i.imgur.com/oo62lmP.png">
 </p>
 
 Cependant cette instruction a le Mod R/M activé.
 
-## Qu'est ce que le Mod Register/Memory
+## Qu'est ce que le Mod Register/Memory ?
 
 L'octet Mod R/M spécifie les opérandes de l'instruction et leur mode d'adressage.
 
@@ -142,4 +142,13 @@ Pour finir le **champ REG** détermine le registre source ou destination :
   <img src="https://i.imgur.com/CY5GBxK.png">
 </p>
 
+Revenons à nos 2 opcodes, nous savons déjà que l'instruction `MOV` est présente avec le Mod R/M.
+Nous allons donc prendre l'opcode suivant : 0xe5 et le décomposer en bits pour récupérer le d bit et nos champs vus précédemment :
+
+```py
+11  100 101
+MOD REG R/M
+```
+
+Le d bit est égal à 0 donc REG est la source et que son registre est `ESP`. Deplus le MOD est 11 alors le champ R/M est un registre.
 
