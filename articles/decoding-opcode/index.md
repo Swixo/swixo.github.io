@@ -97,8 +97,24 @@ Le premier opcode est 0x55, c'est un **opcode primaire** alors nous avons simple
   <img src="https://i.imgur.com/ehrSeWo.png">
 </p>
 
-La première instruction est `PUSH EBP`, c'est une instruction qui fait 1 byte, et qui n'a pas le Mod R/M.
+La première instruction est alors `PUSH EBP`, c'est une instruction qui fait 1 byte, et qui n'a pas le Mod R/M.
 
+Ensuite, les 2 opcodes suivants sont 0x89 0xe5.
+Commencons par le premier opcode en regardant dans la table :
 
+<p align="center">
+  <img src="https://prnt.sc/15g3rik">
+</p>
 
+Cependant cette instruction a le Mod R/M activé.
+
+## Qu'est ce que le Mod Register/Memory
+
+L'octet Mod R/M spécifie les opérandes de l'instruction et leur mode d'adressage.
+
+Voici un schéma simple pour comprendre la composition du byte Mod R/M :
+
+<p align="center">
+  <img src="https://i.imgur.com/XzHMDtT.png">
+</p>
 
