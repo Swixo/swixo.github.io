@@ -158,5 +158,5 @@ Il nous reste plus qu'a regarder dans la table d'adressage de la [documentation 
   <img src="https://i.imgur.com/QJuJFbM.png">
 </p>
 
-Nous savons que l'instruction `MOV` met la valeur pointée dans `ESP` (source) dans le registre `EBP`. (destination)
+Maintenant nous savons que l'instruction `MOV` met la valeur pointée dans `ESP` (source) dans le registre `EBP`. (destination)
 Nous retrouvons parfaitement l'épilogue de la fonction. 
