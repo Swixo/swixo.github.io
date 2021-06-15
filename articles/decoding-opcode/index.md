@@ -46,10 +46,19 @@ Voici un schéma qui résume le format des instructions en architecture Intel® 
   <img src="https://i.imgur.com/pJfQoOO.png">
 </p>
 
-Un déplacement est simplement une constante qui est ajoutée au reste de l'adresse. Un déplacement va prendre la valeur pointée à une adresse ainsi que les octets permettant un déplacement de mémoire 
+- Un déplacement est une constante qui est ajoutée au reste de l'adresse. Un déplacement va prendre la valeur pointée à une adresse ainsi que les octets permettant un déplacement de mémoire 
 
 Par exemple avec ce déplacement nous mettons la valeur pointée par RBP + 8 dans le registre de destination RAX :
 
 ```py
 mov rax, DWORD [rbp + 0x8]
 ```
+
+- Un immédiat est une valeur directe et non une valeur pointé dans un registre. La valeur immédiate sera donc incluse dans l'opcode.
+
+Par exemple avec cette immédiat nous mettons simplement 0x1337 dans le registre RAX :
+
+```py
+mov rax, 0x1337
+```
+
