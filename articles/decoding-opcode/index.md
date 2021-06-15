@@ -14,7 +14,7 @@ description: Comment décoder des opcodes ?
 Tout d'abord, un opcode est une **instruction** (écrite hexadécimal) en **langage machine** qui spécifie l'opération à effectuer. Les opcodes sont les **instructions assembleur** notés en **hexadécimal** que le CPU va exécuter. 
 Un opcode primaire peut avoir une longueur de 1, 2 ou 3 octets.
 
-L'**hexdump** d'un binaire est l'ensemble des opcodes du programme. Voici un sample des opcodes d'un hello world en C :
+L'**hexdump** d'un binaire est l'ensemble des opcodes du programme. Voici un sample des opcodes d'un hello world en C compilé :
 
 ```py
 ❯ xxd helloworld
