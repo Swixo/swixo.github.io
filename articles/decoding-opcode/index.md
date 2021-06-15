@@ -6,7 +6,7 @@ description: Comment décoder des opcodes ?
 # Sommaire
 1. [Qu'est ce qu'un opcode ?](#what_is_opcode)
 2. [Le format des instructions des architectures Intel 64 et IA-32](#instruction_format)
-3. [](#)
+3. [Décodons nos premiers opcodes !](#example_decode_opcode)
 
 <br/>
 
@@ -62,4 +62,8 @@ Par exemple avec cette immédiat nous mettons simplement 0x1337 dans le registre
 ```py
 mov eax, 0x1337
 ```
+
+<div id='example_decode_opcode'/>
+# Décodons nos premiers opcodes !
+
 
