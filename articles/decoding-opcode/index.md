@@ -6,6 +6,7 @@ description: Comment décoder des opcodes ?
 # Sommaire
 1. [Qu'est ce qu'un opcode ?](#what_is_opcode)
 2. [Le format des instructions des architectures Intel 64 et IA-32](#instruction_format)
+3. [](#)
 
 <br/>
 
@@ -48,17 +49,17 @@ Voici un schéma qui résume le format des instructions en architecture Intel® 
 
 - Un déplacement est une constante qui est ajoutée au reste de l'adresse. Un déplacement va prendre la valeur pointée à une adresse ainsi que les octets permettant un déplacement de mémoire 
 
-Par exemple avec ce déplacement nous mettons la valeur pointée par RBP + 8 dans le registre de destination RAX :
+Par exemple avec ce déplacement nous mettons la valeur pointée par EBP + 8 dans le registre de destination EAX :
 
 ```py
-mov rax, DWORD [rbp + 0x8]
+mov eax, DWORD [ebp + 0x8]
 ```
 
 - Un immédiat est une valeur directe et non une valeur pointé dans un registre. La valeur immédiate sera donc incluse dans l'opcode.
 
-Par exemple avec cette immédiat nous mettons simplement 0x1337 dans le registre RAX :
+Par exemple avec cette immédiat nous mettons simplement 0x1337 dans le registre EAX :
 
 ```py
-mov rax, 0x1337
+mov eax, 0x1337
 ```
 
