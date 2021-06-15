@@ -16,7 +16,7 @@ Un opcode primaire peut avoir une longueur de 1, 2 ou 3 octets.
 
 L'hexdump d'un binaire est l'ensemble des opcodes du programme. Voici un sample des opcodes d'un hello world en C :
 
-```sh
+```py
 ❯ xxd helloworld
 <...>
 000002a0: 0100 0000 0000 0000 2f6c 6962 3634 2f6c  ......../lib64/l
