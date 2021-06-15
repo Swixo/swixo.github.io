@@ -47,7 +47,9 @@ Voici un schéma qui résume le format des instructions en architecture Intel® 
   <img src="https://i.imgur.com/pJfQoOO.png">
 </p>
 
-- Un déplacement est une constante qui est ajoutée au reste de l'adresse. Un déplacement va prendre la valeur pointée à une adresse ainsi que les octets permettant un déplacement de mémoire 
+## Qu'est ce qu'un déplacement ?
+
+- Un **déplacement** est une constante qui est ajoutée au reste de l'adresse. Un déplacement va prendre la valeur pointée à une adresse ainsi que les octets permettant un déplacement de mémoire 
 
 Par exemple avec ce déplacement nous mettons la valeur pointée par EBP + 8 dans le registre de destination EAX :
 
@@ -55,7 +57,9 @@ Par exemple avec ce déplacement nous mettons la valeur pointée par EBP + 8 dan
 mov eax, DWORD [ebp + 0x8]
 ```
 
-- Un immédiat est une valeur directe et non une valeur pointé dans un registre. La valeur immédiate sera donc incluse dans l'opcode.
+## Qu'est ce qu'un immédiat ?
+
+- Un **immédiat** est une **valeur directe** et non une valeur pointé dans un registre. La valeur immédiate sera donc **incluse dans l'opcode**.
 
 Par exemple avec cette immédiat nous mettons simplement 0x1337 dans le registre EAX :
 
@@ -87,7 +91,11 @@ c9
 c3
 ```
 
+Le premier opcode est 0x55, c'est un **opcode primaire** alors nous avons simplement à regarder l'instruction correspondante dans **l'opcode table** :
 
+<p align="center">
+  <img src="https://i.imgur.com/ehrSeWo.png">
+</p>
 
 
 
