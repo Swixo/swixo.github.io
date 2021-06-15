@@ -118,3 +118,10 @@ Voici un schéma simple pour comprendre la composition du byte Mod R/M :
   <img src="https://i.imgur.com/XzHMDtT.png">
 </p>
 
+Le champ MOD peut prendre plusieurs valeurs ainsi ce dernier va définir le mode d'adressage :
+
+<p align="center">
+  <img src="https://i.imgur.com/PeZmzAN.png">
+</p>
+
+
