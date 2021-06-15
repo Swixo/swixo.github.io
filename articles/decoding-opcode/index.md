@@ -38,10 +38,18 @@ Premièrement les instructions sont composées de :
 - Déplacement (si nécessaire)
 - Un champ de données immédiates (si nécessaire)
 
+<br/>
+
 Voici un schéma qui résume le format des instructions en architecture Intel® 64 et IA-32 :
 
 <p align="center">
   <img src="https://i.imgur.com/pJfQoOO.png">
 </p>
 
+Un déplacement est simplement une constante qui est ajoutée au reste de l'adresse. Un déplacement va prendre la valeur pointée à une adresse ainsi que les octets permettant un déplacement de mémoire 
 
+Par exemple avec ce déplacement nous mettons la valeur pointée par RBP + 8 dans le registre de destination RAX :
+
+```x86asm
+mov rax, DWORD [rbp + 0x8]
+```
