@@ -150,5 +150,12 @@ Nous allons donc prendre l'opcode suivant : 0xe5 et le décomposer en bits pour 
 MOD REG R/M
 ```
 
-Le d bit est égal à 0 donc REG est la source et que son registre est `ESP`. Deplus le MOD est 11 alors le champ R/M est un registre.
+Le d bit est égal à 0 donc REG est la source et son registre est `ESP`. Deplus le MOD est 11 alors le champ R/M est un registre.
+
+Il nous reste plus qu'a regarder dans la table d'adressage de la [documentation Intel](https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-instruction-set-reference-manual-325383.pdf) le registre destination :
+
+<p align="center">
+  <img src="https://i.imgur.com/QJuJFbM.png">
+</p>
+
 
