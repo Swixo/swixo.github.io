@@ -40,5 +40,8 @@ Premièrement les instructions sont composées de :
 
 Voici un schéma qui résume le format des instructions en architecture Intel® 64 et IA-32 :
 
-![schema_format](https://i.imgur.com/pJfQoOO.png)
+<p align="center">
+  <img src="https://i.imgur.com/pJfQoOO.png">
+</p>
+
 
