@@ -91,11 +91,13 @@ c9
 c3
 ```
 
-Le premier opcode est 0x55, c'est un **opcode primaire** alors nous avons simplement à regarder l'instruction correspondante dans **l'opcode table** :
+Le premier opcode est 0x55, c'est un **opcode primaire** alors nous avons simplement à regarder l'instruction correspondante dans [l'opcode table](http://sparksandflames.com/files/x86InstructionChart.html) :
 
 <p align="center">
   <img src="https://i.imgur.com/ehrSeWo.png">
 </p>
+
+La première instruction est `PUSH EBP`, c'est une instruction qui fait 1 byte, et qui n'a pas le Mod R/M.
 
 
 
