@@ -263,7 +263,6 @@ Une énumération rapide est suffisante pour trouver des credentials dans un fic
 
 ```sh
 root@smtp:/home/j.nakazawa# grep 'user\|password' .msmtprc
-grep 'user\|password' .msmtprc
 user           j.nakazawa
 password       sJB}RM>6Z~64_
 ```
@@ -438,7 +437,5 @@ Nous pouvons enfin nous connecter en tant que root à l'aide de [ksu](https://ww
 ![rooted](https://i.imgur.com/ejiRXDV.png)
 
 Voila nous sommes enfin root ! 😎
-
-N'oubliez pas de star mon profil HackTheBox. 😆
 
 <script src="https://www.hackthebox.eu/badge/428983"></script>
