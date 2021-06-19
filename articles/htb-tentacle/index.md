@@ -18,28 +18,30 @@ Tout d'abord, faisons un scan TCP + UDP des 65535 ports avec l'outil [masscan](h
 Discovered open port 88/tcp on 10.10.10.224                                    
 Discovered open port 22/tcp on 10.10.10.224                                    
 Discovered open port 3128/tcp on 10.10.10.224                                  
-Discovered open port 53/udp on 10.10.10.224                                    
+Discovered open port 53/udp on 10.10.10.224
 Discovered open port 53/tcp on 10.10.10.224
 ```
 
-Ensuite, un scan plus avancé avec nmap sur les ports ouverts est nécéssaire :
+Ensuite, enregistrons la sortie dans un fichier nommé masscan et faisons un scan plus avancé avec des NSE sur les ports ouverts :
 
 ```sh
-❯ nmap -p 88,22,3128,53,9090 -sC -sV -oA nmap 10.10.10.224 -Pn
+❯ export ports=$(cat masscan | awk '{print $4}' | grep -o '[0-9]\+' | tr '\n' ',') && echo $ports
+88,22,3128,53,53
+❯ nmap -p $ports -sCV -oN nmap 10.10.10.224 -Pn
 
-PORT     STATE  SERVICE      VERSION
-22/tcp   open   ssh          OpenSSH 8.0 (protocol 2.0)
+PORT     STATE SERVICE      VERSION
+22/tcp   open  ssh          OpenSSH 8.0 (protocol 2.0)
 | ssh-hostkey: 
 |   3072 8d:dd:18:10:e5:7b:b0:da:a3:fa:14:37:a7:52:7a:9c (RSA)
 |   256 f6:a9:2e:57:f8:18:b6:f4:ee:03:41:27:1e:1f:93:99 (ECDSA)
 |_  256 04:74:dd:68:79:f4:22:78:d8:ce:dd:8b:3e:8c:76:3b (ED25519)
-53/tcp   open   domain       ISC BIND 9.11.20 (RedHat Enterprise Linux 8)
+53/tcp   open  domain       ISC BIND 9.11.20 (RedHat Enterprise Linux 8)
 | dns-nsid: 
 |_  bind.version: 9.11.20-RedHat-9.11.20-5.el8
-88/tcp   open   kerberos-sec MIT Kerberos
-3128/tcp open   http-proxy   Squid http proxy 4.11
+88/tcp   open  kerberos-sec MIT Kerberos (server time: 2021-06-19 15:02:50Z)
+3128/tcp open  http-proxy   Squid http proxy 4.11
 |_http-server-header: squid/4.11
-9090/tcp closed zeus-admin
+|_http-title: ERROR: The requested URL could not be retrieved
 Service Info: Host: REALCORP.HTB; OS: Linux; CPE: cpe:/o:redhat:enterprise_linux:8
 ```
 
