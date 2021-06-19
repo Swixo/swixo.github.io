@@ -59,7 +59,7 @@ En tentant d'accéder au proxy nous découvrons un utilisateur : `j.nakazawa`, u
 
 ![discovery_user_host_subdomain](https://i.imgur.com/aVXsYmp.png)
 
-Cette utilisateur est ASREP Roastable, nous pouvons donc récupérer son ticket Kerberos à partir du KDC mais le hash Kerberos 5 AS-REP etype 23 est incassable :
+Cette utilisateur est AS-REP Roastable, nous pouvons donc récupérer son ticket Kerberos à partir du KDC mais le hash Kerberos 5 AS-REP etype 23 est incassable :
 
 ```sh
 ❯ GetNPUsers.py -dc-ip 10.10.10.224 -no-pass realcorp.htb/j.nakazawa
@@ -149,13 +149,13 @@ Nous avons un serveur Web sur la machine 10.197.243.31 ayant comme nom de domain
 
 Cependant nous avons pas les permissions d'accéder à l'index du serveur Web. 
 
-Après m'être renseigné sur [wpad](http://eole.ac-dijon.fr/documentations/2.4/completes/HTML/ModuleAmon/co/13-wpad.html), j'ai compris qu'il existait un fichier de configuration nommé `wpad.dat` qui contient les paramètres du proxy :
+Après m'être renseigné sur [wpad](http://eole.ac-dijon.fr/documentations/2.4/completes/HTML/ModuleAmon/co/13-wpad.html), j'ai compris qu'il existait un fichier PAC nommé `wpad.dat` qui contient les paramètres du proxy :
 
 ![wpad_dat](https://i.imgur.com/ysntqIk.png)
 
 À l'intérieur de ce fichier, nous avons une nouvelle IP avec une partie réseau différente.
 
-Cependant cette machine ne répond pas. Nous supposons que ceci est un indice pour trouver une nouvelle machine... Scannons une plage IP :
+Cependant cette machine ne répond pas. Nous supposons que ceci est un indice pour trouver une nouvelle machine... Scannons une plage d'IP :
 
 ```sh
 ❯ proxychains4 -f /etc/proxychains4.conf nmap 10.241.251.0/24 -vvv -sT -Pn
