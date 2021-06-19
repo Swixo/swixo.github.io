@@ -34,4 +34,4 @@ Sur ce site, je vous partagerai des articles, des write-ups ainsi que mes connai
 <a href="articles/htb-enterprise">HackTheBox - Enterprise</a>
 
 <time datetime="2021-19-06T00:00:00+00:00">June 19, 2021</time>
-<a href="articles/htb-enterprise">HackTheBox - Tentacle</a>
+<a href="articles/htb-tentacle">HackTheBox - Tentacle</a>
