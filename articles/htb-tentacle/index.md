@@ -8,7 +8,7 @@ Bonjour à tous aujourd'hui je vous présente un walkthrough sur une machine dif
 
 # Recon
 
-## Nmap / Masscan
+## Port Scanning
 
 Tout d'abord, faisons un scan TCP + UDP des 65535 ports avec l'outil [masscan](https://github.com/robertdavidgraham/masscan) pour plus de rapidité :
 
