@@ -4,7 +4,7 @@ description: Walkthrough de la machine Tentacle sur HackTheBox
 ---
 ![tentacle](https://i.imgur.com/2Us6x18.jpg)
 
-Bonjour à tous aujourd'hui je vous présente un walkthrough sur une machine complexe. Cette machine demandait une énumération assez poussée, être familié avec proxychains et de bonnes connaissances sur le protocole kerberos. 😀
+Bonjour à tous aujourd'hui je vous présente un walkthrough sur une machine difficile de HackTheBox. Cette machine demandait une énumération assez poussée, être familié avec proxychains et de bonnes connaissances sur le protocole kerberos. 😀
 
 # Recon
 
