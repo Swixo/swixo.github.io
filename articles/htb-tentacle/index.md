@@ -46,12 +46,12 @@ Service Info: Host: REALCORP.HTB; OS: Linux; CPE: cpe:/o:redhat:enterprise_linux
 ```
 
 Sur le serveur distant, nous avons 4 services :
-    1. Un serveur SSH sur le port 22
-    2. Un serveur DNS sur le port 53 
-    3. Un serveur Kerberos sur le port 88
-    4. Un proxy Squid sur le port 3128
+- Un serveur SSH sur le port 22
+- Un serveur DNS sur le port 53 
+- Un serveur Kerberos sur le port 88
+- Un proxy Squid sur le port 3128
 
-Je suppose que la machine cible tourne sur la distribution linux Red Hat par rapport à la réponse DNS et que l'host de la machine est REALCORP.HTB grâce aux NSE.
+Je suppose que la machine cible tourne sur la distribution linux Red Hat par rapport à la réponse DNS et que l'host de la machine est REALCORP.HTB.
 
 ## Enumeration Squid proxy
 
