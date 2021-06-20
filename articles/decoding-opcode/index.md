@@ -74,7 +74,7 @@ En guise d'exemple nous allons développer une petite fonction en C et récupér
 
 ```c
 int main(int a, int b) {
-    return a + b;
+    return (a + b);
 }
 ```
 
