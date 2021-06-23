@@ -302,7 +302,7 @@ Unique gadgets found: 93
 
 Nous avons un gadget particulièrement intéréssant dans ce binaire : `pop rdi ; ret` à l'adresse `0x4006d3`. Cette instruction permet de passer un 1er argument à une fonction.<br/>
 
-Nous pouvons passer des arguments à des fonctions avec ces gadgets car l'ABI (application binary interface) définit ces calling conventions :
+Nous pouvons setup des arguments à des fonctions avec ces gadgets car l'ABI (application binary interface) définit ces calling conventions :
 
 > **1er** argument = `pop rdi ; ret`
 
