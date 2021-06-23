@@ -4,7 +4,7 @@ description: Article théorique et pratique sur le ROP
 ---
 
 # Sommaire
-1. [Les sections/segments d'un binaire](#Les_sections)
+1. [Les sections / segments d'un binaire](#Les_sections)
 2. [Les protections](#Les_protections)
 3. [Qu'est ce que le ROP ?](#ROP)
 4. [Exploitation + Walkthrough ROPME - HackTheBox](#ropme)
@@ -15,7 +15,7 @@ Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant 
 
 
 <div id='Les_sections'/>
-# Les sections/segments d'un binaire
+# Les sections / segments d'un binaire
 
 Pour le ROP nous allons nous intéréssé particulièrement à ces sections :
 
