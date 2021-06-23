@@ -6,8 +6,23 @@ description: Walkthrough de la machine Tentacle sur HackTheBox
 
 Bonjour à tous aujourd'hui je vous présente un walkthrough sur une machine difficile de HackTheBox. Cette machine demandait une énumération assez poussée, être familié avec proxychains et de bonnes connaissances sur le protocole kerberos. 😀
 
+# Sommaire
+
+1. [Port Scanning](#port_scanning)
+2. [Enumeration Squid proxy](#enum_squid)
+3. [Enumeration DNS server](#enum_dns)
+4. [Proxychains4 Configuration](#proxychains_config)
+5. [Enumeration subdomains](#enum_subdomains)
+6. [Exploitation OpenSMTPD (Source code review)](#exploit_smtp)
+7. [Pivoting to j.nakazawa of srv01](#pivot1)
+8. [Exploitation SSH via Kerberos](#exploit_ssh_kerberos)
+9. [Horizontal Privilege Escalation](#horizontal_privesc)
+10. [Exploitation cron](#exploit_cron)
+11. [Pivot from admin to root](#pivot2)
+
 # Recon
 
+<div id='port_scanning'/>
 ## Port Scanning
 
 Tout d'abord, faisons un scan TCP + UDP des 65535 ports avec l'outil [masscan](https://github.com/robertdavidgraham/masscan) pour plus de rapidité :
@@ -53,6 +68,7 @@ Sur le serveur distant, nous avons 4 services :
 
 Je suppose que la machine cible tourne sur la distribution linux Red Hat par rapport à la réponse DNS et que l'host de la machine est REALCORP.HTB.
 
+<div id='enum_squid'/>
 ## Enumeration Squid proxy
 
 En tentant d'accéder au proxy nous découvrons un utilisateur : `j.nakazawa`, un nom de domaine : `realcorp.htb` et un sous-domaine : `srv01.realcorp.htb`:
@@ -68,6 +84,7 @@ Cette utilisateur est AS-REP Roastable, nous pouvons donc récupérer son ticket
 $krb5asrep$18$j.nakazawa@REALCORP.HTB:19231d6324028ef033447c744cecff89$3820ac18d889cbc260ae2bdb37ae95df0c7668b3f0b1c210a30b8cc93152a8335d5e1d884a2691cec399041be849255b927c1055b0922cc9d3ddff2028a9ce9b22cdfa1cc57493ad0d3d5900c64ea0a7da48a42324b8334ce11ea3752f0aee4d5260dfb2434452960ea6e9f9540a223392717cdb28b8b538e41f98e1ca521d0968d03073e2ab61845f9af5d01f9faa4fed0e57ec477c71ecb8c56f7de38d6d07cb9cdb4a6d72357bbb0a60b719fdef19cc0f2eb9190572eb15d2b0e85a1031b1576c19e2e236414830131c044fcc835c5d886e284005d01a7365
 ```
 
+<div id='enum_dns'/>
 ## Enumeration DNS server
 
 Pour automatiser notre énumération je vais utiliser [DNSEnum](https://eromang.zataz.com/2009/06/04/dnsenum-informations-noms-domaine/) :
@@ -92,6 +109,7 @@ Plusieurs IP et sous-domaines ont été trouvés ! 😁
 
 Pour y accéder nous avons besoin d'utiliser [proxychains4](https://github.com/rofl0r/proxychains-ng) afin de pivoter à partir de l'IP principale pour accéder aux autres en nous connectant au proxy Squid.
 
+<div id='proxychains_config'/>
 ## Proxychains4 Configuration
 
 Proxychains fonctionne pour les paquets TCP mais pas UDP, donc avec nmap, si nous voulons scanner à travers un proxy il va falloir rajouter le paramètre **-sT** pour préciser à nmap de faire un **scan TCP** (et non SYN par défaut)
@@ -112,6 +130,7 @@ http  127.0.0.1 3128
 http  10.197.243.77 3128
 ```
 
+<div id='enum_subdomains'/>
 ## Enumeration subdomains
 
 ### Nmap 10.197.243.77
@@ -182,6 +201,7 @@ Avec du **banner grabbing** nous pouvous identifier la version du service en mar
 
 Après quelques recherches, j'ai trouvé une [vulnérabilité OpenSMTPD](https://blog.firosolutions.com/exploits/opensmtpd-remote-vulnerability/). 😃
 
+<div id='exploit_smtp'/>
 # Exploitation OpenSMTPD (Source code review)
 
 Si la partie locale d'une adresse mail n'est pas valide et ne comporte pas de nom de domaine, un attaquant peut transmettre un reverse shell et ignorer les contrôles **MAILADDR_ALLOWED** et **MAILADDR_ESCAPE** grâce à cette faille.
@@ -257,6 +277,7 @@ s.close()
 
 Nous avons enfin un foothold sur la machine et nous sommes même root du serveur SMTP ! 😊
 
+<div id='pivot1'/>
 # Pivoting to j.nakazawa of srv01
 
 Une énumération rapide est suffisante pour trouver des credentials dans un fichier de configuration nommé [.msmtprc](https://doc.ubuntu-fr.org/msmtp) à l'intérieur du répertoire personnel de j.nakazawa : 
@@ -270,6 +291,7 @@ password       sJB}RM>6Z~64_
 Nous pouvons éventuellement utiliser ces identifiants pour nous connecter en SSH au nom de domaine srv01.realcorp.htb, cependant les logs ne fonctionnent pas.
 Je suis resté bloqué ici avant de penser que nous avons 2 moyens d'authentification : SSH et Kerberos. 
 
+<div id='exploit_ssh_kerberos'/>
 ## Exploitation SSH via Kerberos
 
 Essayons de générer un ticket Kerberos et de l'utiliser afin de nous connecter en tant que utilisateur. 
@@ -318,6 +340,7 @@ Maintenant nous pouvons nous connecter en SSH avec notre utilisateur 😰 :
 
 Nous sommes enfin connecté en tant que j.nakazawa et on peut afficher le flag user ! 🙂
 
+<div id='horizontal_privesc'/>
 # Horizontal Privilege Escalation
 
 Nous avons un cron appartenant au groupe admin inhabituel : 
@@ -342,6 +365,8 @@ cd /home/admin
 /usr/bin/rm -f access.log cache.log
 ```
 
+
+<div id='exploit_cron'/>
 ## Exploitation cron 
 
     Ligne 1 : Copie de tous les fichiers et dossiers de **/var/log/squid/ vers /home/admin/** avec [rsync](https://doc.ubuntu-fr.org/rsync).
@@ -376,6 +401,8 @@ Après execution du cron nous pouvons nous connecter en tant que admin :
 
 Nous sommes maintenant admin du domaine srv01 ! 🥳
 
+
+<div id='pivot2'/>
 # Pivot from admin to root
 
 Avec [LinEnum](https://github.com/rebootuser/LinEnum) / [linPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS) ou à la main, nous pouvons trouver un fichier [keytab](https://docs.oracle.com/cd/E24843_01/html/E23285/aadmin-10.html) intéréssant appartenant au groupe admin situé au path `/etc/krb5.keytab` : 
