@@ -16,7 +16,7 @@ Bonjour à tous aujourd'hui je vous présente un walkthrough sur une machine dif
 6. [Exploitation OpenSMTPD (Source code review)](#exploit_smtp)
 7. [Pivoting to j.nakazawa of srv01](#pivot1)
 8. [Exploitation SSH via Kerberos](#exploit_ssh_kerberos)
-9. [Horizontal Privilege Escalation](#horizontal_privesc)
+9. [Horizontal Privilege Escalation / Lateral Movement](#horizontal_privesc)
 10. [Exploitation cron](#exploit_cron)
 11. [Pivot from admin to root](#pivot2)
 
@@ -341,7 +341,7 @@ Maintenant nous pouvons nous connecter en SSH avec notre utilisateur 😰 :
 Nous sommes enfin connecté en tant que j.nakazawa et on peut afficher le flag user ! 🙂
 
 <div id='horizontal_privesc'/>
-# Horizontal Privilege Escalation
+# Horizontal Privilege Escalation / Lateral Movement
 
 Nous avons un cron appartenant au groupe admin inhabituel : 
 
