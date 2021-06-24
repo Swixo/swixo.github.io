@@ -475,6 +475,16 @@ Concrètement en low level, les signaux sont géré de cette facon :
 - **(3)** : Le kernel restaure la stack frame précédemment enregistré pour le processus grace à `sigreturn()`
 - **(4)** : Le processus repasse en User Land
 
+La structure de la signal frame lorsqu'un signal s'est produit (2 : ucontext save) :
+
+<p align="center">
+  <img src="https://i.imgur.com/3Ba5fSj.png">
+</p>
+
+La signal frame fait 248 bytes, en ignorant les 8 premiers octets de `rt_sigreturn()`.
+
+
+
 Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `pop rax` ou `mov rax, 0xf` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`. 
 
 Tout d'abord nous allons utiliser un programme en assembleur x64 simple pour un exemple d'exploitation : 
