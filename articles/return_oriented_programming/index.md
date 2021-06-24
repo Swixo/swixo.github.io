@@ -1,6 +1,6 @@
 ---
-title: "Return-oriented programming (ROP)"
-description: Article théorique et pratique sur le ROP
+title: "Return-Oriented Programming (ROP) + Sigreturn-Oriented-Programming (SROP)"
+description: Article théorique et pratique sur le ROP et le SROP
 ---
 
 # Sommaire
@@ -8,7 +8,7 @@ description: Article théorique et pratique sur le ROP
 2. [Les protections](#Les_protections)
 3. [Qu'est ce que le ROP ?](#ROP)
 4. [Exploitation + Walkthrough ROPME - HackTheBox](#ropme)
-5. [Bonus - ROP Chain via le gadget int 0x80](#bonus_ropchain)
+5. [Bonus - Sigreturn-Oriented-Programmin](#bonus_srop)
 
 <br/>
 Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout quelques notions essentielles à la bonne compréhension de la suite de cette article ! 😀
@@ -445,25 +445,7 @@ p.close()
 </p>
 
 <div id='bonus_ropchain'/>
-# Bonus - ROP Chain via le gadget int 0x80
+# Bonus - Sigreturn-Oriented-Programmin
 
 
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-void vuln()
-{
-        char buf[256];
-        gets(buf);
-        printf("%s\n", buf);
-}
-
-int main(int argc, char **argv)
-{
-        vuln();
-        return (0);
-}
-```
 
