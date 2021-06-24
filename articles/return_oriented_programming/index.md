@@ -482,8 +482,8 @@ La structure de la signal frame lorsqu'un signal s'est produit (2 : ucontext sav
   <img src="https://i.imgur.com/3Ba5fSj.png">
 </p>
 
-La signal frame fait 248 bytes, en ignorant les 8 premiers octets de `rt_sigreturn()` qui pointe vers l'adresse du syscall `sigreturn`.
-L'appel système sigreturn fait un retour du gestionnaire de signaux (signal handler) et nettoie la stack frame.
+La **signal frame** fait **248 bytes**, en ignorant les 8 premiers octets de `rt_sigreturn()` qui pointe vers l'adresse du syscall `sigreturn`.
+L'appel système sigreturn fait un **retour du gestionnaire de signaux** (signal handler) et **nettoie la stack frame**.
 
 
 
