@@ -466,7 +466,14 @@ Un signal est une forme de communication entre processus ou un thread utilisée 
 
 Concrètement en low level, les signaux sont géré de cette facon :
 
+<p align="center">
+  <img src="https://i.imgur.com/peKsKGB.png">
+</p>
 
+- **(1)** : Lorsqu’un signal se produit le processus sera temporairement suspendu et entrera en Kernel Land
+- **(2)** : Le kernel enregistre les registre dans la stack frame correspondant pour le processus et saute vers le gestionnaire de signaux (en User Land) précédemment enregistré pour traiter le signal correspondant
+- **(3)** : Le kernel restaure la stack frame précédemment enregistré pour le processus grace au `sigreturn()`
+- **(4)** : Le processus repasse en User Land et continue son exécution
 
 Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `pop rax` ou `mov rax, 0xf` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`. 
 
