@@ -464,9 +464,13 @@ Un signal est une forme de communication entre processus ou un thread utilisée 
 1. Ctrl + C —> SIGINT (Kill un processus)
 2. Ctrl + Z —> SIGTSTP (Arrêt temporaire d’un processus)
 
-Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `sys_rt_sigreturn` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`. 
+Concrètement en low level, les signaux sont géré de cette facon :
 
-Tout d'abord nous allons utiliser un programme en assembleur simple pour un exemple d'exploitation : 
+
+
+Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `pop rax` ou `mov rax, 0xf` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`. 
+
+Tout d'abord nous allons utiliser un programme en assembleur x64 simple pour un exemple d'exploitation : 
 
 ```py
 global _start
