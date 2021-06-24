@@ -447,7 +447,7 @@ p.close()
 <div id='bonus_srop'/>
 # Bonus - Sigreturn-Oriented-Programming
 
-```py
+```x86asm
 section .data
 shell db '/bin/sh',0
 
