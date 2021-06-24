@@ -475,6 +475,7 @@ Concrètement en low level, les signaux sont géré de cette facon :
 - **(3)** : Le kernel restaure la stack frame précédemment enregistré pour le processus grace à `sigreturn()`
 - **(4)** : Le processus repasse en User Land
 
+<br/>
 La structure de la signal frame lorsqu'un signal s'est produit (2 : ucontext save) :
 
 <p align="center">
