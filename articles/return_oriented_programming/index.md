@@ -451,9 +451,22 @@ p.close()
 </p>
 
 <div id='bonus_srop'/>
-# Bonus - Sigreturn-Oriented-Programming
+# Bonus - Sigreturn-Oriented Programming
 
-Tout d'abord nous allons utiliser un programme simple pour un exemple d'exploitation : 
+Avant de commencer les SROP vous devez déjà comprendre les signaux et leurs fonctionnements ! 😀
+
+## Les signaux 
+
+Un signal est une forme de communication entre processus ou un thread utilisée par les systèmes de type Unix et ceux respectant les standards POSIX. Ils sont utilisés pour tuer les processus, pour leur dire que les temporisations ont expiré ou pour les avertir d'un comportement exceptionnel. Les signaux sont définis dans le librairie `<signal.h>`.
+
+- Exemples de signal :
+
+1. Ctrl + C —> Kill un processus
+2. Ctrl + Z —> Mettre en processus en arrière plan
+
+Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `sys_rt_sigreturn` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`. 
+
+Tout d'abord nous allons utiliser un programme en assembleur simple pour un exemple d'exploitation : 
 
 ```py
 global _start
