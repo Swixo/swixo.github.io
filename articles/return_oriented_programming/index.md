@@ -448,11 +448,12 @@ p.close()
 # Bonus - Sigreturn-Oriented-Programming
 
 ```py
+global _start
+
 section .data
-shell db '/bin/sh',0
+shell db '/bin/sh', 0
 
 section .text
-global _start
 _vuln:
 	push rbp
 	mov rbp, rsp
