@@ -447,7 +447,7 @@ p.close()
 <div id='bonus_srop'/>
 # Bonus - Sigreturn-Oriented-Programming
 
-Tout d'abord nous allons utiliser un programme simple pour un exemple d'exploitation 
+Tout d'abord nous allons utiliser un programme simple pour un exemple d'exploitation : 
 
 ```py
 global _start
@@ -478,6 +478,8 @@ _start:
 	mov rdi, 0
 	syscall
 ```
+
+
 
 ```py
 #!/usr/bin/python2
