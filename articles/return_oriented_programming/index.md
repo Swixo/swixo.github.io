@@ -553,11 +553,8 @@ Pour notre exploitation nous avons besoin de :
 	```py
 	❯ grep "rt_sigreturn" /usr/include/x86_64-linux-gnu/asm/unistd_64.h
 	#define __NR_rt_sigreturn 15
-	❯ curl https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/ | grep "sys_rt_sigreturn"
-	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-					 Dload  Upload   Total   Spent    Left  Speed
-	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<tr><td>15</td><td>sys_rt_sigreturn</td><td>unsigned long __unused</td>		<td></td><td></td><td></td><td></td><td></td></tr>
-	100 55692    0 55692    0     0   257k      0 --:--:-- --:--:-- --:--:--  258k
+	❯ curl -s https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/ | grep "sys_rt_sigreturn" | sed -e 's/<[^>]*>//g'
+	15 sys_rt_sigreturn unsigned long __unused
 	```
 - Un gadget syscall :
 	```py
