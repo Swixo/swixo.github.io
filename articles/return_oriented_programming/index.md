@@ -457,7 +457,7 @@ Avant de commencer les SROP vous devez déjà comprendre les signaux et leurs fo
 
 ## Les signaux 
 
-Un signal est une forme d'IPC (Inter-process communication) utilisée par les systèmes de type Unix et respectant les standards POSIX. Ils sont utilisés pour tuer les processus, pour leur dire que les temporisations ont expiré ou pour les avertir d'un comportement exceptionnel. Les signaux sont définis dans le librairie `<signal.h>`.
+Un signal est une forme d'**IPC** (Inter-process communication) utilisée par les systèmes Unix et respectant les standards POSIX. Ils sont utilisés pour kill des processus, pour leur dire que les temporisations ont expiré ou pour les avertir d'un comportement exceptionnel... Les signaux sont définis dans le librairie `<signal.h>`.
 
 - Exemples de signal :
 
