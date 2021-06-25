@@ -487,8 +487,8 @@ L'appel système sigreturn fait un **retour du gestionnaire de signaux** (signal
 
 Il y a 2 défauts dans ce systèmes :
 
-- Le signal frame est éditable car nous sommes en User Land
-- Le kernel ne compare pas le signal frame enregistré et le signal frame restauré
+- Le **signal frame** est **éditable** car nous sommes en **User Land**.
+- Le **kernel** ne **compare pas** le **signal frame enregistré** et le **signal frame restauré**.
 
 ## Qu'est ce que le SROP ? 
 
