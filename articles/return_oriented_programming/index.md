@@ -495,11 +495,13 @@ Il y a 2 défauts dans ce système :
 Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `pop rax` ou `mov rax, 0xf` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`.
 
 <br/>
-Le but est de provoquer un signal en exécutant le syscall sys_rt_sigreturn avec des gadgets pratiques. Ensuite nous allons devoir réecrire les registres stockés dans notre signal frame :
+Le but est de **provoquer un signal** en exécutant le syscall **sys_rt_sigreturn** avec des gadgets pratiques. Ensuite nous allons devoir **réecrire les registres** stockés dans notre **signal frame** :
 
 <p align="center">
   <img src="https://i.imgur.com/NLEbzGH.png">
 </p>
+
+Une fois la signal frame overwrite, le kernel va restauré le context avec nos registres overwrite et donc exectuer notre `sys_execv`.
 
 Tout d'abord nous allons utiliser un programme en assembleur simple pour un exemple d'exploitation : 
 
