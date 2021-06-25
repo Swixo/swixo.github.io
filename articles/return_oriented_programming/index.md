@@ -464,7 +464,7 @@ Un signal est une forme d'**IPC** (Inter-process communication) utilisée par le
 1. Ctrl + C —> SIGINT (Kill un processus)
 2. Ctrl + Z —> SIGTSTP (Arrêt temporaire d’un processus)
 
-Concrètement en low level, les signaux sont géré de cette facon :
+Concrètement en low level, les signaux sont gérés de cette façon :
 
 <p align="center">
   <img src="https://i.imgur.com/peKsKGB.png">
