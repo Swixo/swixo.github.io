@@ -482,7 +482,7 @@ La structure de la signal frame lorsqu'un signal s'est produit est la suivante (
   <img src="https://i.imgur.com/3Ba5fSj.png">
 </p>
 
-La **signal frame** fait **248 bytes**, en ignorant les 8 premiers octets de `rt_sigreturn()` qui pointe vers l'adresse du syscall `sigreturn`.
+La **signal frame** fait **248 bytes**, en ignorant les 8 premiers octets de `rt_sigreturn()` qui pointe vers l'adresse du syscall `sys_rt_sigreturn`.
 L'appel système sigreturn fait un **retour du gestionnaire de signaux** (signal handler) et **nettoie la stack frame**.
 
 Il y a 2 défauts dans ce système :
@@ -493,6 +493,13 @@ Il y a 2 défauts dans ce système :
 ## Qu'est ce que le SROP ? 
 
 Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `pop rax` ou `mov rax, 0xf` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`.
+
+<br/>
+Le but est de provoquer un signal en exécutant le syscall sys_rt_sigreturn avec des gadgets pratiques. Ensuite nous allons devoir réecrire les registres stockés dans notre signal frame :
+
+<p align="center">
+  <img src="https://i.imgur.com/NLEbzGH.png">
+</p>
 
 Tout d'abord nous allons utiliser un programme en assembleur simple pour un exemple d'exploitation : 
 
