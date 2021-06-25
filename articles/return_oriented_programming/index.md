@@ -459,7 +459,7 @@ Avant de commencer les SROP vous devez déjà comprendre les signaux et leurs fo
 
 Un signal est une forme d'**IPC** (Inter-process communication) utilisée par les systèmes Unix et respectant les standards POSIX. Ils sont utilisés pour kill des processus, pour leur dire que les temporisations ont expiré ou pour les avertir d'un comportement exceptionnel... Les signaux sont définis dans le librairie `<signal.h>`.
 
-- Exemples de signal :
+- Exemples de signaux :
 
 1. Ctrl + C —> SIGINT (Kill un processus)
 2. Ctrl + Z —> SIGTSTP (Arrêt temporaire d’un processus)
@@ -476,7 +476,7 @@ Concrètement en low level, les signaux sont gérés de cette façon :
 - **(4)** : Le processus repasse en User Land
 
 <br/>
-La structure de la signal frame lorsqu'un signal s'est produit (2 : ucontext save) :
+La structure de la signal frame lorsqu'un signal s'est produit est la suivante (2 : ucontext save) :
 
 <p align="center">
   <img src="https://i.imgur.com/3Ba5fSj.png">
