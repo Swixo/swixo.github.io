@@ -485,7 +485,10 @@ La structure de la signal frame lorsqu'un signal s'est produit est la suivante (
 La **signal frame** fait **248 bytes**, en ignorant les 8 premiers octets de `rt_sigreturn()` qui pointe vers l'adresse du syscall `sigreturn`.
 L'appel système sigreturn fait un **retour du gestionnaire de signaux** (signal handler) et **nettoie la stack frame**.
 
+Il y a 2 défauts dans ce systèmes :
 
+- Le signal frame est éditable car nous sommes en User Land
+- Le kernel ne compare pas le signal frame enregistré et le signal frame restauré
 
 ## Qu'est ce que le SROP ? 
 
