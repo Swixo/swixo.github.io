@@ -485,16 +485,16 @@ La structure de la signal frame lorsqu'un signal s'est produit est la suivante (
 La **signal frame** fait **248 bytes**, en ignorant les 8 premiers octets de `rt_sigreturn()` qui pointe vers l'adresse du syscall `sigreturn`.
 L'appel système sigreturn fait un **retour du gestionnaire de signaux** (signal handler) et **nettoie la stack frame**.
 
-Il y a 2 défauts dans ce systèmes :
+Il y a 2 défauts dans ce système :
 
 - Le **signal frame** est **éditable** car nous sommes en **User Land**.
 - Le **kernel** ne **compare pas** le **signal frame enregistré** et le **signal frame restauré**.
 
 ## Qu'est ce que le SROP ? 
 
-Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `pop rax` ou `mov rax, 0xf` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`. 
+Le SROP (Sigreturn-Oriented Programming) est une technique d'exploitation utilisant tout comme le ROP des gadgets mais cette technique requiert seulement **2 gadgets** : `pop rax` ou `mov rax, 0xf` et `syscall`. En général, on utilise le SROP quand nous avons un gadget syscall et qu’il n’y a pas assez de gadget intéressants pour le ROP : `pop rdi`, `pop rsi`, `pop rdx`.
 
-Tout d'abord nous allons utiliser un programme en assembleur x64 simple pour un exemple d'exploitation : 
+Tout d'abord nous allons utiliser un programme en assembleur simple pour un exemple d'exploitation : 
 
 ```py
 global _start
@@ -526,7 +526,11 @@ _start:
 	syscall
 ```
 
+Compilons notre programme nasm :
 
+```py
+nasm -f elf64 srop.asm -o srop.o && ld srop.o -o srop
+```
 
 ```py
 #!/usr/bin/python2
