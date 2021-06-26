@@ -569,7 +569,7 @@ Pour notre exploitation nous avons besoin de :
 	0x0000000000402000 : /bin/sh
 	```
 
-J'ai donc scripté l'exploitation de la SROP :
+J'ai donc scripté l'exploitation de cette SROP :
 
 ```py
 #!/usr/bin/python2
@@ -605,3 +605,4 @@ p.interactive() # spawn interactive shell
 <p align="center">
   <img src="https://i.imgur.com/YEGLRh1.png">
 </p>
+
