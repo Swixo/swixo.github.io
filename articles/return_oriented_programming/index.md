@@ -21,7 +21,7 @@ Pour le ROP nous allons nous intérésser particulièrement à ces sections :
 
 ### Global Offset Table (GOT)
 
-La GOT (Global Offset Table) est une section qui effectue une résolution d'adresse de la libc pour un gain de temps au processeur. C'est un tableau de pointeurs qui stocke les vrais adresses des fonctions de la libc.
+La GOT (Global Offset Table) est une section qui effectue une résolution d'adresse de la libc pour un gain de temps au processeur. C'est un tableau de pointeurs qui stocke les vraies adresses des fonctions de la libc.
 
 ### Procedure Linkage Table (PLT)
 
