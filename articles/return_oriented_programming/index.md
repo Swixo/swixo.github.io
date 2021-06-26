@@ -11,13 +11,13 @@ description: Article théorique et pratique sur le ROP et le SROP
 5. [Bonus - Sigreturn-Oriented Programming](#bonus_srop)
 
 <br/>
-Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout quelques notions essentielles à la bonne compréhension de la suite de cette article ! 😀
+Avant de commencer à vous expliquer le ROP je vais devoir vous expliquer avant tout quelques notions essentielles à la bonne compréhension de la suite de cet article ! 😀
 
 
 <div id='Les_sections'/>
 # Les sections / segments d'un binaire
 
-Pour le ROP nous allons nous intéréssé particulièrement à ces sections :
+Pour le ROP nous allons nous intérésser particulièrement à ces sections :
 
 ### Global Offset Table (GOT)
 
