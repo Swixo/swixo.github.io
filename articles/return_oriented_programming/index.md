@@ -606,3 +606,6 @@ p.interactive() # spawn interactive shell
   <img src="https://i.imgur.com/YEGLRh1.png">
 </p>
 
+Nous avons enfin réussi à faire spawn un shell sur 2 challenges basiques d'exploitation de binaire. J'espère que cette article vous a appris de nouvelles choses ! 😃
+
+<script src="https://www.hackthebox.eu/badge/428983"></script>
