@@ -67,7 +67,7 @@ Le ROP (Return-oriented programming) est une technique d'exploitation reposant s
 
 Le ROP va permettre de bypass principalement des protections telles que NX, l'ASLR et le DEP.
 
-Voici un schéma explicatif d'une ROP Chain :
+Voici un schéma d'une ROP Chain :
 
 <p align="center">
   <img src="https://i.imgur.com/PLNqJLP.png">
