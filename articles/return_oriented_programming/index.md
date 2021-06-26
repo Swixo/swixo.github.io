@@ -110,11 +110,11 @@ ROP me outside, how 'about dah?
        68023 segmentation fault (core dumped)  ./ropme
 ```
 
-Ici la fonction fgets ne vérifie pas le nombre d'octets entrée par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante par rapport à l'espace alloué par le buffer.
+Ici la fonction fgets ne vérifie pas le nombre d'octets entré	 par l'utilisateur du programme. Par conséquent nous avons pu faire segfault le binaire avec une saisie trop importante par rapport à l'espace alloué par le buffer.
 
 
 Ensuite, comme dans un buffer overflow basique nous devons récupérer l'offset afin d'overwrite nos registres avec une adresse valide à la place de nos "A", soit 0x41 en hexadécimal.<br/>
-Pour se faire nous allons créer un pattern (chaine de caractères non cyclique) de 100 chars, lancer le programme avec ce pattern et chercher à quelle offset nous avons overwrite la sauvegarde RIP (la save RIP garde en mémoire l'adresse de retour après l'épilogue de l'appel d'une fonction) :
+Pour se faire nous allons créer un pattern (chaîne de caractères non cyclique) de 100 chars, lancer le programme avec ce pattern et chercher à quelle offset nous avons overwrite la sauvegarde RIP (la save RIP garde en mémoire l'adresse de retour après l'épilogue de l'appel d'une fonction) :
 
 ```py
 gef➤  pattern create 100    # Create pattern of 100 bytes
