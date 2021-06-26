@@ -605,4 +605,3 @@ p.interactive() # spawn interactive shell
 <p align="center">
   <img src="https://i.imgur.com/YEGLRh1.png">
 </p>
-
