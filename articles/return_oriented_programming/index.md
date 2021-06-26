@@ -30,7 +30,7 @@ La PLT (Procedure Linkage Table) est une section qui contient du code permettant
 ### Les segments d'un binaire
 
 - Le segment TEXT contient le code du binaire
-- Le segment BSS contient les variables non itilialisées, par exemple en C :
+- Le segment BSS contient les variables non initialisées, par exemple en C :
 ```c
 char var[256];
 ```
@@ -42,7 +42,7 @@ char var[256] = "nuts";
 <div id='Les_protections'/>
 # Les protections des exécutables
 
-- **NX** est une protection qui rend la pile Non eXécutable. Cette technique empeche l'exécution d'un shellcode dans la stack. Pour bypass cette protection nous devons effectuer un **ret2libc**, BTW voici un exemple d'exploitation : [HackTheBox - Enterprise](https://nuts7.github.io/articles/htb-enterprise/).
+- **NX** est une protection qui rend la pile Non eXécutable. Cette technique empêche l'exécution d'un shellcode dans la stack. Pour bypass cette protection nous devons effectuer un **ret2libc**, BTW voici un exemple d'exploitation : [HackTheBox - Enterprise](https://nuts7.github.io/articles/htb-enterprise/).
 
 - Le **DEP** (Data Execution Prevention) consiste à protéger les zones de mémoires non exécutables. L'activation de la fonctionnalité DEP consiste à passer le bit NX à 1 dans le processeur.
 
