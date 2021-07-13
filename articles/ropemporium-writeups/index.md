@@ -79,6 +79,23 @@ p.interactive()
 
 - Après lecture de la description du [challenge write4](https://ropemporium.com/challenge/write4.html), nous comprenons que nous allons devoir **write flag.txt** en mémoire dans un **segment du binaire accessible en écriture** car cette string n'est pas présente de facon analogue et **call** la fonction `print_file()` dans la **PLT**. Il est spécifié que `print_file()` prend comme seul argument **l'emplacement mémoire** de flag.txt.
 
+C'est un binaire 64 bits linké dynamiquement et non strippé ayant le bit NX d'activé ainsi que l'ASLR :
+
+```py
+❯ checksec --file=write4
+[*] '/home/nuts/Documents/CTF/ropemporium/write4/write4'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+    RUNPATH:  '.'
+❯ file write4
+write4: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=4cbaee0791e9daa7dcc909399291b57ffaf4ecbe, not stripped
+❯ cat /proc/sys/kernel/randomize_va_space
+2
+```
+
 Premièrement regardons les permissions des différents segments et sections du binaire :
 ```py
 ❯ readelf -S write4
