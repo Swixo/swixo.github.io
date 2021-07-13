@@ -77,8 +77,9 @@ p.interactive()
 <div id='write4-writeup'/>
 # write4
 
-Après lecture de la description du [challenge write4](https://ropemporium.com/challenge/write4.html), nous comprenons que nous allons devoir **write flag.txt** en mémoire dans une **section du binaire accessible en écriture** et **call** la fonction `print_file()` dans la **PLT**. Il est spécifié que `print_file()` prend comme seul argument **l'emplacement mémoire** de flag.txt.
+Après lecture de la description du [challenge write4](https://ropemporium.com/challenge/write4.html), nous comprenons que nous allons devoir **write flag.txt** en mémoire dans un **segment du binaire accessible en écriture** et **call** la fonction `print_file()` dans la **PLT**. Il est spécifié que `print_file()` prend comme seul argument **l'emplacement mémoire** de flag.txt.
 
+Premièrement regardons les permissions des différents segments et sections du binaire :
 ```py
 ❯ readelf -S write4
 Il y a 29 en-têtes de section, débutant à l'adresse de décalage 0x1980:
@@ -97,6 +98,12 @@ Clé des fanions :
   l (grand), p (processor specific)
 ```
 
+Nous remarquons que nous avons 2 segments avec le **flag W** (écriture) d'activé. Par exemple, écrivons la string **flag.txt** dans le segment `.data`. (nous pouvons aussi utiliser .bss)
+
+</br>
+
+Récupérons l'adresse du segment :
+
 ```py
 ❯ readelf -s write4 | grep .data
      5: 0000000000601038     0 NOTYPE  GLOBAL DEFAULT   23 _edata
@@ -104,6 +111,8 @@ Clé des fanions :
     49: 0000000000601038     0 NOTYPE  GLOBAL DEFAULT   23 _edata
     52: 0000000000601028     0 NOTYPE  GLOBAL DEFAULT   23 __data_start
 ```
+
+L'adresse de ce dernier est `0x601028`.
 
 ```py
 from pwn import *
