@@ -126,7 +126,7 @@ Maintenant, nous devons trouver un moyen de setup flag.txt dans .data. Pour cela
 Le but va etre d'empiler **l'adresse du segment writable** (.data) et la string **flag.txt** grace au buffer overflow, de setup ses valeurs dans 2 registres (ici r14 et r15) à l'aide d'un pop, puis de copier la valeur pointé dans l'opérande source (r15 qui pointe vers flag.txt) dans l'opérande de destination. (r14 qui pointe vers l'adresse de .data)
 Ainsi, notre string flag.txt sera stocké à l'adresse du segment .data.
 
-Rappel : pop permet de désempiler de la stack la valeur pointé dans RSP et déplacer cette valeur dans l'opérande indiquée.
+> Rappel : pop permet de désempiler de la stack la valeur pointé dans RSP et déplacer cette valeur dans l'opérande indiquée.
 
 <br/>
 
