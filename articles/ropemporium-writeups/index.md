@@ -27,6 +27,8 @@ Aujourd'hui je vous propose mes writeups des challenges x86_64 de [ROP Emporium]
 <div id='write4-writeup'/>
 # write4
 
+Après lecture de la description du [challenge write4](https://ropemporium.com/challenge/write4.html), nous comprenons que nous allons devoir **write flag.txt** en mémoire dans une **section du binaire accessible en écriture** et **call** la fonction `print_file()` dans la **PLT**. Il est spécifie que `print_file()` prend comme seul argument **l'emplacement mémoire** de flag.txt.
+
 <div id='badchars-writeup'/>
 # badchars
 
