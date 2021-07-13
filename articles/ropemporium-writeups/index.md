@@ -77,7 +77,7 @@ p.interactive()
 <div id='write4-writeup'/>
 # write4
 
-Après lecture de la description du [challenge write4](https://ropemporium.com/challenge/write4.html), nous comprenons que nous allons devoir **write flag.txt** en mémoire dans un **segment du binaire accessible en écriture** car cette string n'est pas présente de facon analogue et **call** la fonction `print_file()` dans la **PLT**. Il est spécifié que `print_file()` prend comme seul argument **l'emplacement mémoire** de flag.txt.
+- Après lecture de la description du [challenge write4](https://ropemporium.com/challenge/write4.html), nous comprenons que nous allons devoir **write flag.txt** en mémoire dans un **segment du binaire accessible en écriture** car cette string n'est pas présente de facon analogue et **call** la fonction `print_file()` dans la **PLT**. Il est spécifié que `print_file()` prend comme seul argument **l'emplacement mémoire** de flag.txt.
 
 Premièrement regardons les permissions des différents segments et sections du binaire :
 ```py
@@ -123,13 +123,13 @@ Maintenant, nous devons trouver un moyen de setup flag.txt dans .data. Pour cela
 <...>
 ```
 
-Le but va etre d'empiler **l'adresse du segment writable** (.data) et la string **flag.txt** grace au buffer overflow, de setup ses valeurs dans 2 registres (ici r14 et r15) à l'aide d'un pop, puis de copier la valeur pointé dans l'opérande source (r15 qui pointe vers flag.txt) dans l'opérande de destination. (r14 qui pointe vers l'adresse de .data)
+- Le but va etre d'empiler **l'adresse du segment writable** (.data) et la string **flag.txt** grace au buffer overflow, de setup ses valeurs dans 2 registres (ici r14 et r15) à l'aide d'un pop, puis de copier la valeur pointé dans l'opérande source (r15 qui pointe vers flag.txt) dans l'opérande de destination. (r14 qui pointe vers l'adresse de .data)
 Ainsi, notre string flag.txt sera stocké à l'adresse du segment .data.
 
 > Rappel : pop permet de désempiler de la stack la valeur pointé dans RSP et déplacer cette valeur dans l'opérande indiquée.
 
 <br/>
-
+- 
 Une fois que nous avons flag.txt dans notre binaire, il nous suffit simplement de passer en argument cette chaine à la fonction `print_file()`. Alors nous avons besoin d'un gadget `pop rdi ; ret` et évidemment de l'adresse de la fonction `print_file()` :
 
 ```py
