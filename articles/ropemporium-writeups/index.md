@@ -3,6 +3,8 @@ title: "ROP Emporium - Writeups"
 description: Writeups des challenges x86_64 de ROP Emporium 
 ---
 
+Aujourd'hui je vous propose des writeups des challenges x86_64 de [ROP Emporium](https://ropemporium.com/). Vous pouvez retrouver les [scripts de solution](https://github.com/nuts7/nuts7.github.io/tree/master/articles/ropemporium-writeups) sur mon GitHub. 😀
+
 # Sommaire
 1. [ret2win](#ret2win-writeup)
 2. [split](#split-writeup)
