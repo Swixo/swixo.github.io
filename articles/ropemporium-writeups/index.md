@@ -45,7 +45,15 @@ Clé des fanions :
   L (ordre des liens), O (traitement supplémentaire par l'OS requis), G (groupe),
   T (TLS), C (compressé), x (inconnu), o (spécifique à l'OS), E (exclu),
   l (grand), p (processor specific)
-  ```
+```
+
+```py
+❯ readelf -s write4 | grep .data
+     5: 0000000000601038     0 NOTYPE  GLOBAL DEFAULT   23 _edata
+    48: 0000000000601028     0 NOTYPE  WEAK   DEFAULT   23 data_start
+    49: 0000000000601038     0 NOTYPE  GLOBAL DEFAULT   23 _edata
+    52: 0000000000601028     0 NOTYPE  GLOBAL DEFAULT   23 __data_start
+ ```
 
 <div id='badchars-writeup'/>
 # badchars
