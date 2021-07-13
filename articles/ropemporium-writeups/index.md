@@ -96,6 +96,15 @@ Clé des fanions :
   L (ordre des liens), O (traitement supplémentaire par l'OS requis), G (groupe),
   T (TLS), C (compressé), x (inconnu), o (spécifique à l'OS), E (exclu),
   l (grand), p (processor specific)
+❯ rabin2 -S write4
+[Sections]
+
+nth paddr        size vaddr       vsize perm name
+―――――――――――――――――――――――――――――――――――――――――――――――――
+<...>
+23  0x00001028   0x10 0x00601028   0x10 -rw- .data
+24  0x00001038    0x0 0x00601038    0x8 -rw- .bss
+<...>
 ```
 
 Nous remarquons que nous avons 2 segments avec le **flag W** (écriture) d'activé. Par exemple, écrivons la string **flag.txt** dans le segment `.data`. (nous pouvons aussi utiliser .bss)
