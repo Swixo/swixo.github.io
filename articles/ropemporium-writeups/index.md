@@ -99,8 +99,7 @@ Clé des fanions :
 ```
 
 Nous remarquons que nous avons 2 segments avec le **flag W** (écriture) d'activé. Par exemple, écrivons la string **flag.txt** dans le segment `.data`. (nous pouvons aussi utiliser .bss)
-
-</br>
+<br/>
 
 Récupérons l'adresse du segment :
 
