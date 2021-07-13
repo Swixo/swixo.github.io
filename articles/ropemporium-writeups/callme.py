@@ -1,5 +1,6 @@
 from pwn import *
 
+context.arch = 'amd64'
 p = process("./callme")
 elf = ELF("./callme")
 rop = ROP("./callme")
