@@ -246,6 +246,7 @@ Commençons l'exploitation !
 meme cat
 
 - Trouver un segment accessible en écriture ainsi que son adresse :
+
 ```py
 ❯ rabin2 -S badchars
 [Sections]
@@ -258,6 +259,7 @@ nth paddr        size vaddr       vsize perm name
 <...>
 ```
 - Trouver des gadgets permettant de setup flag.txt et l'adresse du segment data ou bss dans des registres et de move le flag.txt dans le segment:
+
 ```py
 ❯ ROPgadget --binary badchars
 Gadgets information
@@ -267,6 +269,7 @@ Gadgets information
 0x000000000040069c : pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret
 <...>
 ```
+
 Nous pouvons faire pointer les registres r12 pour le flag.txt, r13 pour l'adresse du segment data et compléter r14 et r15 avec des null bytes grâce aux `pop <opérande>`.
 
 
