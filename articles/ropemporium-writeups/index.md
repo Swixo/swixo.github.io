@@ -273,6 +273,8 @@ Gadgets information
 Nous pouvons faire pointer les registres r12 pour le flag.txt, r13 pour l'adresse du segment data et compléter r14 et r15 avec des null bytes grâce aux `pop <opérande>`.
 
 
+
+
 ```py
 #!/usr/bin/python2
 from pwn import *
