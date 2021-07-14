@@ -204,6 +204,71 @@ p.interactive()
 <div id='badchars-writeup'/>
 # badchars
 
+- La description nous indique que le challenge est similaire au [challenge write4](#write4-challenge). Cependant, le binaire nous impose quelques restrictions telles que la présence de bad chars.
+
+## Qu'est ce qu'un bad char ?
+
+Un bad char est une **liste de caractère** non désirés qui peuvent potentiellement **casser l'interprétation** d'un **shellcode**.
+
+Exemples de bad chars:
+1. 00 -> NULL
+2. 0A -> Nouvelle ligne -> \n
+3. 0D -> Retour chariot -> \r
+4. FF -> Saut de page -> \f
+
+<br/>
+
+Lors de l'exécution de notre programme, le binaire nous indique les bad chars :
+
+```py
+❯ ./badchars
+badchars by ROP Emporium
+x86_64
+
+badchars are: 'x', 'g', 'a', '.'
+> 
+```
+
+Nous pouvons donc en conclure que lors de l'exploitation, nous ne pourrons pas utiliser les caractères ci dessus.
+
+La méthodologie d'exploitation de notre binaire reste tout de meme similaire :
+- Trouver l'adresse d'un segment accessible en écriture
+- Obtenir les gadgets nécéssaires pour écrire la string flag.txt dans le segment en question
+- Utilisez la fonction `print_file()` et un gadget `pop rdi ; ret` afin de print le flag
+
+Cependant, vous avez du le remarquer, flag.txt possède des bad chars !
+Si vous avez lu la description du challenge, vous pouvez y voir un indice interéssant : "XOR"
+
+Nous pouvons alors xoré la string flag.txt mais elle ne sera pas valide. Alors comment la déxoré ?
+
+Commençons l'exploitation ! 
+
+[comment]: <> (meme cat)
+
+- Trouver un segment accessible en écriture ainsi que son adresse :
+```py
+❯ rabin2 -S badchars
+[Sections]
+
+nth paddr        size vaddr       vsize perm name
+―――――――――――――――――――――――――――――――――――――――――――――――――
+<...>
+23  0x00001028   0x10 0x00601028   0x10 -rw- .data
+24  0x00001038    0x0 0x00601038    0x8 -rw- .bss
+<...>
+```
+- Trouver des gadgets permettant de setup flag.txt et l'adresse du segment data ou bss dans des registres et de move le flag.txt dans le segment:
+```py
+❯ ROPgadget --binary badchars
+Gadgets information
+============================================================
+<...>
+0x0000000000400634 : mov qword ptr [r13], r12 ; ret
+0x000000000040069c : pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret
+<...>
+```
+Nous pouvons faire pointer les registres r12 pour le flag.txt, r13 pour l'adresse du segment data et compléter r14 et r15 avec des null bytes grâce aux `pop <opérande>`.
+- 
 
 
 ```py
