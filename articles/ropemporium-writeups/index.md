@@ -243,7 +243,7 @@ Nous pouvons alors xoré la string flag.txt mais elle ne sera pas valide. Alors 
 
 Commençons l'exploitation ! 
 
-[comment]: <> (meme cat)
+meme cat
 
 - Trouver un segment accessible en écriture ainsi que son adresse :
 ```py
@@ -268,7 +268,6 @@ Gadgets information
 <...>
 ```
 Nous pouvons faire pointer les registres r12 pour le flag.txt, r13 pour l'adresse du segment data et compléter r14 et r15 avec des null bytes grâce aux `pop <opérande>`.
-- 
 
 
 ```py
